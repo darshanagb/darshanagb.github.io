@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Darshana - Dubbing/Voice Over Artist</title>
   <style>
+    /* Added smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -17,6 +22,7 @@
       color: #fff;
       padding: 20px;
       text-align: center;
+      position: relative; /* needed for positioning icon inside */
     }
 
     nav {
@@ -85,12 +91,21 @@
       }
     }
   </style>
+
+  <!-- Font Awesome for Instagram icon -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
 <header>
   <h1>DARSHANA GB</h1>
   <p>Dubbing | Voice Over Artist 🎤 🎙️</p>
+  <!-- Instagram icon -->
+  <a href="https://www.instagram.com/darshanagbadrinath" target="_blank" 
+     style="position:absolute; top:20px; right:20px; color:#fff; font-size:24px; text-decoration:none;">
+    <i class="fab fa-instagram"></i>
+  </a>
 </header>
 
 <nav>
