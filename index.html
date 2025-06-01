@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Darshana - Dubbing/Voice Over Artist</title>
   <style>
-    /* Added smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -22,7 +17,6 @@
       color: #fff;
       padding: 20px;
       text-align: center;
-      position: relative; /* needed for positioning icon inside */
     }
 
     nav {
@@ -69,11 +63,32 @@
       transition: transform 0.3s, box-shadow 0.3s;
       max-width: 340px;
       text-align: center;
+      box-sizing: border-box;
+      background: #fff;
     }
 
     .video:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    iframe {
+      width: 320px;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .video {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5; /* Maintains approx 320x400 ratio */
+      }
     }
 
     footer {
@@ -83,29 +98,13 @@
       color: #fff;
       margin-top: 40px;
     }
-
-    @media (max-width: 600px) {
-      .video iframe {
-        width: 100% !important;
-        height: auto;
-      }
-    }
   </style>
-
-  <!-- Font Awesome for Instagram icon -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
 
 <header>
   <h1>DARSHANA GB</h1>
   <p>Dubbing | Voice Over Artist 🎤 🎙️</p>
-  <!-- Instagram icon -->
-  <a href="https://www.instagram.com/darshanagbadrinath" target="_blank" 
-     style="position:absolute; top:20px; right:20px; color:#fff; font-size:24px; text-decoration:none;">
-    <i class="fab fa-instagram"></i>
-  </a>
 </header>
 
 <nav>
@@ -133,88 +132,86 @@
       <h2>Avatar 2</h2>
       <h3>Voice of Kate Winslet</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/CzlBQMpLrBd/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Avatar 2" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Barbie</h2>
       <h3>Voice of Margot Robbie</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/C6k-iAGITMG/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Barbie" src="https://www.instagram.com/p/C6k-iAGITMG/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Hanu-Man</h2>
       <h3>Voice of Varu Sharathkumar</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Hanu-Man" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Dayaa</h2>
       <h3>Voice of Ramya Nambessan</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/CvhEkc7se6a/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Dayaa" src="https://www.instagram.com/p/CvhEkc7se6a/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Citadel: Honey Bunny</h2>
       <h3>Voice of Samantha Ruth Prabhu</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/DD9uSgSo8J2/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Citadel Honey Bunny" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Juni</h2>
       <h3>Voice of Rishika Naik</h3>
-      <hr>
-      <iframe src="https://www.instagram.com/p/C58tMo5oaLw/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
       <h3>Juni | Mansi | Chaki | Papu</h3>
+      <hr>
+      <iframe title="Instagram post - Juni" src="https://www.instagram.com/p/C58tMo5oaLw/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Poacher</h2>
       <h3>Voice of Nimisha Sajayan</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/C3u0-NlsO6_/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Poacher" src="https://www.instagram.com/p/C3u0-NlsO6_/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Podcast</h2>
       <h3>Ugly-Duckling & Kids Voices</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/C0YRohUrCbA/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Podcast" src="https://www.instagram.com/p/C0YRohUrCbA/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Karma Calling</h2>
       <h3>Voice of Raveena Tandon</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/C2kaglHMveZ/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Karma Calling" src="https://www.instagram.com/p/C2kaglHMveZ/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video">
       <h2>Jubilee</h2>
       <h3>Voice of Wamiqa Gabbi</h3>
       <hr>
-      <iframe src="https://www.instagram.com/p/CqIlmMnrB1f/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe title="Instagram post - Jubilee" src="https://www.instagram.com/p/CqIlmMnrB1f/embed" allowtransparency="true"></iframe>
     </div>
 
-    </div>
-    
     <div class="video">
-        <h2>Centuary Mattress</h2>
-        <h3>Voice of Sania Mirza</h3>
-        <hr>
-        <iframe src="https://www.instagram.com/p/CypzPMlrngI/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-      </div>
+      <h2>Century Mattress</h2>
+      <h3>Voice of Sania Mirza</h3>
+      <hr>
+      <iframe title="Instagram post - Century Mattress" src="https://www.instagram.com/p/CypzPMlrngI/embed" allowtransparency="true"></iframe>
+    </div>
 
-      <div class="video">
-        <h2>Kalyan Jewellers</h2>
-        <h3>Voice of Anaswara Rajan</h3>
-        <hr>
-        <iframe src="https://www.instagram.com/p/CrXd9gsojOF/embed" width="320" height="400" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-      </div>
+    <div class="video">
+      <h2>Kalyan Jewellers</h2>
+      <h3>Voice of Anaswara Rajan</h3>
+      <hr>
+      <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CrXd9gsojOF/embed" allowtransparency="true"></iframe>
+    </div>
 
   </div>
 </div>
