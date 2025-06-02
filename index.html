@@ -313,6 +313,45 @@
   <h3 style="text-align: center;">✨🎙️</h3>
 </section>
 
+ <!--Scroll to Top-->>
+
+ <button id="scrollToTopBtn" title="Go to top">↑</button>
+
+ #scrollToTopBtn {
+   position: fixed;
+   bottom: 80px; /* Above the footer */
+   right: 20px;
+   z-index: 100;
+   font-size: 24px;
+   padding: 10px 15px;
+   border: none;
+   background-color: #0c405b;
+   color: white;
+   border-radius: 50%;
+   cursor: pointer;
+   display: none;
+   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+   transition: opacity 0.3s ease;
+ }
+ 
+ #scrollToTopBtn:hover {
+   background-color: #062d41;
+ }
+ 
+ <script>
+   const scrollBtn = document.getElementById("scrollToTopBtn");
+ 
+   window.onscroll = function () {
+     scrollBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+   };
+ 
+   scrollBtn.onclick = function () {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+   };
+ </script>
+ <!--End of Scroll-to-top-->> 
+ 
+ <!--Footer-->> 
 <footer style="background-color:#0c405b;" id="contact"> <hr>
   <h2>Contact 📬 </h2>
   
@@ -401,44 +440,6 @@
     }
   }
 </script>
-
-  <!--Scroll to Top-->>
-
-<button id="scrollToTopBtn" title="Go to top">↑</button>
-
-#scrollToTopBtn {
-  position: fixed;
-  bottom: 80px; /* Above the footer */
-  right: 20px;
-  z-index: 100;
-  font-size: 24px;
-  padding: 10px 15px;
-  border: none;
-  background-color: #0c405b;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease;
-}
-
-#scrollToTopBtn:hover {
-  background-color: #062d41;
-}
-
-<script>
-  const scrollBtn = document.getElementById("scrollToTopBtn");
-
-  window.onscroll = function () {
-    scrollBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
-  };
-
-  scrollBtn.onclick = function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-</script>
-
 
 
 </body>
