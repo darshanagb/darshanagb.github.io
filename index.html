@@ -65,6 +65,7 @@
       text-align: center;
       box-sizing: border-box;
       background: #fff;
+      cursor: pointer;
     }
 
     .video:hover {
@@ -87,7 +88,7 @@
       iframe {
         width: 100%;
         height: auto;
-        aspect-ratio: 4 / 5; /* Maintains approx 320x400 ratio */
+        aspect-ratio: 4 / 5;
       }
     }
 
@@ -97,6 +98,36 @@
       background-color: #333;
       color: #fff;
       margin-top: 40px;
+    }
+
+    /* Modal for fullscreen iframe */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal iframe {
+      width: 90vw;
+      height: 90vh;
+      border-radius: 12px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
     }
   </style>
 </head>
@@ -128,85 +159,88 @@
   <h3>Below are some of the links to my works in Kannada</h3>
   <div class="video-container">
 
-    <div class="video">
+    <!-- REPEAT BLOCK -->
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')">
       <h2>Avatar 2</h2>
       <h3>Voice of Kate Winslet</h3>
       <hr>
       <iframe title="Instagram post - Avatar 2" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C6k-iAGITMG/embed')">
       <h2>Barbie</h2>
       <h3>Voice of Margot Robbie</h3>
       <hr>
       <iframe title="Instagram post - Barbie" src="https://www.instagram.com/p/C6k-iAGITMG/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
-        <h2>Citadel: Honey Bunny</h2>
-        <h3>Voice of Samantha Ruth Prabhu</h3>
-        <hr>
-        <iframe title="Instagram post - Citadel Honey Bunny" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" allowtransparency="true"></iframe>
-      </div>
-  
-      <div class="video">
-        <h2>Juni</h2>
-        <h3>Voice of Rishika Naik</h3>
-        <h3>Juni | Mansi | Chaki | Papu</h3>
-        <hr>
-        <iframe title="Instagram post - Juni" src="https://www.instagram.com/p/C58tMo5oaLw/embed" allowtransparency="true"></iframe>
-      </div>
+    <div class="video" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')">
+      <h2>Citadel: Honey Bunny</h2>
+      <h3>Voice of Samantha Ruth Prabhu</h3>
+      <hr>
+      <iframe title="Instagram post - Citadel Honey Bunny" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" allowtransparency="true"></iframe>
+    </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')">
+      <h2>Juni</h2>
+      <h3>Voice of Rishika Naik</h3>
+      <h3>Juni | Mansi | Chaki | Papu</h3>
+      <hr>
+      <iframe title="Instagram post - Juni" src="https://www.instagram.com/p/C58tMo5oaLw/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <!-- Add onclick for other videos similarly -->
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')">
       <h2>Hanu-Man</h2>
       <h3>Voice of Varu Sharathkumar</h3>
       <hr>
       <iframe title="Instagram post - Hanu-Man" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CvhEkc7se6a/embed')">
       <h2>Dayaa</h2>
       <h3>Voice of Ramya Nambessan</h3>
       <hr>
       <iframe title="Instagram post - Dayaa" src="https://www.instagram.com/p/CvhEkc7se6a/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C3u0-NlsO6_/embed')">
       <h2>Poacher</h2>
       <h3>Voice of Nimisha Sajayan</h3>
       <hr>
       <iframe title="Instagram post - Poacher" src="https://www.instagram.com/p/C3u0-NlsO6_/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C0YRohUrCbA/embed')">
       <h2>Podcast</h2>
       <h3>Ugly-Duckling & Kids Voices</h3>
       <hr>
       <iframe title="Instagram post - Podcast" src="https://www.instagram.com/p/C0YRohUrCbA/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C2kaglHMveZ/embed')">
       <h2>Karma Calling</h2>
       <h3>Voice of Raveena Tandon</h3>
       <hr>
       <iframe title="Instagram post - Karma Calling" src="https://www.instagram.com/p/C2kaglHMveZ/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CqIlmMnrB1f/embed')">
       <h2>Jubilee</h2>
       <h3>Voice of Wamiqa Gabbi</h3>
       <hr>
       <iframe title="Instagram post - Jubilee" src="https://www.instagram.com/p/CqIlmMnrB1f/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')">
       <h2>Century Mattress</h2>
       <h3>Voice of Sania Mirza</h3>
       <hr>
       <iframe title="Instagram post - Century Mattress" src="https://www.instagram.com/p/CypzPMlrngI/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')">
       <h2>Kalyan Jewellers</h2>
       <h3>Voice of Anaswara Rajan</h3>
       <hr>
@@ -225,6 +259,32 @@
   <h2>Contact</h2>
   <p><strong>Email:</strong> darshanagbadrinath@gmail.com</p>
 </footer>
+
+<!-- Modal Section -->
+<div class="modal" id="videoModal">
+  <span class="modal-close" onclick="closeModal()">&times;</span>
+  <iframe id="modalIframe" src="" allowtransparency="true"></iframe>
+</div>
+
+<script>
+  function openModal(url) {
+    document.getElementById('modalIframe').src = url;
+    document.getElementById('videoModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('videoModal').style.display = 'none';
+    document.getElementById('modalIframe').src = '';
+  }
+
+  // Close on outside click
+  window.onclick = function(event) {
+    const modal = document.getElementById('videoModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
 
 </body>
 </html>
