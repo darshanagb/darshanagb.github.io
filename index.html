@@ -129,6 +129,29 @@
       cursor: pointer;
       z-index: 10000;
     }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 70px; /* slightly above footer margin */
+      right: 20px;
+      display: none;
+      background-color: #0c405b;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #094060;
+    }
   </style>
 </head>
 <body>
@@ -190,8 +213,6 @@
       <h3>Juni | Mansi | Chaki | Papu</h3>
     </div>
 
-    <!-- Add onclick for other videos similarly -->
-
     <div class="video" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')">
       <h2>Hanu-Man</h2>
       <h3>Voice of Varu Sharathkumar</h3>
@@ -220,188 +241,54 @@
       <iframe title="Instagram post - Podcast" src="https://www.instagram.com/p/C0YRohUrCbA/embed" allowtransparency="true"></iframe>
     </div>
 
-    <div class="video" onclick="openModal('https://www.instagram.com/p/C2kaglHMveZ/embed')">
-      <h2>Karma Calling</h2>
-      <h3>Voice of Raveena Tandon</h3>
-      <hr>
-      <iframe title="Instagram post - Karma Calling" src="https://www.instagram.com/p/C2kaglHMveZ/embed" allowtransparency="true"></iframe>
-    </div>
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CqIlmMnrB1f/embed')">
-      <h2>Jubilee</h2>
-      <h3>Voice of Wamiqa Gabbi</h3>
-      <hr>
-      <iframe title="Instagram post - Jubilee" src="https://www.instagram.com/p/CqIlmMnrB1f/embed" allowtransparency="true"></iframe>
-    </div>
-
   </div>
 </div>
 
-<section class="content">
-
-    <h2 style="text-align: center;"><strong>Television Serials </strong></h2>
-    
-<div class="video-container">
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
-        <h2>Sandhyaraga</h2>
-        
-        <hr>
-        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CrtiakcrNQN/embed" allowtransparency="true"></iframe>
-      </div>
-  
-      <div class="video" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')">
-        <h2>Naga Panchami</h2>
-        <hr>
-        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CzzAaagy27S/embed" allowtransparency="true"></iframe>
-      </div>
-</div>
-</section>
-
-<section class="content">
-
-    <h2 style="text-align: center;"><strong>Commercials </strong></h2>
-    
-<div class="video-container">
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')">
-        <h2>Centuary Mattress</h2>
-        <h3>Voice of Sania Mirza</h3>
-        <hr>
-        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CypzPMlrngI/embed" allowtransparency="true"></iframe>
-      </div>
-  
-      <div class="video" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')">
-        <h2>Kalyan Jewellers</h2>
-        <h3>Voice of Anaswara Rajan</h3>
-        <hr>
-        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CrXd9gsojOF/embed" allowtransparency="true"></iframe>
-        <h3>The sister - Small Girl</h3>
-      </div>
-</div>
-</section>
-
-<section class="content">
-    <h2 style="text-align: center;"> <strong>Kanasina Odalali </strong> on YouTube</h2>
-    <div class="video-container">
-    
-    <div class="video">
-        <h2>Episode 1</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/YrEV4hJ3LBI?si=6hLBh_hjAKnzfB_L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 2</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/xMUrlJFpRQM?si=IY-k9EaCOqKGbsTj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 3</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/sWHPDzpwwzA?si=PW48zKM9Sr3Iw29_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 4</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/rl99gHGExjU?si=mDmQ4ebrSeXwbt24" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    </div>
-</section>
-
-<section class="content">
-  <h2 style="text-align: center;">Know someone looking for a voice artist? </h2>
-  <h3 style="text-align: center;">Feel free to pass my name along.</h3>
-  <h3 style="text-align: center;">✨🎙️</h3>
-</section>
-
-<footer style="background-color:#0c405b;" id="contact"> <hr>
-  <h2>Contact 📬 </h2>
-  
-  <span id="email">darshanagbadrinath@gmail.com </span>
-  <button onclick="copyEmail()" style="margin-left: 4px; padding: 2px 4px; font-size: 0.6em; cursor: pointer;">
-    📋 Copy
-  </button>
-  <span id="copy-msg" style="margin-left: 10px; font-size: 0.8em; color: lightgreen;"></span>
-
-  <script>
-    function copyEmail() {
-      const email = document.getElementById("email").textContent;
-      navigator.clipboard.writeText(email).then(() => {
-        const msg = document.getElementById("copy-msg");
-        msg.textContent = "Copied!";
-        setTimeout(() => msg.textContent = "", 2000); // Reset after 2 seconds
-      }).catch(err => {
-        console.error('Failed to copy email: ', err);
-      });
-    }
-  </script>
-
-    <p style="text-align: center;">
-      
-      <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#E1306C"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          style="vertical-align: middle;"
-        >
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37a4 4 0 1 1-4.94-4.94 4 4 0 0 1 4.94 4.94z"></path>
-          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-        </svg>
-      </a>
-    
-
-  
-    <!-- Standard YouTube icon using Font Awesome -->
-     <p>     </p>
-    <a href="https://www.youtube.com/@darshanagb4135" target="_blank" aria-label="YouTube Icon 2">
-      <i class="fab fa-youtube" style="font-size: 28px; color: #FF0000;"></i>
-    </a>
-  </p>
-  <hr>
-  </div>
-  
-  <!-- Include Font Awesome CSS link in your head -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  
-  
+<footer id="contact">
+  <p>© 2025 Darshana GB - Voice Artist | Bengaluru, Karnataka | <a href="mailto:darshana@example.com" style="color:#fff;">Contact Me</a></p>
 </footer>
 
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Scroll to top">↑</button>
 
-<!-- Modal Section -->
-<div class="modal" id="videoModal">
-  <span class="modal-close" onclick="closeModal()">&times;</span>
-  <iframe id="modalIframe" src="" allowtransparency="true"></iframe>
+<!-- Modal for full screen iframe -->
+<div id="modal" class="modal" onclick="closeModal(event)">
+  <span class="modal-close" title="Close">&times;</span>
+  <iframe id="modalIframe" src="" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
 </div>
 
 <script>
+  // Scroll to Top button functionality
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  };
+
+  scrollBtn.onclick = function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  // Modal open/close
+  const modal = document.getElementById('modal');
+  const modalIframe = document.getElementById('modalIframe');
+
   function openModal(url) {
-    document.getElementById('modalIframe').src = url;
-    document.getElementById('videoModal').style.display = 'flex';
+    modal.style.display = 'flex';
+    modalIframe.src = url;
   }
 
-  function closeModal() {
-    document.getElementById('videoModal').style.display = 'none';
-    document.getElementById('modalIframe').src = '';
-  }
-
-  // Close on outside click
-  window.onclick = function(event) {
-    const modal = document.getElementById('videoModal');
-    if (event.target === modal) {
-      closeModal();
+  function closeModal(event) {
+    // Close only if clicked outside iframe or on close button
+    if (event.target === modal || event.target.classList.contains('modal-close')) {
+      modal.style.display = 'none';
+      modalIframe.src = '';
     }
   }
 </script>
-
 
 </body>
 </html>
