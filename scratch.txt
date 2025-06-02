@@ -1,0 +1,6 @@
+<section class="content">
+<h1 style="text-align: center;">Pocket FM</h1> <hr>
+<img src="images/Badige_Hendthi.jpeg" alt="Badige Hendthi" width="300" href="https://pocketfm.onelink.me/2IE7/zkbzsgpi" />
+<br>
+  <a style="text-align: center;" href="https://pocketfm.onelink.me/2IE7/zkbzsgpi">Badige Hendthi</a>
+</section>
