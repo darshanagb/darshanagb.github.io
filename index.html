@@ -314,8 +314,25 @@
 
 <footer id="contact">
   <h2>Contact 📬 </h2>
-  <p><strong>Email:</strong> darshanagbadrinath@gmail.com </p>
-  
+  <span id="email"><strong>Email:</strong> darshanagbadrinath@gmail.com </span>
+  <button onclick="copyEmail()" style="margin-left: 8px; padding: 4px 8px; font-size: 0.8em; cursor: pointer;">
+    📋 Copy
+  </button>
+  <span id="copy-msg" style="margin-left: 10px; font-size: 0.8em; color: lightgreen;"></span>
+
+  <script>
+    function copyEmail() {
+      const email = document.getElementById("email").textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        const msg = document.getElementById("copy-msg");
+        msg.textContent = "Copied!";
+        setTimeout(() => msg.textContent = "", 2000); // Reset after 2 seconds
+      }).catch(err => {
+        console.error('Failed to copy email: ', err);
+      });
+    }
+  </script>
+    
     <p style="text-align: center;">
       <h2>Instagram: </h2>
       <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" aria-label="Instagram">
