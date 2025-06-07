@@ -7,28 +7,6 @@
   <title>Darshana - Dubbing/Voice Over Artist</title>
   <style>
 
-  #backToTop {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: none;
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      padding: 12px 16px;
-      font-size: 18px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      z-index: 999;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    #backToTop:hover {
-      background-color: #c2185b;
-      transform: scale(1.1);
-    }
-
     :root {
       scroll-padding-top: 100px; /* Adjust based on nav height */
     }
@@ -97,7 +75,7 @@
     }
 
     nav a.active {
-      color: #3b242c;
+      color: #e91e63;
       background-color: rgba(255, 255, 255, 0.3);
     }
 
@@ -508,26 +486,6 @@
   });
 </script>
 
-<script>
-  // Scroll-Spy (already added in earlier step)
-
-  // Back to Top
-  const backToTopBtn = document.getElementById("backToTop");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.style.display = "block";
-    } else {
-      backToTopBtn.style.display = "none";
-    }
-  });
-
-  backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-
-<button id="backToTop" title="Back to Top">⬆️</button>
 
 </body>
 </html>
