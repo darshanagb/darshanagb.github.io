@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />>
+<head <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
+>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Darshana - Dubbing/Voice Over Artist</title>
@@ -27,12 +28,13 @@
       justify-content: center;
       gap: 40px;
       padding: 12px 24px;
-      margin: 0 auto;
-      max-width: 100%;
-      background: rgba(255, 255, 255, 0.2);
+      margin: 0 auto 20px auto;
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(10px);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      max-width: fit-content;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
     }
 
     nav a {
@@ -43,11 +45,14 @@
       color: #031c2a;
       font-weight: 600;
       font-size: 14px;
-      transition: color 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color 0.3s ease, background 0.3s ease;
     }
 
     nav a:hover {
       color: #e91e63;
+      background-color: rgba(255, 255, 255, 0.3);
     }
 
     nav a i {
@@ -55,10 +60,11 @@
       margin-bottom: 4px;
       transition: transform 0.3s ease;
     }
-    
+
     nav a:hover i {
       transform: scale(1.2);
     }
+
  
     .content,
     .portfolio {
@@ -181,6 +187,7 @@
     Contact
   </a>
 </nav>
+
 
 <div style="background-color: #FAF9F5;" class="content" id="about">
   <section class="bio">
