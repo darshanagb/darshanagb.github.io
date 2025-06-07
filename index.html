@@ -74,6 +74,11 @@
       transform: scale(1.2);
     }
 
+    nav a.active {
+      color: #e91e63;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
  
     .content,
     .portfolio {
@@ -455,6 +460,30 @@
       closeModal();
     }
   }
+</script>
+
+<script>
+  const sections = document.querySelectorAll("section[id], div[id]");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (pageYOffset >= sectionTop - 120) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
 </script>
 
 
