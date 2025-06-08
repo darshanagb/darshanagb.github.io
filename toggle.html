@@ -50,6 +50,67 @@
       background-color: #f4f4f4;
     }
 
+    /* Language Toggle Styles */
+    .language-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(233, 30, 99, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .language-toggle:hover {
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .lang-option {
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: none;
+      background: transparent;
+      color: #666;
+    }
+
+    .lang-option.active {
+      background: linear-gradient(135deg, #e91e63, #ff4081);
+      color: white;
+      box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
+    }
+
+    .lang-option:hover:not(.active) {
+      background: rgba(233, 30, 99, 0.1);
+      color: #e91e63;
+    }
+
+    /* Language content visibility */
+    .lang-content {
+      display: block;
+    }
+
+    .lang-content.hidden {
+      display: none;
+    }
+
+    /* Kannada font support */
+    .kannada {
+      font-family: 'Noto Sans Kannada', 'Tunga', sans-serif;
+      line-height: 1.6;
+    }
+
     header {
       background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
       color: #fff;
@@ -172,6 +233,17 @@
     }
 
     @media (max-width: 768px) {
+      .language-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 6px;
+      }
+
+      .lang-option {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
       header {
         padding: 60px 20px;
         min-height: 250px;
@@ -385,38 +457,68 @@
       transform: translateY(-2px);
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+<!-- Language Toggle -->
+<div class="language-toggle">
+  <button class="lang-option active" onclick="switchLanguage('en')" data-lang="en">English</button>
+  <button class="lang-option" onclick="switchLanguage('kn')" data-lang="kn">ಕನ್ನಡ</button>
+</div>
+
 <header>
-  <h1>DARSHANA GB</h1>
-  <h2>Dubbing | Voice-Over Artist</h2>
+  <!-- English Header -->
+  <div class="lang-content" data-lang="en">
+    <h1>DARSHANA GB</h1>
+    <h2>Dubbing | Voice-Over Artist</h2>
+  </div>
+  
+  <!-- Kannada Header -->
+  <div class="lang-content kannada hidden" data-lang="kn">
+    <h1>ದರ್ಶನ ಜಿ.ಬಿ</h1>
+    <h2>ಡಬ್ಬಿಂಗ್ | ವಾಯ್ಸ್ ಓವರ್ ಕಲಾವಿದೆ</h2>
+  </div>
 </header>
 
 <nav>
-  <label for="language-switch">🌐 Language:</label>
-  <select id="language-switch" onchange="toggleLanguage()" style="padding: 4px 8px; border-radius: 6px;">
-    <option value="en">English</option>
-    <option value="kn">ಕನ್ನಡ</option>
-  </select>
-
-  <a href="#about">
-    <i class="fas fa-user"></i>
-    About
-  </a>
-  <a href="#portfolio">
-    <i class="fas fa-microphone-lines"></i>
-    Works
-  </a>
-  <a href="#contact">
-    <i class="fas fa-envelope"></i>
-    Contact
-  </a>
+  <!-- English Navigation -->
+  <div class="lang-content" data-lang="en">
+    <a href="#about">
+      <i class="fas fa-user"></i>
+      About
+    </a>
+    <a href="#portfolio">
+      <i class="fas fa-microphone-lines"></i>
+      Works
+    </a>
+    <a href="#contact">
+      <i class="fas fa-envelope"></i>
+      Contact
+    </a>
+  </div>
+  
+  <!-- Kannada Navigation -->
+  <div class="lang-content kannada hidden" data-lang="kn">
+    <a href="#about">
+      <i class="fas fa-user"></i>
+      ನನ್ನ ಬಗ್ಗೆ
+    </a>
+    <a href="#portfolio">
+      <i class="fas fa-microphone-lines"></i>
+      ಕೆಲಸಗಳು
+    </a>
+    <a href="#contact">
+      <i class="fas fa-envelope"></i>
+      ಸಂಪರ್ಕ
+    </a>
+  </div>
 </nav>
 
-
+<!-- About Section -->
 <div style="background-color: #FAF9F5;" class="content" id="about">
-  <section class="bio lang-en" >
+  <!-- English About -->
+  <section class="bio lang-content" data-lang="en">
     <h2>About Me</h2>
     <p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
     <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
@@ -424,308 +526,124 @@
     <p>✨✨ Bringing every story to life. ✨✨</p>
     <p>🎤 🎙️</p>
   </section>
-
-  <section class="bio lang-kn" style="display: none;">
-    <h2>ನನ್ನ ಪರಿಚಯ</h2>
-    <p>ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ಬೆಂಗಳೂರು ಮೂಲದ ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.</p>
-    <p>ಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿಗೆ ಜೀವ ನೀಡುವ ಪ್ರಯತ್ನದಲ್ಲಿದ್ದೇನೆ...</p>
+  
+  <!-- Kannada About -->
+  <section class="bio lang-content kannada hidden" data-lang="kn">
+    <h2>ನನ್ನ ಬಗ್ಗೆ</h2>
+    <p>ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನ — ಬೆಂಗಳೂರು, ಕರ್ನಾಟಕದಲ್ಲಿ ನೆಲೆಸಿರುವ ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ವಾಯ್ಸ್ ಓವರ್ ಕಲಾವಿದೆ.</p>
+    <p>ಕಥಾ ಹೇಳುವಿಕೆಯ ಜಗತ್ತಿನಲ್ಲಿ — ಚಲನಚಿತ್ರಗಳಿಂದ ಸರಣಿಗಳವರೆಗೆ, ಧಾರಾವಾಹಿಗಳಿಂದ ಜಾಹೀರಾತುಗಳವರೆಗೆ — ನಾನು ಧ್ವನಿಗಳನ್ನು ಜೀವಂತಗೊಳಿಸಲು, ಪ್ರತಿ ಕ್ಷಣಕ್ಕೂ ಆಳ ಮತ್ತು ಭಾವನೆ ಸೇರಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತೇನೆ.</p>
+    <p>ಇದು ಶಕ್ತಿಯುತ ನಿರೂಪಣೆಯಾಗಿರಲಿ, ಜೀವಂತ ಪಾತ್ರದ ಧ್ವನಿಯಾಗಿರಲಿ, ಅಥವಾ ಸ್ಪಷ್ಟ ವಾಣಿಜ್ಯ ಸ್ವರವಾಗಿರಲಿ, ಪ್ರತಿ ಯೋಜನೆಯನ್ನು ಉನ್ನತೀಕರಿಸುವ ಉತ್ತಮ ಗುಣಮಟ್ಟದ ಆಡಿಯೊವನ್ನು ಒದಗಿಸಲು ನಾನು ಬದ್ಧವಾಗಿದ್ದೇನೆ.</p>
+    <p>✨✨ ಪ್ರತಿ ಕಥೆಯನ್ನು ಜೀವಂತಗೊಳಿಸುವುದು. ✨✨</p>
+    <p>🎤 🎙️</p>
   </section>
 </div>
 
-<h2 style="text-align: center;" class="portfolio" id="portfolio">My Works</h2>
-<h3 style="text-align: center;">Below are some of the links to my works in Kannada</h3>
+<!-- Portfolio Section -->
+<div class="lang-content" data-lang="en">
+  <h2 style="text-align: center;" class="portfolio" id="portfolio">My Works</h2>
+  <h3 style="text-align: center;">Below are some of the links to my works in Kannada</h3>
+</div>
 
-<div style="background-color: #FAF9F5;"  class="portfolio" id="portfolio">
-  <h2 style="text-align: center;">Movies</h2>
+<div class="lang-content kannada hidden" data-lang="kn">
+  <h2 style="text-align: center;" class="portfolio" id="portfolio">ನನ್ನ ಕೆಲಸಗಳು</h2>
+  <h3 style="text-align: center;">ಕೆಳಗೆ ಕನ್ನಡದಲ್ಲಿನ ನನ್ನ ಕೆಲವು ಕೆಲಸಗಳ ಲಿಂಕ್‌ಗಳಿವೆ</h3>
+</div>
+
+<!-- Movies Section -->
+<div style="background-color: #FAF9F5;" class="portfolio" id="portfolio">
+  <div class="lang-content" data-lang="en">
+    <h2 style="text-align: center;">Movies</h2>
+  </div>
+  <div class="lang-content kannada hidden" data-lang="kn">
+    <h2 style="text-align: center;">ಚಲನಚಿತ್ರಗಳು</h2>
+  </div>
+  
   <div class="video-container">
-
-    <!-- REPEAT BLOCK -->
     <div class="video" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')">
-      <h2>Avatar 2</h2>
-      <h3>Voice of Kate Winslet</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Avatar 2</h2>
+        <h3>Voice of Kate Winslet</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ಅವತಾರ್ 2</h2>
+        <h3>ಕೇಟ್ ವಿನ್ಸ್ಲೆಟ್ ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Avatar 2" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/C6k-iAGITMG/embed')">
-      <h2>Barbie</h2>
-      <h3>Voice of Margot Robbie</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Barbie</h2>
+        <h3>Voice of Margot Robbie</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ಬಾರ್ಬಿ</h2>
+        <h3>ಮಾರ್ಗಾಟ್ ರಾಬಿ ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Barbie" src="https://www.instagram.com/p/C6k-iAGITMG/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')">
-      <h2>Citadel: Honey Bunny</h2>
-      <h3>Voice of Samantha Ruth Prabhu</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Citadel: Honey Bunny</h2>
+        <h3>Voice of Samantha Ruth Prabhu</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ಸಿಟಾಡೆಲ್: ಹನಿ ಬನ್ನಿ</h2>
+        <h3>ಸಮಂತಾ ರೂತ್ ಪ್ರಭು ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Citadel Honey Bunny" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')">
-      <h2>Juni</h2>
-      <h3>Voice of Rishika Naik</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Juni</h2>
+        <h3>Voice of Rishika Naik</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ಜೂನಿ</h2>
+        <h3>ಋಷಿಕಾ ನಾಯಕ್ ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Juni" src="https://www.instagram.com/p/C58tMo5oaLw/embed" allowtransparency="true"></iframe>
-      <h3>Juni | Mansi | Chaki | Papu</h3>
+      <div class="lang-content" data-lang="en">
+        <h3>Juni | Mansi | Chaki | Papu</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h3>ಜೂನಿ | ಮಾನಸಿ | ಚಾಕಿ | ಪಾಪು</h3>
+      </div>
     </div>
 
-    <!-- Add onclick for other videos similarly -->
-
     <div class="video" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')">
-      <h2>Hanu-Man</h2>
-      <h3>Voice of Varu Sharathkumar</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Hanu-Man</h2>
+        <h3>Voice of Varu Sharathkumar</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ಹನು-ಮನ್</h2>
+        <h3>ವರು ಶರತ್‌ಕುಮಾರ್ ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Hanu-Man" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/CvhEkc7se6a/embed')">
-      <h2>Dayaa</h2>
-      <h3>Voice of Ramya Nambessan</h3>
+      <div class="lang-content" data-lang="en">
+        <h2>Dayaa</h2>
+        <h3>Voice of Ramya Nambessan</h3>
+      </div>
+      <div class="lang-content kannada hidden" data-lang="kn">
+        <h2>ದಯಾ</h2>
+        <h3>ರಮ್ಯಾ ನಂಬೀಸನ್ ಅವರ ಧ್ವನಿ</h3>
+      </div>
       <hr>
       <iframe title="Instagram post - Dayaa" src="https://www.instagram.com/p/CvhEkc7se6a/embed" allowtransparency="true"></iframe>
     </div>
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/C3u0-NlsO6_/embed')">
-      <h2>Poacher</h2>
-      <h3>Voice of Nimisha Sajayan</h3>
-      <hr>
-      <iframe title="Instagram post - Poacher" src="https://www.instagram.com/p/C3u0-NlsO6_/embed" allowtransparency="true"></iframe>
-    </div>
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/C0YRohUrCbA/embed')">
-      <h2>Podcast</h2>
-      <h3>Ugly-Duckling & Kids Voices</h3>
-      <hr>
-      <iframe title="Instagram post - Podcast" src="https://www.instagram.com/p/C0YRohUrCbA/embed" allowtransparency="true"></iframe>
-    </div>
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/C2kaglHMveZ/embed')">
-      <h2>Karma Calling</h2>
-      <h3>Voice of Raveena Tandon</h3>
-      <hr>
-      <iframe title="Instagram post - Karma Calling" src="https://www.instagram.com/p/C2kaglHMveZ/embed" allowtransparency="true"></iframe>
-    </div>
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CqIlmMnrB1f/embed')">
-      <h2>Jubilee</h2>
-      <h3>Voice of Wamiqa Gabbi</h3>
-      <hr>
-      <iframe title="Instagram post - Jubilee" src="https://www.instagram.com/p/CqIlmMnrB1f/embed" allowtransparency="true"></iframe>
-    </div>
-
-  </div>
-</div>
-
-<section style="background-color: #FAF9F5;"  class="content">
-
-    <h2 style="text-align: center;"><strong>Television Serials </strong></h2>
-    
-<div class="video-container">
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
-        <h2>Sandhyaraga</h2>
-        
-        <hr>
-        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CrtiakcrNQN/embed" allowtransparency="true"></iframe>
-      </div>
-  
-      <div class="video" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')">
-        <h2>Naga Panchami</h2>
-        <hr>
-        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CzzAaagy27S/embed" allowtransparency="true"></iframe>
-      </div>
-</div>
-</section>
-
-<section style="background-color: #FAF9F5;" class="content">
-
-    <h2 style="text-align: center;"><strong>Commercial Ads</strong></h2>
-    
-<div class="video-container">
-
-    <div class="video" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')">
-        <h2>Centuary Mattress</h2>
-        <h3>Voice of Sania Mirza</h3>
-        <hr>
-        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CypzPMlrngI/embed" allowtransparency="true"></iframe>
-      </div>
-  
-      <div class="video" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')">
-        <h2>Kalyan Jewellers</h2>
-        <h3>Voice of Anaswara Rajan (Sister)</h3>
-        <hr>
-        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CrXd9gsojOF/embed" allowtransparency="true"></iframe>
-      </div>
-</div>
-</section>
-
-<section style="background-color: #FAF9F5;"  class="content">
-    <h2 style="text-align: center;"> <strong>Kanasina Odalali </strong> on YouTube</h2>
-    <div class="video-container">
-    
-    <div class="video">
-        <h2>Episode 1</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/YrEV4hJ3LBI?si=6hLBh_hjAKnzfB_L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 2</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/xMUrlJFpRQM?si=IY-k9EaCOqKGbsTj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 3</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/sWHPDzpwwzA?si=PW48zKM9Sr3Iw29_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <div class="video">
-        <h2>Episode 4</h2> <hr>
-    <iframe width="1300" height="315" src="https://www.youtube.com/embed/rl99gHGExjU?si=mDmQ4ebrSeXwbt24" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    </div>
-</section>
-
-
-
-<footer style="background-color:#031c2a;" id="contact"> <hr>
-  <h2>Contact 📬 </h2>
-  
-  <span id="email">darshanagbadrinath@gmail.com </span>
-  <button onclick="copyEmail()" style="margin-left: 4px; padding: 2px 4px; font-size: 0.6em; cursor: pointer;">
-    📋 Copy
-  </button>
-  <span id="copy-msg" style="margin-left: 10px; font-size: 0.8em; color: lightgreen;"></span>
-
-  <script>
-    function copyEmail() {
-      const email = document.getElementById("email").textContent;
-      navigator.clipboard.writeText(email).then(() => {
-        const msg = document.getElementById("copy-msg");
-        msg.textContent = "Copied!";
-        setTimeout(() => msg.textContent = "", 2000); // Reset after 2 seconds
-      }).catch(err => {
-        console.error('Failed to copy email: ', err);
-      });
-    }
-  </script>
-
-    <p style="text-align: center;">
-      
-      <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#E1306C"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          style="vertical-align: middle;"
-        >
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37a4 4 0 1 1-4.94-4.94 4 4 0 0 1 4.94 4.94z"></path>
-          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-        </svg>
-      </a>
-    
-
-  
-    <!-- Standard YouTube icon using Font Awesome -->
-     <p>     </p>
-    <a href="https://www.youtube.com/@darshanagb4135" target="_blank" aria-label="YouTube Icon 2">
-      <i class="fab fa-youtube" style="font-size: 28px; color: #FF0000;"></i>
-    </a>
-  </p>
-  
-  </div>
-  
-  <!-- Include Font Awesome CSS link in your head -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  
-  <h2 style="text-align: center;">Know someone looking for a voice artist? </h2>
-  <h3 style="text-align: center;">Feel free to pass my name along.</h3>
-  <h3 style="text-align: center;">✨🎙️</h3>
-  <hr>
-</footer>
-
-
-<!-- Modal Section -->
-<div class="modal" id="videoModal">
-  <span class="modal-close" onclick="closeModal()">&times;</span>
-  <iframe id="modalIframe" src="" allowtransparency="true"></iframe>
-</div>
-
-<!-- Scroll to top button -->
-<button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
-  <i class="fas fa-chevron-up"></i>
-</button>
-
-<script>
-  function openModal(url) {
-    document.getElementById('modalIframe').src = url;
-    document.getElementById('videoModal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('videoModal').style.display = 'none';
-    document.getElementById('modalIframe').src = '';
-  }
-
-  // Close on outside click
-  window.onclick = function(event) {
-    const modal = document.getElementById('videoModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-
-  // Scroll to top functionality
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  // Show/hide scroll to top button based on scroll position
-  window.addEventListener('scroll', function() {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    if (window.pageYOffset > 300) {
-      scrollToTopBtn.classList.add('show');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-    }
-  });
-</script>
-
-<script>
-  const sections = document.querySelectorAll("section[id], div[id]");
-  const navLinks = document.querySelectorAll("nav a");
-
-  window.addEventListener("scroll", () => {
-    let current = "";
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (pageYOffset >= sectionTop - 120) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
-      }
-    });
-  });
-</script>
-
-
-</body>
-</html>
+      <div class="lang-content" data-lang="en">
+        <h2>Poacher</h2>
+        <h3>Voice of Nim
