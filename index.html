@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Darshana - Dubbing/Voice Over Artist</title>
+  <title>Darshana GB - Professional Dubbing & Voice Over Artist</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Professional dubbing and voice-over artist Darshana GB from Bengaluru. Specializing in Kannada dubbing for movies, TV serials, and commercial ads. Voice of Kate Winslet, Margot Robbie, and more.">
+  <meta name="keywords" content="Darshana GB, dubbing artist, voice over, Kannada dubbing, Bengaluru voice artist, professional voice actor">
+  <meta name="author" content="Darshana GB">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourwebsite.com/">
+  <meta property="og:title" content="Darshana GB - Professional Dubbing & Voice Over Artist">
+  <meta property="og:description" content="Professional dubbing and voice-over artist from Bengaluru. Bringing voices to life in Kannada for movies, TV serials, and commercials. Voice of Kate Winslet, Margot Robbie, and more.">
+  <meta property="og:image" content="https://yourwebsite.com/darshana-thumbnail.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Darshana GB - Professional Voice Over Artist">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://yourwebsite.com/">
+  <meta property="twitter:title" content="Darshana GB - Professional Dubbing & Voice Over Artist">
+  <meta property="twitter:description" content="Professional dubbing and voice-over artist from Bengaluru. Bringing voices to life in Kannada for movies, TV serials, and commercials.">
+  <meta property="twitter:image" content="https://yourwebsite.com/darshana-thumbnail.jpg">
+  
+  <!-- WhatsApp specific -->
+  <meta property="og:site_name" content="Darshana GB Portfolio">
+  <meta property="og:locale" content="en_US">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
 
     :root {
@@ -22,10 +50,113 @@
     }
 
     header {
-      background-color: #333;
+      background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
       color: #fff;
-      padding: 20px;
+      padding: 80px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(233, 30, 99, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(233, 30, 99, 0.2) 0%, transparent 50%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 2;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.8)); }
+    }
+
+    header h2 {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin: 15px 0 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: slideUp 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      animation: expand 2s ease-out 1s forwards;
+    }
+
+    @keyframes expand {
+      from { width: 0; }
+      to { width: 120px; }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 60px 20px;
+        min-height: 250px;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+      }
+      
+      header h2 {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
     }
 
     nav {
@@ -224,129 +355,14 @@
     .scroll-to-top:hover i {
       transform: translateY(-2px);
     }
-
-    header {
-      background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
-      color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(233, 30, 99, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(233, 30, 99, 0.2) 0%, transparent 50%);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin: 0;
-      background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
-      letter-spacing: 3px;
-      position: relative;
-      z-index: 2;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5)); }
-      to { filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.8)); }
-    }
-
-    header h2 {
-      font-size: 1.4rem;
-      font-weight: 300;
-      margin: 15px 0 0 0;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: slideUp 1s ease-out 0.5s forwards;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #e91e63, transparent);
-      animation: expand 2s ease-out 1s forwards;
-    }
-
-    @keyframes expand {
-      from { width: 0; }
-      to { width: 120px; }
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 20px 20px;
-        min-height: 140px;
-      }
-      
-      header h1 {
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-      }
-      
-      header h2 {
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-      }
-    }
   </style>
 </head>
 <body>
 
-    <!-- Scroll to top button -->
-  <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <header>
-    <h1>DARSHANA GB</h1>
-    <h2 style="font-size:x-large;">Dubbing | Voice-Over Artist</h2>
-  </header>
+<header>
+  <h1>DARSHANA GB</h1>
+  <h2>Dubbing | Voice-Over Artist</h2>
+</header>
 
 <nav>
   <a href="#about">
@@ -367,7 +383,7 @@
 <div style="background-color: #FAF9F5;" class="content" id="about">
   <section class="bio">
     <h2>About Me</h2>
-    <p>Hello, I’m Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
+    <p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
     <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
     <p>Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.</p>
     <p>✨✨ Bringing every story to life. ✨✨</p>
@@ -531,11 +547,6 @@
 
 
 <footer style="background-color:#031c2a;" id="contact"> <hr>
-  <h2 style="text-align: center;">Know someone looking for a voice artist? 🎙️</h2>
-  <h3 style="text-align: center;">Feel free to pass my name along.</h3>
-  
-  <h3 style="text-align: center;">✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨</h3>
-
   <h2>Contact 📬 </h2>
   
   <span id="email">darshanagbadrinath@gmail.com </span>
@@ -593,6 +604,10 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
+  
+  <h2 style="text-align: center;">Know someone looking for a voice artist? </h2>
+  <h3 style="text-align: center;">Feel free to pass my name along.</h3>
+  <h3 style="text-align: center;">✨🎙️</h3>
   <hr>
 </footer>
 
@@ -602,6 +617,11 @@
   <span class="modal-close" onclick="closeModal()">&times;</span>
   <iframe id="modalIframe" src="" allowtransparency="true"></iframe>
 </div>
+
+<!-- Scroll to top button -->
+<button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
 
 <script>
   function openModal(url) {
@@ -621,6 +641,24 @@
       closeModal();
     }
   }
+
+  // Scroll to top functionality
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Show/hide scroll to top button based on scroll position
+  window.addEventListener('scroll', function() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
 </script>
 
 <script>
@@ -645,24 +683,6 @@
       }
     });
   });
-
-  // Scroll to top functionality
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
-
-// Show/hide scroll to top button based on scroll position
-window.addEventListener('scroll', function() {
-  const scrollToTopBtn = document.getElementById('scrollToTop');
-  if (window.pageYOffset > 300) {
-    scrollToTopBtn.classList.add('show');
-  } else {
-    scrollToTopBtn.classList.remove('show');
-  }
-});
 </script>
 
 
