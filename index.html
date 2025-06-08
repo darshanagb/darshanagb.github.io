@@ -394,12 +394,6 @@
 </header>
 
 <nav>
-  <label for="language-switch">🌐 Language:</label>
-  <select id="language-switch" onchange="toggleLanguage()" style="padding: 4px 8px; border-radius: 6px;">
-    <option value="en">English</option>
-    <option value="kn">ಕನ್ನಡ</option>
-  </select>
-
   <a href="#about">
     <i class="fas fa-user"></i>
     About
@@ -413,6 +407,12 @@
     Contact
   </a>
 </nav>
+
+<label for="language-switch">🌐 Language:</label>
+  <select id="language-switch" onchange="toggleLanguage()" style="padding: 4px 8px; border-radius: 6px;">
+    <option value="en">English</option>
+    <option value="kn">ಕನ್ನಡ</option>
+  </select>
 
 
 <div style="background-color: #FAF9F5;" class="content" id="about">
@@ -616,7 +616,7 @@
     enElements.forEach(el => el.style.display = selectedLang === "en" ? "block" : "none");
     knElements.forEach(el => el.style.display = selectedLang === "kn" ? "block" : "none");
   }
-  
+
   </script>
 
     <p style="text-align: center;">
