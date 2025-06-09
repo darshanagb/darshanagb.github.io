@@ -1131,20 +1131,6 @@
       element.style.opacity = '0';
     }, 2000);
   }
-
-  // Add this to your script section
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
-    // Disable F12, Ctrl+Shift+I, Ctrl+U
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-            (e.ctrlKey && e.key === 'u')) {
-            e.preventDefault();
-        }
-    });
 </script>
 
 </body>
