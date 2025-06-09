@@ -1169,5 +1169,21 @@
   }
 </script>
 
+<script>
+  const toggle = document.querySelector('.language-toggle-container');
+  const footer = document.querySelector('footer');
+
+  window.addEventListener('scroll', () => {
+    const footerTop = footer.getBoundingClientRect().top;
+    if (footerTop < window.innerHeight - 100) {
+      toggle.style.opacity = '0';
+      toggle.style.pointerEvents = 'none';
+    } else {
+      toggle.style.opacity = '1';
+      toggle.style.pointerEvents = 'auto';
+    }
+  });
+</script>
+
 </body>
 </html>
