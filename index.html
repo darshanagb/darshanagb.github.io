@@ -737,43 +737,6 @@
   <i class="fas fa-chevron-up"></i>
 </button>
 
-<script>
-  function openModal(url) {
-    document.getElementById('modalIframe').src = url;
-    document.getElementById('videoModal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('videoModal').style.display = 'none';
-    document.getElementById('modalIframe').src = '';
-  }
-
-  // Close on outside click
-  window.onclick = function(event) {
-    const modal = document.getElementById('videoModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-
-  // Scroll to top functionality
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  // Show/hide scroll to top button based on scroll position
-  window.addEventListener('scroll', function() {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    if (window.pageYOffset > 300) {
-      scrollToTopBtn.classList.add('show');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-    }
-  });
-</script>
 
 <script>
   const sections = document.querySelectorAll("section[id], div[id]");
