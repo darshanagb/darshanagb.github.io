@@ -261,7 +261,7 @@
         margin-left: 0;
         margin-top: 5px;
       }
-      
+
       header {
         padding: 60px 20px;
         min-height: 250px;
@@ -652,6 +652,92 @@
       transition: opacity 0.3s ease;
       opacity: 0;
     }
+
+    .works-header {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .works-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(233, 30, 99, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(3, 28, 42, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .works-title-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .works-main-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      background: linear-gradient(135deg, #031c2a 0%, #e91e63 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 20px rgba(233, 30, 99, 0.1);
+    }
+
+    .works-subtitle-text {
+      font-size: 1.2rem;
+      color: #666;
+      font-weight: 400;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .works-subtitle-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    .section-header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 40px;
+      margin: 40px auto 30px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin: 0;
+      color: #031c2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .section-icon {
+      font-size: 1.8rem;
+      color: #e91e63;
+    }
   </style>
 </head>
 <body>
@@ -708,11 +794,20 @@
   </section>
 </div>
 
-<h2 style="text-align: center;" class="portfolio" id="portfolio">My Works</h2>
-<h3 style="text-align: center;">Below are some of the links to my works in Kannada</h3>
+<div class="works-header" id="portfolio">
+  <div class="works-title-container">
+    <h1 class="works-main-title">My Works</h1>
+    <div class="works-subtitle">
+      <span class="works-subtitle-text">Showcasing my voice work in Kannada</span>
+      <div class="works-subtitle-line"></div>
+    </div>
+  </div>
+</div>
 
 <div style="background-color: #FAF9F5;"  class="portfolio" id="portfolio">
-  <h2 style="text-align: center;">Movies</h2>
+  <div class="section-header">
+  <h2><i class="fas fa-film section-icon"></i>Movies</h2>
+</div>
   <div class="video-container">
 
     <div class="video" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')">
@@ -790,7 +885,11 @@
 </div>
 
 <section style="background-color: #FAF9F5;"  class="content">
-    <h2 style="text-align: center;"><strong>Television Serials </strong></h2>
+  <div class="section-header">
+    <div class="section-header">
+      <h2><i class="fas fa-tv section-icon"></i>Television Serials</h2>
+    </div>
+  </div>
     
 <div class="video-container">
     <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
@@ -808,7 +907,9 @@
 </section>
 
 <section style="background-color: #FAF9F5;" class="content">
-    <h2 style="text-align: center;"><strong>Commercial Ads</strong></h2>
+  <div class="section-header">
+    <h2><i class="fas fa-bullhorn section-icon"></i>Commercial Ads</h2>
+  </div>
     
 <div class="video-container">
     <div class="video" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')">
@@ -828,7 +929,9 @@
 </section>
 
 <section style="background-color: #FAF9F5;"  class="content">
-    <h2 style="text-align: center;"> <strong>Kanasina Odalali </strong> on YouTube</h2>
+  <div class="section-header">
+    <h2><i class="fab fa-youtube section-icon"></i>Kanasina Odalali</h2>
+  </div>
     <div class="video-container">
     
     <div class="video">
