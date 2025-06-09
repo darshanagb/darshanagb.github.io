@@ -471,6 +471,11 @@
     .scroll-to-top:hover i {
       transform: translateY(-2px);
     }
+
+    #copy-msg {
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
@@ -818,6 +823,59 @@
       }
     });
   });
+</script>
+
+// Add this script section before the closing </body> tag
+
+<script>
+function copyEmail() {
+  const email = 'darshanagbadrinath@gmail.com';
+  const copyMsg = document.getElementById('copy-msg');
+  
+  // Use the modern clipboard API if available
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(email).then(() => {
+      showCopyMessage(copyMsg, 'Email copied!');
+    }).catch(() => {
+      fallbackCopy(email, copyMsg);
+    });
+  } else {
+    // Fallback for older browsers or non-secure contexts
+    fallbackCopy(email, copyMsg);
+  }
+}
+
+function fallbackCopy(text, msgElement) {
+  // Create a temporary textarea element
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-999999px';
+  textArea.style.top = '-999999px';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  
+  try {
+    document.execCommand('copy');
+    showCopyMessage(msgElement, 'Email copied!');
+  } catch (err) {
+    showCopyMessage(msgElement, 'Copy failed');
+  }
+  
+  document.body.removeChild(textArea);
+}
+
+function showCopyMessage(element, message) {
+  element.textContent = message;
+  element.style.opacity = '1';
+  
+  // Clear message after 2 seconds
+  setTimeout(() => {
+    element.textContent = '';
+    element.style.opacity = '0';
+  }, 2000);
+}
 </script>
 
 
