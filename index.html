@@ -773,6 +773,32 @@
   });
 </script>
 
+<script>
+  const langButtons = document.querySelectorAll('.lang-option');
+  const langEnElements = document.querySelectorAll('.lang-en');
+  const langKnElements = document.querySelectorAll('.lang-kn');
+
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      langButtons.forEach(btn => btn.classList.remove('active'));
+
+      // Add active class to clicked button
+      button.classList.add('active');
+
+      const selectedLang = button.getAttribute('data-lang');
+
+      if (selectedLang === 'en') {
+        langEnElements.forEach(el => el.style.display = 'block');
+        langKnElements.forEach(el => el.style.display = 'none');
+      } else if (selectedLang === 'kn') {
+        langEnElements.forEach(el => el.style.display = 'none');
+        langKnElements.forEach(el => el.style.display = 'block');
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>
