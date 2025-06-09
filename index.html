@@ -207,6 +207,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: opacity 0.3s ease;
     }
 
     .language-toggle {
@@ -305,11 +306,6 @@
       header h2 {
         font-size: 1.1rem;
         letter-spacing: 1px;
-      }
-
-      .language-toggle-container {
-        top: 15px;
-        right: 15px;
       }
 
       .lang-option {
@@ -1184,6 +1180,26 @@
     }
   });
 </script>
+
+<script>
+  const languageToggle = document.querySelector('.language-toggle-container');
+  const header = document.querySelector('header');
+
+  function handleScroll() {
+    const headerBottom = header.getBoundingClientRect().bottom;
+
+    if (headerBottom <= 0) {
+      languageToggle.style.opacity = '0';
+      languageToggle.style.pointerEvents = 'none';
+    } else {
+      languageToggle.style.opacity = '1';
+      languageToggle.style.pointerEvents = 'auto';
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+</script>
+
 
 </body>
 </html>
