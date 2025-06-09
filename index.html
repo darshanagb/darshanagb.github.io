@@ -272,17 +272,14 @@
     }
 
     @media (max-width: 768px) {
-      .language-toggle-container {
-        top: 15px;
-        right: 15px;
-        position: fixed;
+      .email-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 15px;
+        border-radius: 20px;
+        max-width: calc(100vw - 60px);
+        margin: 0 auto 30px auto;
       }
-
-      footer {
-        padding-top: 80px; /* create buffer space below toggle */
-      }
-    }
-
 
       .email-text {
         font-size: 0.9rem;
@@ -1172,7 +1169,7 @@
   }
 </script>
 
-<script>
+  <script>
   const toggle = document.querySelector('.language-toggle-container');
   const footer = document.querySelector('footer');
 
