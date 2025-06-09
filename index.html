@@ -12,7 +12,6 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-
     :root {
       scroll-padding-top: 100px;
     }
@@ -170,7 +169,6 @@
       to { width: 120px; }
     }
 
-    /* Enhanced Language Toggle Styles */
     .language-toggle-container {
       position: fixed;
       top: 20px;
@@ -232,7 +230,6 @@
       box-shadow: 0 6px 25px rgba(233, 30, 99, 0.5);
     }
 
-    /* Globe icon */
     .globe-icon {
       color: rgba(255, 255, 255, 0.8);
       font-size: 16px;
@@ -339,11 +336,6 @@
       text-align: center;
     }
 
-    .portfolio h2,
-    .portfolio h3 {
-      text-align: center;
-    }
-
     .video-container {
       display: flex;
       flex-wrap: wrap;
@@ -395,7 +387,6 @@
       margin-top: 40px;
     }
 
-    /* Modal for fullscreen iframe */
     .modal {
       display: none;
       position: fixed;
@@ -425,7 +416,6 @@
       z-index: 10000;
     }
 
-    /* Scroll to top button */
     .scroll-to-top {
       position: fixed;
       bottom: 30px;
@@ -713,7 +703,6 @@
   
   </div>
   
-  <!-- Include Font Awesome CSS link in your head -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -748,7 +737,6 @@
     document.getElementById('modalIframe').src = '';
   }
 
-  // Close on outside click
   window.onclick = function(event) {
     const modal = document.getElementById('videoModal');
     if (event.target === modal) {
@@ -756,7 +744,6 @@
     }
   }
 
-  // Scroll to top functionality
   function scrollToTop() {
     window.scrollTo({
       top: 0,
@@ -764,7 +751,6 @@
     });
   }
 
-  // Show/hide scroll to top button based on scroll position
   window.addEventListener('scroll', function() {
     const scrollToTopBtn = document.getElementById('scrollToTop');
     if (window.pageYOffset > 300) {
@@ -773,9 +759,7 @@
       scrollToTopBtn.classList.remove('show');
     }
   });
-</script>
 
-<script>
   const sections = document.querySelectorAll("section[id], div[id]");
   const navLinks = document.querySelectorAll("nav a");
 
@@ -797,19 +781,14 @@
       }
     });
   });
-</script>
 
-<script>
   const langButtons = document.querySelectorAll('.lang-option');
   const langEnElements = document.querySelectorAll('.lang-en');
   const langKnElements = document.querySelectorAll('.lang-kn');
 
   langButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Remove active class from all buttons
       langButtons.forEach(btn => btn.classList.remove('active'));
-
-      // Add active class to clicked button
       button.classList.add('active');
 
       const selectedLang = button.getAttribute('data-lang');
@@ -823,61 +802,52 @@
       }
     });
   });
-</script>
 
-// Add this script section before the closing </body> tag
-
-<script>
-function copyEmail() {
-  const email = 'darshanagbadrinath@gmail.com';
-  const copyMsg = document.getElementById('copy-msg');
-  
-  // Use the modern clipboard API if available
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(email).then(() => {
-      showCopyMessage(copyMsg, 'Email copied!');
-    }).catch(() => {
+  function copyEmail() {
+    const email = 'darshanagbadrinath@gmail.com';
+    const copyMsg = document.getElementById('copy-msg');
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(email).then(() => {
+        showCopyMessage(copyMsg, 'Email copied!');
+      }).catch(() => {
+        fallbackCopy(email, copyMsg);
+      });
+    } else {
       fallbackCopy(email, copyMsg);
-    });
-  } else {
-    // Fallback for older browsers or non-secure contexts
-    fallbackCopy(email, copyMsg);
+    }
   }
-}
 
-function fallbackCopy(text, msgElement) {
-  // Create a temporary textarea element
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  textArea.style.position = 'fixed';
-  textArea.style.left = '-999999px';
-  textArea.style.top = '-999999px';
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-  
-  try {
-    document.execCommand('copy');
-    showCopyMessage(msgElement, 'Email copied!');
-  } catch (err) {
-    showCopyMessage(msgElement, 'Copy failed');
+  function fallbackCopy(text, msgElement) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showCopyMessage(msgElement, 'Email copied!');
+    } catch (err) {
+      showCopyMessage(msgElement, 'Copy failed');
+    }
+    
+    document.body.removeChild(textArea);
   }
-  
-  document.body.removeChild(textArea);
-}
 
-function showCopyMessage(element, message) {
-  element.textContent = message;
-  element.style.opacity = '1';
-  
-  // Clear message after 2 seconds
-  setTimeout(() => {
-    element.textContent = '';
-    element.style.opacity = '0';
-  }, 2000);
-}
+  function showCopyMessage(element, message) {
+    element.textContent = message;
+    element.style.opacity = '1';
+    
+    setTimeout(() => {
+      element.textContent = '';
+      element.style.opacity = '0';
+    }, 2000);
+  }
 </script>
-
 
 </body>
 </html>
