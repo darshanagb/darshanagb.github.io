@@ -843,6 +843,23 @@
       color: white;
     }
 
+    @media (max-width: 768px) {
+  .phone-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 15px;
+    border-radius: 20px;
+    max-width: calc(100vw - 60px);
+    margin: 0 auto 30px auto;
+  }
+
+  .phone-text {
+    font-size: 0.9rem;
+    text-align: center;
+    word-break: break-all;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1100,7 +1117,7 @@
       </div>
 
       <div class="phone-container">
-        <span class="phone-text" id="phone">+91 89510 99268</span>
+        <span class="phone-text" id="phone">+91 98765 43210</span>
         <button class="copy-btn" onclick="copyPhone()">
           <i class="fas fa-copy"></i>
           Copy
@@ -1284,7 +1301,7 @@
   }
 
   function copyPhone() {
-  const phone = '+91 98765 43210';
+  const phone = '+91 89510 99268';
   const copyMsg = document.getElementById('copy-phone-msg');
   
   if (navigator.clipboard && window.isSecureContext) {
