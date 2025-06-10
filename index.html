@@ -843,23 +843,6 @@
       color: white;
     }
 
-    @media (max-width: 768px) {
-  .phone-container {
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px 15px;
-    border-radius: 20px;
-    max-width: calc(100vw - 60px);
-    margin: 0 auto 30px auto;
-  }
-
-  .phone-text {
-    font-size: 0.9rem;
-    text-align: center;
-    word-break: break-all;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -1115,16 +1098,6 @@
         <span class="copy-message" id="copy-msg"></span>
 
       </div>
-
-      <div class="phone-container">
-        <span class="phone-text" id="phone">+91 89510 99268</span>
-        <button class="copy-btn" onclick="copyPhone()">
-          <i class="fas fa-copy"></i>
-          Copy
-        </button>
-        <span class="copy-message" id="copy-phone-msg"></span>
-      </div>
-
     </div>
     
     <div class="social-links">
@@ -1301,7 +1274,7 @@
   }
 
   function copyPhone() {
-  const phone = '+91 89510 99268';
+  const phone = '+91 98765 43210';
   const copyMsg = document.getElementById('copy-phone-msg');
   
   if (navigator.clipboard && window.isSecureContext) {
@@ -1356,23 +1329,6 @@
 }
 
 </script>
-
-<script>
-  function copyPhone() {
-    const phone = '+91 89510 99268';
-    const copyMsg = document.getElementById('copy-phone-msg');
-    
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(phone).then(() => {
-        showCopyMessage(copyMsg, 'Phone copied!');
-      }).catch(() => {
-        fallbackCopy(phone, copyMsg);
-      });
-    } else {
-      fallbackCopy(phone, copyMsg);
-    }
-  }
-  </script>
 
 
 </body>
