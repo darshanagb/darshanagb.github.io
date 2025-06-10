@@ -1098,6 +1098,16 @@
         <span class="copy-message" id="copy-msg"></span>
 
       </div>
+
+      <div class="phone-container">
+        <span class="phone-text" id="phone">+91 98765 43210</span>
+        <button class="copy-btn" onclick="copyPhone()">
+          <i class="fas fa-copy"></i>
+          Copy
+        </button>
+        <span class="copy-message" id="copy-phone-msg"></span>
+      </div>
+
     </div>
     
     <div class="social-links">
@@ -1329,6 +1339,23 @@
 }
 
 </script>
+
+<script>
+  function copyPhone() {
+    const phone = '+91 98765 43210';
+    const copyMsg = document.getElementById('copy-phone-msg');
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(phone).then(() => {
+        showCopyMessage(copyMsg, 'Phone copied!');
+      }).catch(() => {
+        fallbackCopy(phone, copyMsg);
+      });
+    } else {
+      fallbackCopy(phone, copyMsg);
+    }
+  }
+  </script>
 
 
 </body>
