@@ -10,8 +10,6 @@
   <meta name="author" content="Darshana GB">
   <link rel="canonical" href="https://darshanagb.github.io">
 
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" as="style">
-
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Darshana GB - Dubbing & Voice-Over Artist">
   <meta property="og:description" content="Professional dubbing and voice-over artist based in Bengaluru, Karnataka. Bringing stories to life in films, series, and commercials.">
@@ -845,187 +843,6 @@
       color: white;
     }
 
-    :root {
-  /* Font Families */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  
-  /* Font Sizes - Fluid Typography */
-  --fs-hero: clamp(2.5rem, 5vw, 4rem);
-  --fs-h1: clamp(2rem, 4vw, 3rem);
-  --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
-  --fs-h3: clamp(1.25rem, 2.5vw, 1.75rem);
-  --fs-body: clamp(1.1rem, 2vw, 1.2rem);
-  --fs-small: clamp(0.9rem, 1.5vw, 1rem);
-  
-  /* Font Weights */
-  --fw-light: 300;
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
-  --fw-bold: 700;
-  
-  /* Line Heights */
-  --lh-tight: 1.2;
-  --lh-normal: 1.5;
-  --lh-relaxed: 1.7;
-  
-  /* Letter Spacing */
-  --ls-tight: -0.02em;
-  --ls-normal: 0;
-  --ls-wide: 0.05em;
-  
-  /* Colors */
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #4a4a4a;
-  --color-text-accent: #2c5aa0;
-}
-
-/* Base Typography Styles */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 100%; /* 16px base */
-}
-
-body {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  font-weight: var(--fw-regular);
-  line-height: var(--lh-relaxed);
-  color: var(--color-text-primary);
-  letter-spacing: var(--ls-normal);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Heading Styles */
-.hero-tagline {
-  font-family: var(--font-heading);
-  font-size: var(--fs-hero);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-tight);
-  color: var(--color-text-primary);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.hero-tagline::before,
-.hero-tagline::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--color-text-accent);
-  margin: 1rem auto;
-}
-
-h1, .h1 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-h1);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-tight);
-  margin-bottom: 1.5rem;
-}
-
-h2, .h2 {
-  font-family: var(--font-heading);
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-normal);
-  letter-spacing: var(--ls-tight);
-  margin-bottom: 1.25rem;
-}
-
-h3, .h3 {
-  font-family: var(--font-body);
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-normal);
-  margin-bottom: 1rem;
-}
-
-/* Body Text Styles */
-p {
-  margin-bottom: 1.5rem;
-  max-width: 65ch; /* Optimal reading width */
-}
-
-.lead {
-  font-size: calc(var(--fs-body) * 1.15);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-normal);
-  color: var(--color-text-secondary);
-}
-
-.intro-text {
-  font-size: calc(var(--fs-body) * 1.1);
-  line-height: var(--lh-relaxed);
-  margin-bottom: 2rem;
-}
-
-/* Special Text Treatments */
-.accent-text {
-  color: var(--color-text-accent);
-  font-weight: var(--fw-medium);
-}
-
-.italic-emphasis {
-  font-style: italic;
-  font-weight: var(--fw-medium);
-  color: var(--color-text-secondary);
-}
-
-/* Quote/Closing Statement */
-.closing-statement {
-  font-family: var(--font-heading);
-  font-size: calc(var(--fs-body) * 1.2);
-  font-style: italic;
-  font-weight: var(--fw-regular);
-  line-height: var(--lh-normal);
-  text-align: center;
-  margin-top: 3rem;
-  padding: 2rem;
-  border-top: 1px solid #e5e5e5;
-  color: var(--color-text-secondary);
-}
-
-/* Responsive Typography Adjustments */
-@media (max-width: 768px) {
-  :root {
-    --lh-relaxed: 1.6;
-  }
-  
-  .hero-tagline {
-    text-align: left;
-  }
-  
-  p {
-    max-width: 100%;
-  }
-  
-  .closing-statement {
-    text-align: left;
-    padding: 1.5rem 0;
-  }
-}
-
-/* Print Styles */
-@media print {
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-  }
-  
-  h1 { font-size: 18pt; }
-  h2 { font-size: 16pt; }
-  h3 { font-size: 14pt; }
-}
-
   </style>
 </head>
 <body>
@@ -1066,28 +883,13 @@ p {
 </nav>
 
 <div style="background-color: #FAF9F5;" class="content" id="about">
-  <section class="bio lang-en" class="about-section">
+  <section class="bio lang-en" >
     <h2>About Me</h2>
-    <h1 class="hero-tagline">Where stories find their voice.</h1>
-            
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <p class="intro-text">
-            I'm <span class="accent-text">Darshana</span>, a voice artist crafting sonic narratives from the heart of Bengaluru. In a world saturated with content, I believe every story deserves a voice that resonates—one that doesn't just speak, but <em>connects</em>.
-        </p>
-        
-        <p>
-            From the intimate whisper of a documentary narration to the bold energy of commercial campaigns, I transform scripts into experiences. Each project is an opportunity to breathe life into words, to find the perfect tone that makes audiences lean in, listen closer, and feel something real.
-        </p>
-        
-        <p>
-            My craft spans films, series, advertisements, and beyond—always with one goal: to make every story unforgettable.
-        </p>
-        
-        <p class="closing-statement italic-emphasis">
-            Because the right voice doesn't just tell a story—it makes you believe it.
-        </p>
-    </div>
+    <p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
+    <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
+    <p>Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.</p>
+    <p>✨✨ Bringing every story to life. ✨✨</p>
+    <p>🎤 🎙️</p>
   </section>
 
   <section class="bio lang-kn" style="display: none;">
