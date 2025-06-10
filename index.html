@@ -813,6 +813,36 @@
       letter-spacing: 0.5px;
     }
 
+    .developer-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .developer-phone {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 400;
+    }
+
+    .copy-btn-small {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      padding: 4px 8px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn-small:hover {
+      background: rgba(233, 30, 99, 0.3);
+      color: white;
+    }
+
   </style>
 </head>
 <body>
@@ -1097,7 +1127,13 @@
         Website designed & developed by 
         <a href="#https://www.instagram.com/srinivoice/" class="credits-link" target="_blank" rel="noopener">Shrinivasa PH</a>
       </p>
-      
+      <div class="developer-contact">
+        <span class="developer-phone">+91 98765 43210</span>
+        <button class="copy-btn-small" onclick="copyDeveloperPhone()">
+          <i class="fas fa-copy"></i>
+        </button>
+      </div>
+
     </div>
 
   </div>
@@ -1286,6 +1322,12 @@
   }
 
   window.addEventListener('scroll', handleScroll);
+
+  function copyDeveloperPhone() {
+  const phone = '+91 98765 43210';
+  navigator.clipboard.writeText(phone);
+}
+
 </script>
 
 
