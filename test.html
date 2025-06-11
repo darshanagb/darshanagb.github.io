@@ -875,6 +875,48 @@
   border: 2px solid #e91e63;
 }
 
+.tab-buttons-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 30px;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+
+.tab-btn {
+  position: relative;
+  background: transparent;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #031c2a;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: #e91e63;
+}
+
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: #e91e63;
+  border-radius: 2px;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+
 .tab-content {
   display: none;
 }
@@ -939,13 +981,16 @@
   </section>
 </div>
 
-<div class="portfolio" id="portfolio">
+<div class="tab-buttons-wrapper">
     <div class="tab-buttons">
-      <button class="tab-btn active" onclick="showTab('movies')">Movies</button>
-      <button class="tab-btn" onclick="showTab('serials')">Television Serials</button>
-      <button class="tab-btn" onclick="showTab('ads')">Commercial Ads</button>
-      <button class="tab-btn" onclick="showTab('kanasina')">Kanasina Odalali</button>
+      <button class="tab-btn active" onclick="showTab('movies', event)">Movies</button>
+      <button class="tab-btn" onclick="showTab('serials', event)">Television Serials</button>
+      <button class="tab-btn" onclick="showTab('ads', event)">Commercial Ads</button>
+      <button class="tab-btn" onclick="showTab('kanasina', event)">Kanasina Odalali</button>
+      <div class="tab-underline"></div>
     </div>
+  </div>
+  
 
 <div id="movies" class="tab-content active">
 <div style="background-color: #FAF9F5;"  class="portfolio" id="portfolio">
@@ -1381,17 +1426,38 @@
 </script>
 
 <script>
-    function showTab(tabId) {
+    function showTab(tabId, event) {
       const tabs = document.querySelectorAll('.tab-content');
       const buttons = document.querySelectorAll('.tab-btn');
+      const underline = document.querySelector('.tab-underline');
     
       tabs.forEach(tab => tab.classList.remove('active'));
       buttons.forEach(btn => btn.classList.remove('active'));
     
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      const currentBtn = event.currentTarget;
+      currentBtn.classList.add('active');
+    
+      // Move the underline
+      const btnRect = currentBtn.getBoundingClientRect();
+      const parentRect = currentBtn.parentElement.getBoundingClientRect();
+      underline.style.width = `${btnRect.width}px`;
+      underline.style.left = `${btnRect.left - parentRect.left}px`;
     }
+    
+    // Set underline on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const activeBtn = document.querySelector('.tab-btn.active');
+      const underline = document.querySelector('.tab-underline');
+      if (activeBtn && underline) {
+        const btnRect = activeBtn.getBoundingClientRect();
+        const parentRect = activeBtn.parentElement.getBoundingClientRect();
+        underline.style.width = `${btnRect.width}px`;
+        underline.style.left = `${btnRect.left - parentRect.left}px`;
+      }
+    });
     </script>
+    
     
     
 
