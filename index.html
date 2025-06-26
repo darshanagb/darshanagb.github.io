@@ -941,9 +941,218 @@
     font-size: 1.8rem;
   }
 }
+
+/* Header artistic elements - physical shapes and effects */
+.header-art-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sound wave visualization */
+.sound-waves {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  z-index: 1;
+}
+
+.wave-bar {
+  width: 3px;
+  background: linear-gradient(to top, #ff4757, #ff6b6b, #ff8e8e);
+  border-radius: 2px;
+  animation: wave-pulse 1.5s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(1) { height: 15px; animation-delay: 0s; }
+.wave-bar:nth-child(2) { height: 25px; animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { height: 35px; animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { height: 20px; animation-delay: 0.3s; }
+.wave-bar:nth-child(5) { height: 30px; animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { height: 18px; animation-delay: 0.5s; }
+.wave-bar:nth-child(7) { height: 28px; animation-delay: 0.6s; }
+.wave-bar:nth-child(8) { height: 22px; animation-delay: 0.7s; }
+
+@keyframes wave-pulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Vintage microphone silhouette */
+.vintage-mic {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  width: 40px;
+  height: 60px;
+  z-index: 1;
+}
+
+.mic-grille {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3742fa, #5352ed);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(55, 66, 250, 0.3);
+}
+
+.mic-grille::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.3) 2px,
+    rgba(255,255,255,0.3) 3px
+  );
+  border-radius: inherit;
+}
+
+.mic-stand {
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #2f3542, #57606f);
+  margin: 0 auto;
+  border-radius: 0 0 2px 2px;
+}
+
+/* Floating geometric shapes */
+.geo-shape {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 26px solid #00d2d3;
+  top: 40px;
+  left: 70%;
+  animation: rotate-slow 8s linear infinite;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #f9ca24, #ff9f43);
+  border-radius: 50%;
+  top: 60px;
+  left: 15%;
+  animation: float-circle 6s ease-in-out infinite;
+}
+
+.diamond {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+  transform: rotate(45deg);
+  top: 25px;
+  left: 85%;
+  animation: pulse-diamond 4s ease-in-out infinite;
+}
+
+/* Subtle film strip decoration */
+.film-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, 
+    #2f3542 0%, #2f3542 10%, 
+    transparent 10%, transparent 15%, 
+    #2f3542 15%, #2f3542 25%, 
+    transparent 25%, transparent 30%);
+  background-size: 40px 8px;
+  opacity: 0.3;
+  animation: film-scroll 10s linear infinite;
+}
+
+/* Animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float-circle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-diamond {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  50% { transform: rotate(45deg) scale(1.2); }
+}
+
+@keyframes film-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sound-waves {
+    right: 15px;
+    top: 15px;
+  }
+  
+  .vintage-mic {
+    left: 15px;
+    top: 10px;
+    transform: scale(0.8);
+  }
+  
+  .triangle, .circle, .diamond {
+    display: none;
+  }
+}
   </style>
 </head>
 <body>
+
+  <!-- Add this wrapper around your existing header content -->
+<div class="header-art-container">
+  
+  <!-- Animated sound wave visualization -->
+  <div class="sound-waves">
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+  </div>
+  
+  <!-- Vintage microphone illustration -->
+  <div class="vintage-mic">
+    <div class="mic-grille"></div>
+    <div class="mic-stand"></div>
+  </div>
+  
+  <!-- Floating geometric shapes -->
+  <div class="geo-shape triangle"></div>
+  <div class="geo-shape circle"></div>
+  <div class="geo-shape diamond"></div>
+  
+  <!-- Film strip decoration -->
+  <div class="film-strip"></div>
+  
+  <!-- Your existing header content goes here -->
+  
+</div>
 
   <!-- Artistic symbols scattered throughout the page -->
 <div class="artistic-symbols symbol-1">🎭</div>
