@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Enhanced Design</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Enhanced About Me Section</title>
     <style>
         * {
             margin: 0;
@@ -13,53 +12,60 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 20px;
         }
 
-        .about-section {
-            max-width: 1200px;
+        .about-container {
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             position: relative;
         }
 
-        .about-section::before {
+        .about-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
         }
 
-        .about-header {
-            padding: 3rem 2rem 2rem;
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .section-header {
             text-align: center;
+            padding: 60px 40px 40px;
             position: relative;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
             position: relative;
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #666;
             font-weight: 300;
             letter-spacing: 2px;
@@ -68,79 +74,23 @@
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            padding: 2rem 3rem 4rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            padding: 40px 60px 60px;
             align-items: center;
         }
 
-        .about-text {
-            space-y: 2rem;
-        }
-
-        .intro-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .intro-text::before {
-            content: '"';
-            position: absolute;
-            left: 0;
-            top: -10px;
-            font-size: 4rem;
-            color: #667eea;
-            font-family: 'Playfair Display', serif;
-            opacity: 0.3;
-        }
-
-        .name-highlight {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-        }
-
-        .specialization {
-            background: rgba(102, 126, 234, 0.1);
-            border-left: 4px solid #667eea;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .specialization h3 {
-            color: #667eea;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .specialization p {
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .visual-element {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .profile-section {
+            text-align: center;
             position: relative;
         }
 
-        .microphone-icon {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .profile-image-placeholder {
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,57 +98,88 @@
             color: white;
             box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
             position: relative;
-            animation: float 3s ease-in-out infinite;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        .microphone-icon::before {
+        .profile-image-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image-placeholder::before {
             content: '';
             position: absolute;
-            width: 220px;
-            height: 220px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 50%;
-            animation: rotate 10s linear infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
         }
 
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        .floating-note {
-            position: absolute;
-            font-size: 1.5rem;
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
             color: #667eea;
-            opacity: 0.6;
-            animation: floatAround 6s ease-in-out infinite;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
-        .floating-note:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+        .bio-section {
+            position: relative;
         }
 
-        .floating-note:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
+        .bio-text {
+            position: relative;
         }
 
-        .floating-note:nth-child(3) {
-            bottom: 25%;
-            left: 20%;
-            animation-delay: 4s;
+        .bio-paragraph {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .bio-paragraph::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
         }
 
         .tagline {
             text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem 2rem;
+            margin-top: 40px;
+            padding: 30px;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 16px;
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -210,155 +191,182 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 3s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: slideShine 4s infinite;
         }
 
-        .tagline p {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #667eea;
-            margin: 0;
-            position: relative;
-        }
-
-        .emoji-decoration {
-            font-size: 1.8rem;
-            margin: 0 0.5rem;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-
-        .language-section {
-            background: rgba(118, 75, 162, 0.05);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        .language-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: #764ba2;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .kannada-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes floatAround {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(-10px) translateX(5px); }
-            50% { transform: translateY(-5px) translateX(-5px); }
-            75% { transform: translateY(5px) translateX(3px); }
-        }
-
-        @keyframes shimmer {
+        @keyframes slideShine {
             0% { left: -100%; }
             100% { left: 100%; }
         }
 
+        .tagline-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #333;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline-emojis {
+            font-size: 2rem;
+            margin: 15px 0;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-5px); }
-            60% { transform: translateY(-3px); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .kannada-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(245, 87, 108, 0.05);
+            border-radius: 20px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .kannada-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #f5576c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .kannada-text {
+            font-size: 1.3rem;
+            color: #555;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         @media (max-width: 768px) {
             .about-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem 1.5rem 3rem;
+                gap: 40px;
+                padding: 20px 30px 40px;
             }
 
             .section-title {
                 font-size: 2.5rem;
             }
 
-            .intro-text {
-                font-size: 1.1rem;
-            }
-
-            .microphone-icon {
-                width: 150px;
-                height: 150px;
+            .profile-image-placeholder {
+                width: 200px;
+                height: 200px;
                 font-size: 3rem;
             }
 
-            .about-header {
-                padding: 2rem 1rem 1rem;
+            .bio-paragraph {
+                font-size: 1rem;
+                padding-left: 20px;
+            }
+
+            .tagline-text {
+                font-size: 1.2rem;
+            }
+
+            .kannada-text {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <section class="about-section">
-        <div class="about-header">
+    <div class="about-container">
+        <div class="floating-elements">
+            <div class="floating-element">🎤</div>
+            <div class="floating-element">🎙️</div>
+            <div class="floating-element">✨</div>
+        </div>
+
+        <div class="section-header">
             <h2 class="section-title">About Me</h2>
             <p class="section-subtitle">Voice Artist & Storyteller</p>
         </div>
 
         <div class="about-content">
-            <div class="about-text">
-                <p class="intro-text">
-                    Hello, I'm <span class="name-highlight">Darshana</span> — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.
-                </p>
-
-                <div class="specialization">
-                    <h3>My Craft</h3>
-                    <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
+            <div class="profile-section">
+                <div class="profile-image-placeholder">
+                    DG
                 </div>
+                <h3 class="profile-name">Darshana GB</h3>
+                <p class="profile-title">Professional Voice Artist</p>
+            </div>
 
-                <p class="intro-text">
-                    Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.
-                </p>
-
-                <div class="tagline">
-                    <p>
-                        <span class="emoji-decoration">✨</span>
-                        Bringing every story to life
-                        <span class="emoji-decoration">✨</span>
+            <div class="bio-section">
+                <div class="bio-text">
+                    <p class="bio-paragraph">
+                        Hello, I'm <span class="highlight-text">Darshana</span> — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.
+                    </p>
+                    <p class="bio-paragraph">
+                        In the world of storytelling — from films to series, serials to ads — I strive to <span class="highlight-text">bring voices to life</span>, adding depth and feeling to every moment.
+                    </p>
+                    <p class="bio-paragraph">
+                        Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering <span class="highlight-text">high-quality audio</span> that elevates every project.
                     </p>
                 </div>
-            </div>
 
-            <div class="visual-element">
-                <div class="floating-elements">
-                    <div class="floating-note">🎵</div>
-                    <div class="floating-note">🎭</div>
-                    <div class="floating-note">🎪</div>
-                </div>
-                <div class="microphone-icon">
-                    🎤
+                <div class="tagline">
+                    <p class="tagline-text">Bringing every story to life</p>
+                    <span class="tagline-emojis">🎤 🎙️</span>
                 </div>
             </div>
         </div>
 
-        <div class="language-section">
-            <h3 class="language-title">ನನ್ನ ಪರಿಚಯ</h3>
-            <div class="kannada-text">
-                <p>ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.</p>
-                <p>ಹಲವು ಜನಪ್ರಿಯ ವೆಬ್ ಸಿರೀಸ್, ಚಲನಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ್ದೇನೆ.</p>
-            </div>
+        <div class="kannada-section">
+            <h3 class="kannada-title">ನನ್ನ ಪರಿಚಯ</h3>
+            <p class="kannada-text">
+                ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.
+            </p>
+            <p class="kannada-text">
+                ಹಲವು ಜನಪ್ರಿಯ ವೆಬ್ ಸಿರೀಸ್, ಚಲನಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ್ದೇನೆ.
+            </p>
         </div>
-    </section>
+    </div>
 </body>
 </html>
