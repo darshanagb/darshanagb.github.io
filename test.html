@@ -1,372 +1,1675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced About Me Section</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <title>Darshana GB - Professional Dubbing & Voice Over Artist</title>
+  <meta name="description" content="Professional dubbing and voice-over artist Darshana GB from Bengaluru. Specializing in Kannada dubbing for movies, TV serials, and commercial ads. Voice of Kate Winslet, Margot Robbie, and more.">
+  <meta name="keywords" content="Darshana GB, dubbing artist, voice over, Kannada dubbing, Bengaluru voice artist, professional voice actor">
+  <meta name="author" content="Darshana GB">
+  <link rel="canonical" href="https://darshanagb.github.io">
 
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            position: relative;
-        }
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Darshana GB - Dubbing & Voice-Over Artist">
+  <meta property="og:description" content="Professional dubbing and voice-over artist based in Bengaluru, Karnataka. Bringing stories to life in films, series, and commercials.">
+  <meta property="og:image" content="https://darshanagb.github.io/thumbnail-v3.jpg">
+  <meta property="og:url" content="https://darshanagb.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-        .about-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-        }
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Darshana GB - Professional Dubbing & Voice Over Artist">
+  <meta name="twitter:description" content="Professional voice artist specializing in Kannada dubbing for movies, TV shows, and commercials.">
+  <meta name="twitter:image" content="https://darshanagb.github.io/thumbnail-v3.jpg">
+  <meta name="twitter:image:alt" content="Darshana GB - Professional Dubbing & Voice Over Artist">
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-        .section-header {
-            text-align: center;
-            padding: 60px 40px 40px;
-            position: relative;
-        }
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#e91e63">
 
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            position: relative;
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+  <style>
+    :root {
+      scroll-padding-top: 100px;
+    }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            padding: 40px 60px 60px;
-            align-items: center;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .profile-section {
-            text-align: center;
-            position: relative;
-        }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-        .profile-image-placeholder {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
+    header {
+      background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
 
-        .profile-image-placeholder:hover {
-            transform: scale(1.05);
-        }
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 1000px;
+      width: 100%;
+    }
 
-        .profile-image-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
+    .header-image {
+      flex-shrink: 0;
+    }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
+    .header-image img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(233, 30, 99, 0.3);
+      animation: floatImage 4s ease-in-out infinite;
+    }
 
-        .profile-name {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
 
-        .profile-title {
-            font-size: 1.1rem;
-            color: #667eea;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
+    .header-text {
+      flex: 1;
+      text-align: center;
+    }
 
-        .bio-section {
-            position: relative;
-        }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(233, 30, 99, 0.4) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 40% 40%, rgba(233, 30, 99, 0.3) 0%, transparent 70%),
+        radial-gradient(circle at 60% 90%, rgba(26, 74, 92, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 90% 60%, rgba(233, 30, 99, 0.25) 0%, transparent 65%);
+      animation: waveMotion 8s ease-in-out infinite;
+    }
 
-        .bio-text {
-            position: relative;
-        }
+    @keyframes waveMotion {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.8;
+      }
+      25% { 
+        transform: translateY(-15px) rotate(1deg) scale(1.05);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-25px) rotate(-1deg) scale(1.1);
+        opacity: 0.9;
+      }
+      75% { 
+        transform: translateY(-12px) rotate(0.5deg) scale(1.03);
+        opacity: 1;
+      }
+    }
 
-        .bio-paragraph {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            position: relative;
-            padding-left: 30px;
-        }
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 2;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
 
-        .bio-paragraph::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 12px;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-        }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.8)); }
+    }
 
-        .highlight-text {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-        }
+    header h2 {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin: 15px 0 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: slideUp 1s ease-out 0.5s forwards;
+    }
 
-        .tagline {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .tagline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: slideShine 4s infinite;
-        }
+    header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      animation: expand 2s ease-out 1s forwards;
+    }
 
-        @keyframes slideShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
+    @keyframes expand {
+      from { width: 0; }
+      to { width: 120px; }
+    }
 
-        .tagline-text {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: #333;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
+    .language-toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+    }
 
-        .tagline-emojis {
-            font-size: 2rem;
-            margin: 15px 0;
-            display: block;
-            animation: bounce 2s infinite;
-        }
+    .language-toggle {
+      position: relative;
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+    .language-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
 
-        .kannada-section {
-            margin-top: 50px;
-            padding: 40px;
-            background: rgba(245, 87, 108, 0.05);
-            border-radius: 20px;
-            border-left: 5px solid #f5576c;
-        }
+    .lang-option {
+      position: relative;
+      padding: 8px 16px;
+      border-radius: 25px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      background: transparent;
+      white-space: nowrap;
+      min-width: 40px;
+      text-align: center;
+    }
 
-        .kannada-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #f5576c;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .lang-option:hover {
+      color: rgba(255, 255, 255, 0.9);
+      transform: scale(1.05);
+    }
 
-        .kannada-text {
-            font-size: 1.3rem;
-            color: #555;
-            line-height: 2;
-            text-align: center;
-        }
+    .lang-option.active {
+      background: linear-gradient(135deg, #e91e63, #ff4081);
+      color: white;
+      box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+      transform: scale(1.02);
+    }
 
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
+    .lang-option.active:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.5);
+    }
 
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
+    .globe-icon {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      animation: rotate 8s linear infinite;
+    }
 
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
+    @media (max-width: 768px) {
+      .email-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 15px;
+        border-radius: 20px;
+        max-width: calc(100vw - 60px);
+        margin: 0 auto 30px auto;
+      }
 
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
-        }
+      .email-text {
+        font-size: 0.9rem;
+        text-align: center;
+        word-break: break-all;
+      }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
+      .copy-message {
+        margin-left: 0;
+        margin-top: 5px;
+      }
 
-        @media (max-width: 768px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 20px 30px 40px;
-            }
+      header {
+        padding: 60px 20px;
+        min-height: 250px;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+      }
+      
+      header h2 {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
 
-            .section-title {
-                font-size: 2.5rem;
-            }
+      .lang-option {
+        padding: 6px 12px;
+        font-size: 13px;
+        min-width: 35px;
+      }
 
-            .profile-image-placeholder {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
-            }
+      .globe-icon {
+        font-size: 14px;
+      }
+    }
 
-            .bio-paragraph {
-                font-size: 1rem;
-                padding-left: 20px;
-            }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 12px 24px;
+      margin: 0 auto 20px auto;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      max-width: fit-content;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
 
-            .tagline-text {
-                font-size: 1.2rem;
-            }
+    nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #031c2a;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color 0.3s ease, background 0.3s ease;
+    }
 
-            .kannada-text {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+    nav a:hover {
+      color: #e91e63;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    nav a i {
+      font-size: 18px;
+      margin-bottom: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover i {
+      transform: scale(1.2);
+    }
+
+    nav a.active {
+      color: #e91e63;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .content,
+    .portfolio {
+      padding: 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .bio {
+      text-align: center;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .video {
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 340px;
+      text-align: center;
+      box-sizing: border-box;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .video:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    iframe {
+      width: 320px;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .video {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+    footer {
+      background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #0d2f3f 100%);
+      color: white;
+      padding: 60px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+      margin-top: 40px;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(233, 30, 99, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-section {
+      margin-bottom: 40px;
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .email-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      padding: 15px 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .email-container:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
+    }
+
+    .email-text {
+      font-size: 1rem;
+      color: white;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .copy-btn {
+      background: linear-gradient(135deg, #e91e63, #ff4081);
+      border: none;
+      border-radius: 25px;
+      padding: 8px 16px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .copy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    }
+
+    .copy-message {
+      display: inline-block;
+      margin-left: 15px;
+      font-size: 0.9rem;
+      color: #4ade80;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-link.instagram:hover {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .social-link.youtube:hover {
+      background: #ff0000;
+    }
+
+    .social-link.facebook:hover {
+      background: #1877f2;
+    }
+
+    .cta-section {
+      background: rgba(233, 30, 99, 0.1);
+      border: 1px solid rgba(233, 30, 99, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .cta-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 15px;
+    }
+
+    .cta-emoji {
+      font-size: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      margin: 30px auto;
+      border-radius: 2px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal iframe {
+      width: 50vw;
+      height: 120vh;
+      border-radius: 6px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #e91e63, #031c2a);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
+      z-index: 1000;
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+    }
+
+    .scroll-to-top:active {
+      transform: translateY(-2px);
+    }
+
+    .scroll-to-top i {
+      color: white;
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-to-top:hover i {
+      transform: translateY(-2px);
+    }
+
+    #copy-msg {
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .works-header {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .works-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(233, 30, 99, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(3, 28, 42, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .works-title-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .works-main-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      background: linear-gradient(135deg, #031c2a 0%, #e91e63 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 20px rgba(233, 30, 99, 0.1);
+    }
+
+    .works-subtitle-text {
+      font-size: 1.2rem;
+      color: #666;
+      font-weight: 400;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .works-subtitle-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    .section-header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 40px;
+      margin: 40px auto 30px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin: 0;
+      color: #031c2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .section-icon {
+      font-size: 1.8rem;
+      color: #e91e63;
+    }
+
+    .credits {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .credits-text {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .credits-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .credits-link:hover {
+      color: #e91e63;
+      border-bottom-color: #e91e63;
+    }
+
+    .phone-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      padding: 15px 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .phone-container:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
+    }
+
+    .phone-text {
+      font-size: 1rem;
+      color: white;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .developer-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .developer-phone {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 400;
+    }
+
+    .copy-btn-small {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      padding: 4px 8px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn-small:hover {
+      background: rgba(233, 30, 99, 0.3);
+      color: white;
+    }
+    
+    /* Artistic symbols scattered throughout the page */
+/* Artistic symbols scattered throughout the page */
+.artistic-symbols {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  font-size: 2rem;
+  opacity: 0.4;
+  color: #ff4757;
+  animation: float 6s ease-in-out infinite;
+}
+
+.artistic-symbols.symbol-1 {
+  top: 200px;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.artistic-symbols.symbol-2 {
+  top: 400px;
+  right: 8%;
+  font-size: 1.5rem;
+  color: #00d2d3;
+  animation-delay: 1s;
+}
+
+.artistic-symbols.symbol-3 {
+  top: 600px;
+  left: 12%;
+  font-size: 2.5rem;
+  color: #3742fa;
+  animation-delay: 2s;
+}
+
+.artistic-symbols.symbol-4 {
+  top: 800px;
+  right: 15%;
+  font-size: 1.8rem;
+  color: #f9ca24;
+  animation-delay: 3s;
+}
+
+.artistic-symbols.symbol-5 {
+  top: 1000px;
+  left: 8%;
+  font-size: 2.2rem;
+  color: #6c5ce7;
+  animation-delay: 4s;
+}
+
+.artistic-symbols.symbol-6 {
+  top: 1200px;
+  right: 20%;
+  font-size: 1.6rem;
+  color: #fd79a8;
+  animation-delay: 5s;
+}
+
+.artistic-symbols.symbol-7 {
+  top: 1400px;
+  left: 85%;
+  font-size: 2rem;
+  color: #00b894;
+  animation-delay: 2.5s;
+}
+
+.artistic-symbols.symbol-8 {
+  top: 1600px;
+  left: 3%;
+  font-size: 1.4rem;
+  color: #e17055;
+  animation-delay: 3.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .artistic-symbols {
+    font-size: 1.5rem;
+    opacity: 0.3;
+  }
+  
+  .artistic-symbols.symbol-3 {
+    font-size: 2rem;
+  }
+  
+  .artistic-symbols.symbol-5 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Header artistic elements - physical shapes and effects */
+.header-art-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sound wave visualization */
+.sound-waves {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  z-index: 1;
+}
+
+.wave-bar {
+  width: 3px;
+  background: linear-gradient(to top, #ff4757, #ff6b6b, #ff8e8e);
+  border-radius: 2px;
+  animation: wave-pulse 1.5s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(1) { height: 15px; animation-delay: 0s; }
+.wave-bar:nth-child(2) { height: 25px; animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { height: 35px; animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { height: 20px; animation-delay: 0.3s; }
+.wave-bar:nth-child(5) { height: 30px; animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { height: 18px; animation-delay: 0.5s; }
+.wave-bar:nth-child(7) { height: 28px; animation-delay: 0.6s; }
+.wave-bar:nth-child(8) { height: 22px; animation-delay: 0.7s; }
+
+@keyframes wave-pulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Vintage microphone silhouette */
+.vintage-mic {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  width: 40px;
+  height: 60px;
+  z-index: 1;
+}
+
+.mic-grille {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3742fa, #5352ed);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(55, 66, 250, 0.3);
+}
+
+.mic-grille::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.3) 2px,
+    rgba(255,255,255,0.3) 3px
+  );
+  border-radius: inherit;
+}
+
+.mic-stand {
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #2f3542, #57606f);
+  margin: 0 auto;
+  border-radius: 0 0 2px 2px;
+}
+
+/* Floating geometric shapes */
+.geo-shape {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 26px solid #00d2d3;
+  top: 40px;
+  left: 70%;
+  animation: rotate-slow 8s linear infinite;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #f9ca24, #ff9f43);
+  border-radius: 50%;
+  top: 60px;
+  left: 15%;
+  animation: float-circle 6s ease-in-out infinite;
+}
+
+.diamond {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+  transform: rotate(45deg);
+  top: 25px;
+  left: 85%;
+  animation: pulse-diamond 4s ease-in-out infinite;
+}
+
+/* Subtle film strip decoration */
+.film-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, 
+    #2f3542 0%, #2f3542 10%, 
+    transparent 10%, transparent 15%, 
+    #2f3542 15%, #2f3542 25%, 
+    transparent 25%, transparent 30%);
+  background-size: 40px 8px;
+  opacity: 0.3;
+  animation: film-scroll 10s linear infinite;
+}
+
+/* Animations */
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float-circle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-diamond {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  50% { transform: rotate(45deg) scale(1.2); }
+}
+
+@keyframes film-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sound-waves {
+    right: 15px;
+    top: 15px;
+  }
+  
+  .vintage-mic {
+    left: 15px;
+    top: 10px;
+    transform: scale(0.8);
+  }
+  
+  .triangle, .circle, .diamond {
+    display: none;
+  }
+}
+  </style>
 </head>
 <body>
+
+  <!-- Artistic symbols scattered throughout the page -->
+<div class="artistic-symbols symbol-1">🎭</div>
+<div class="artistic-symbols symbol-2">🎬</div>
+<div class="artistic-symbols symbol-3">🎙️</div>
+<div class="artistic-symbols symbol-4">🎪</div>
+<div class="artistic-symbols symbol-5">🎨</div>
+<div class="artistic-symbols symbol-6">🎵</div>
+<div class="artistic-symbols symbol-7">🎤</div>
+<div class="artistic-symbols symbol-8">🎯</div>
+
+  <!-- Enhanced Language Toggle -->
+  <div class="language-toggle-container">
+    <i class="fas fa-globe globe-icon"></i>
+    <div class="language-toggle">
+      <button class="lang-option active" data-lang="en">EN</button>
+      <button class="lang-option" data-lang="kn">ಕ</button>
+    </div>
+  </div>
+
+  <header>
+
+    <!-- Add this wrapper around your existing header content -->
+<div class="header-art-container">
+  
+  <!-- Animated sound wave visualization -->
+  <div class="sound-waves">
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+  </div>
+  
+  <!-- Vintage microphone illustration -->
+  <div class="vintage-mic">
+    <div class="mic-grille"></div>
+    <div class="mic-stand"></div>
+  </div>
+  
+  <!-- Floating geometric shapes -->
+  <div class="geo-shape triangle"></div>
+  <div class="geo-shape circle"></div>
+  <div class="geo-shape diamond"></div>
+  
+  <!-- Film strip decoration -->
+  <div class="film-strip"></div>
+  
+  <!-- Your existing header content goes here -->
+  
+</div>
+
+    <div class="lang-en">
+      <h1>DARSHANA GB</h1>
+      <h2>Dubbing | Voice-Over Artist</h2>
+    </div>
+    <div class="lang-kn" style="display: none;">
+      <h1>ದರ್ಶನಾ ಜಿ.ಬಿ</h1>
+      <h2>ಡಬ್ಬಿಂಗ್ | ಧ್ವನಿ ಕಲಾವಿದೆ</h2>
+    </div>
+  </header>
+
+<nav>
+  <a href="#about">
+    <i class="fas fa-user"></i>
+    About
+  </a>
+  <a href="#portfolio">
+    <i class="fas fa-microphone-lines"></i>
+    Works
+  </a>
+  <a href="#contact">
+    <i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</nav>
+
+<div style="background-color: #FAF9F5;" class="content" id="about">
+ <!-- Replace your existing About Me section with this -->
+<section class="about-section">
     <div class="about-container">
-        <div class="floating-elements">
-            <div class="floating-element">🎤</div>
-            <div class="floating-element">🎙️</div>
-            <div class="floating-element">✨</div>
+        <div class="about-profile">
+            <div class="profile-circle">
+                <div class="profile-icon">🎤</div>
+            </div>
         </div>
-
-        <div class="section-header">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">Voice Artist & Storyteller</p>
-        </div>
-
+        
         <div class="about-content">
-            <div class="profile-section">
-                <div class="profile-image-placeholder">
-                    DG
-                </div>
-                <h3 class="profile-name">Darshana GB</h3>
-                <p class="profile-title">Professional Voice Artist</p>
-            </div>
-
-            <div class="bio-section">
-                <div class="bio-text">
-                    <p class="bio-paragraph">
-                        Hello, I'm <span class="highlight-text">Darshana</span> — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.
-                    </p>
-                    <p class="bio-paragraph">
-                        In the world of storytelling — from films to series, serials to ads — I strive to <span class="highlight-text">bring voices to life</span>, adding depth and feeling to every moment.
-                    </p>
-                    <p class="bio-paragraph">
-                        Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering <span class="highlight-text">high-quality audio</span> that elevates every project.
-                    </p>
-                </div>
-
-                <div class="tagline">
-                    <p class="tagline-text">Bringing every story to life</p>
-                    <span class="tagline-emojis">🎤 🎙️</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="kannada-section">
-            <h3 class="kannada-title">ನನ್ನ ಪರಿಚಯ</h3>
-            <p class="kannada-text">
-                ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.
+            <h2 class="about-title">About Me</h2>
+            <p class="about-subtitle">Professional Dubbing & Voice-Over Artist</p>
+            
+            <p class="about-description">
+                Hello, I'm <strong>Darshana</strong> — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.
             </p>
-            <p class="kannada-text">
-                ಹಲವು ಜನಪ್ರಿಯ ವೆಬ್ ಸಿರೀಸ್, ಚಲನಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ್ದೇನೆ.
+            
+            <p class="about-description">
+                In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.
             </p>
+            
+            <p class="about-description">
+                Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.
+            </p>
+            
+            <div class="about-highlight">
+                <div class="highlight-text">
+                    <span class="emoji-float">✨</span>
+                    Bringing every story to life
+                    <span class="emoji-float">✨</span>
+                </div>
+                <div class="highlight-text">
+                    <span class="emoji-float">🎤</span>
+                    <span class="emoji-float">🎙️</span>
+                </div>
+            </div>
+            
+            <div class="kannada-section">
+                <h3 class="kannada-title">ನನ್ನ ಪರಿಚಯ</h3>
+                <p class="kannada-text">
+                    ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.
+                </p>
+                <p class="kannada-text">
+                    ಹಲವು ಜನಪ್ರಿಯ ವೆಬ್ ಸಿರೀಸ್, ಚಲನಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ್ದೇನೆ.
+                </p>
+            </div>
         </div>
     </div>
+</section>
+</div>
+
+<div class="works-header" id="portfolio">
+  <div class="works-title-container">
+    <h1 class="works-main-title">My Works</h1>
+    <div class="works-subtitle">
+      <span class="works-subtitle-text">Showcasing my voice work in Kannada</span>
+      <div class="works-subtitle-line"></div>
+    </div>
+  </div>
+</div>
+
+<div style="background-color: #FAF9F5;"  class="portfolio" id="portfolio">
+  <div class="section-header">
+  <h2><i class="fas fa-film section-icon"></i>Movies</h2>
+</div>
+  <div class="video-container">
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')">
+      <h2>Avatar 2</h2>
+      <h3>Voice of Kate Winslet</h3>
+      <hr>
+      <iframe title="Instagram post - Avatar 2" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C6k-iAGITMG/embed')">
+      <h2>Barbie</h2>
+      <h3>Voice of Margot Robbie</h3>
+      <hr>
+      <iframe title="Instagram post - Barbie" src="https://www.instagram.com/p/C6k-iAGITMG/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')">
+      <h2>Citadel: Honey Bunny</h2>
+      <h3>Voice of Samantha Ruth Prabhu</h3>
+      <hr>
+      <iframe title="Instagram post - Citadel Honey Bunny" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')">
+      <h2>Juni</h2>
+      <h3>Voice of Rishika Naik</h3>
+      <hr>
+      <iframe title="Instagram post - Juni" src="https://www.instagram.com/p/C58tMo5oaLw/embed" allowtransparency="true"></iframe>
+      <h3>Juni | Mansi | Chaki | Papu</h3>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')">
+      <h2>Hanu-Man</h2>
+      <h3>Voice of Varu Sharathkumar</h3>
+      <hr>
+      <iframe title="Instagram post - Hanu-Man" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CvhEkc7se6a/embed')">
+      <h2>Dayaa</h2>
+      <h3>Voice of Ramya Nambessan</h3>
+      <hr>
+      <iframe title="Instagram post - Dayaa" src="https://www.instagram.com/p/CvhEkc7se6a/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C3u0-NlsO6_/embed')">
+      <h2>Poacher</h2>
+      <h3>Voice of Nimisha Sajayan</h3>
+      <hr>
+      <iframe title="Instagram post - Poacher" src="https://www.instagram.com/p/C3u0-NlsO6_/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C0YRohUrCbA/embed')">
+      <h2>Podcast</h2>
+      <h3>Ugly-Duckling & Kids Voices</h3>
+      <hr>
+      <iframe title="Instagram post - Podcast" src="https://www.instagram.com/p/C0YRohUrCbA/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/C2kaglHMveZ/embed')">
+      <h2>Karma Calling</h2>
+      <h3>Voice of Raveena Tandon</h3>
+      <hr>
+      <iframe title="Instagram post - Karma Calling" src="https://www.instagram.com/p/C2kaglHMveZ/embed" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CqIlmMnrB1f/embed')">
+      <h2>Jubilee</h2>
+      <h3>Voice of Wamiqa Gabbi</h3>
+      <hr>
+      <iframe title="Instagram post - Jubilee" src="https://www.instagram.com/p/CqIlmMnrB1f/embed" allowtransparency="true"></iframe>
+    </div>
+
+  </div>
+</div>
+
+<section style="background-color: #FAF9F5;"  class="content">
+    <div class="section-header">
+      <h2><i class="fas fa-tv section-icon"></i>Television Serials</h2>
+    </div>
+  </div>
+    
+<div class="video-container">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
+        <h2>Sandhyaraga</h2>
+        <hr>
+        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CrtiakcrNQN/embed" allowtransparency="true"></iframe>
+      </div>
+  
+      <div class="video" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')">
+        <h2>Naga Panchami</h2>
+        <hr>
+        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CzzAaagy27S/embed" allowtransparency="true"></iframe>
+      </div>
+</div>
+</section>
+
+<section style="background-color: #FAF9F5;" class="content">
+  <div class="section-header">
+    <h2><i class="fas fa-bullhorn section-icon"></i>Commercial Ads</h2>
+  </div>
+    
+<div class="video-container">
+    <div class="video" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')">
+        <h2>Centuary Mattress</h2>
+        <h3>Voice of Sania Mirza</h3>
+        <hr>
+        <iframe title="Instagram post - Centuary Mattress" src="https://www.instagram.com/p/CypzPMlrngI/embed" allowtransparency="true"></iframe>
+      </div>
+  
+      <div class="video" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')">
+        <h2>Kalyan Jewellers</h2>
+        <h3>Voice of Anaswara Rajan (Sister)</h3>
+        <hr>
+        <iframe title="Instagram post - Kalyan Jewellers" src="https://www.instagram.com/p/CrXd9gsojOF/embed" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="video" onclick="openModal('https://www.instagram.com/p/C4FpLfcSulT/embed')">
+        <h2>Maxvita Foods</h2>
+        <hr>
+        <iframe title="Instagram post - Maxvita Foods" src="https://www.instagram.com/p/C4FpLfcSulT/embed" allowtransparency="true"></iframe>
+      </div>
+    
+      <div class="video">
+        <h2>Medimix Ayurveda Soap</h2> 
+        <hr>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/lLQTQi1uOX0?si=c3_5ygBC3nbL_Omg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h3>Voice of both the girls</h3>
+      </div>
+      
+      <div class="video">
+        <h2>Medimix Ayurveda Soap</h2> 
+        <hr>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/XP7pTLnV4_Y?si=n96vNn5ugwHP31JK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+</div>
+</section>
+
+<section style="background-color: #FAF9F5;"  class="content">
+  <div class="section-header">
+    <h2><i class="fab fa-youtube section-icon"></i>Kanasina Odalali</h2>
+  </div>
+    <div class="video-container">
+    
+    <div class="video">
+        <h2>Episode 1</h2> <hr>
+    <iframe width="1300" height="315" src="https://www.youtube.com/embed/YrEV4hJ3LBI?si=6hLBh_hjAKnzfB_L" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+        <h2>Episode 2</h2> <hr>
+    <iframe width="1300" height="315" src="https://www.youtube.com/embed/xMUrlJFpRQM?si=IY-k9EaCOqKGbsTj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+        <h2>Episode 3</h2> <hr>
+    <iframe width="1300" height="315" src="https://www.youtube.com/embed/sWHPDzpwwzA?si=PW48zKM9Sr3Iw29_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+        <h2>Episode 4</h2> <hr>
+    <iframe width="1300" height="315" src="https://www.youtube.com/embed/rl99gHGExjU?si=mDmQ4ebrSeXwbt24" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-content">
+    <div class="contact-section">
+      <h2 class="contact-title">
+        <i class="fas fa-envelope"></i>
+        Let's Connect
+      </h2>
+      
+      <div class="email-container">
+        <span class="email-text" id="email">darshanagbadrinath@gmail.com</span>
+        <button class="copy-btn" onclick="copyEmail()">
+          <i class="fas fa-copy"></i>
+          Copy
+        </button>
+        <span class="copy-message" id="copy-msg"></span>
+
+      </div>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" aria-label="Instagram" class="social-link instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      
+      <a href="https://www.facebook.com/drshna" target="_blank" rel="noopener" aria-label="Facebook" class="social-link facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="https://www.youtube.com/@darshanagb4135" target="_blank" rel="noopener" aria-label="YouTube" class="social-link youtube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+
+    <div class="cta-section">
+      <h2 class="cta-title">Know someone looking for a voice artist?</h2>
+      <h3 class="cta-subtitle">Feel free to pass my name along.</h3>
+      <div class="cta-emoji">✨🎙️</div>
+    </div>
+
+    <div class="divider"></div>
+
+   
+
+  </div>
+</footer>
+
+
+<!-- Modal Section -->
+<div class="modal" id="videoModal">
+  <span class="modal-close" onclick="closeModal()">&times;</span>
+  <iframe id="modalIframe" src="" allowtransparency="true"></iframe>
+</div>
+
+<!-- Scroll to top button -->
+<button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+  function openModal(url) {
+    document.getElementById('modalIframe').src = url;
+    document.getElementById('videoModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('videoModal').style.display = 'none';
+    document.getElementById('modalIframe').src = '';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('videoModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  window.addEventListener('scroll', function() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
+
+  const sections = document.querySelectorAll("section[id], div[id]");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (pageYOffset >= sectionTop - 120) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  const langButtons = document.querySelectorAll('.lang-option');
+  const langEnElements = document.querySelectorAll('.lang-en');
+  const langKnElements = document.querySelectorAll('.lang-kn');
+
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      langButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const selectedLang = button.getAttribute('data-lang');
+
+      if (selectedLang === 'en') {
+        langEnElements.forEach(el => el.style.display = 'block');
+        langKnElements.forEach(el => el.style.display = 'none');
+      } else if (selectedLang === 'kn') {
+        langEnElements.forEach(el => el.style.display = 'none');
+        langKnElements.forEach(el => el.style.display = 'block');
+      }
+    });
+  });
+
+  function copyEmail() {
+    const email = 'darshanagbadrinath@gmail.com';
+    const copyMsg = document.getElementById('copy-msg');
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(email).then(() => {
+        showCopyMessage(copyMsg, 'Email copied!');
+      }).catch(() => {
+        fallbackCopy(email, copyMsg);
+      });
+    } else {
+      fallbackCopy(email, copyMsg);
+    }
+  }
+
+  function fallbackCopy(text, msgElement) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showCopyMessage(msgElement, 'Email copied!');
+    } catch (err) {
+      showCopyMessage(msgElement, 'Copy failed');
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
+  function showCopyMessage(element, message) {
+    element.textContent = message;
+    element.style.opacity = '1';
+    
+    setTimeout(() => {
+      element.textContent = '';
+      element.style.opacity = '0';
+    }, 2000);
+  }
+
+  function copyPhone() {
+  const phone = '+91 98765 43210';
+  const copyMsg = document.getElementById('copy-phone-msg');
+  
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(phone).then(() => {
+      showCopyMessage(copyMsg, 'Phone copied!');
+    }).catch(() => {
+      fallbackCopy(phone, copyMsg);
+    });
+  } else {
+    fallbackCopy(phone, copyMsg);
+  }
+}
+</script>
+
+  <script>
+  const toggle = document.querySelector('.language-toggle-container');
+  const footer = document.querySelector('footer');
+
+  window.addEventListener('scroll', () => {
+    const footerTop = footer.getBoundingClientRect().top;
+    if (footerTop < window.innerHeight - 100) {
+      toggle.style.opacity = '0';
+      toggle.style.pointerEvents = 'none';
+    } else {
+      toggle.style.opacity = '1';
+      toggle.style.pointerEvents = 'auto';
+    }
+  });
+</script>
+
+<script>
+  const languageToggle = document.querySelector('.language-toggle-container');
+  const header = document.querySelector('header');
+
+  function handleScroll() {
+    const headerBottom = header.getBoundingClientRect().bottom;
+
+    if (headerBottom <= 0) {
+      languageToggle.style.opacity = '0';
+      languageToggle.style.pointerEvents = 'none';
+    } else {
+      languageToggle.style.opacity = '1';
+      languageToggle.style.pointerEvents = 'auto';
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
+  function copyDeveloperPhone() {
+  const phone = '+91 97400 85757';
+  navigator.clipboard.writeText(phone);
+}
+
+</script>
+
+
 </body>
 </html>
