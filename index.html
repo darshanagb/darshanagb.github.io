@@ -842,10 +842,118 @@
       background: rgba(233, 30, 99, 0.3);
       color: white;
     }
+    
 
+    /* Artistic symbols scattered throughout the page */
+.artistic-symbols {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  font-size: 2rem;
+  opacity: 0.1;
+  color: #ff6b6b;
+  animation: float 6s ease-in-out infinite;
+}
+
+.artistic-symbols.symbol-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.artistic-symbols.symbol-2 {
+  top: 25%;
+  right: 8%;
+  font-size: 1.5rem;
+  color: #4ecdc4;
+  animation-delay: 1s;
+}
+
+.artistic-symbols.symbol-3 {
+  top: 40%;
+  left: 12%;
+  font-size: 2.5rem;
+  color: #45b7d1;
+  animation-delay: 2s;
+}
+
+.artistic-symbols.symbol-4 {
+  top: 60%;
+  right: 15%;
+  font-size: 1.8rem;
+  color: #f9ca24;
+  animation-delay: 3s;
+}
+
+.artistic-symbols.symbol-5 {
+  top: 75%;
+  left: 8%;
+  font-size: 2.2rem;
+  color: #6c5ce7;
+  animation-delay: 4s;
+}
+
+.artistic-symbols.symbol-6 {
+  top: 85%;
+  right: 20%;
+  font-size: 1.6rem;
+  color: #fd79a8;
+  animation-delay: 5s;
+}
+
+.artistic-symbols.symbol-7 {
+  top: 35%;
+  left: 85%;
+  font-size: 2rem;
+  color: #00b894;
+  animation-delay: 2.5s;
+}
+
+.artistic-symbols.symbol-8 {
+  top: 55%;
+  left: 3%;
+  font-size: 1.4rem;
+  color: #e17055;
+  animation-delay: 3.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .artistic-symbols {
+    font-size: 1.5rem;
+    opacity: 0.08;
+  }
+  
+  .artistic-symbols.symbol-3 {
+    font-size: 2rem;
+  }
+  
+  .artistic-symbols.symbol-5 {
+    font-size: 1.8rem;
+  }
+}
   </style>
 </head>
 <body>
+
+  <!-- Artistic symbols scattered throughout the page -->
+<div class="artistic-symbols symbol-1">🎭</div>
+<div class="artistic-symbols symbol-2">🎬</div>
+<div class="artistic-symbols symbol-3">🎙️</div>
+<div class="artistic-symbols symbol-4">🎪</div>
+<div class="artistic-symbols symbol-5">🎨</div>
+<div class="artistic-symbols symbol-6">🎵</div>
+<div class="artistic-symbols symbol-7">🎤</div>
+<div class="artistic-symbols symbol-8">🎯</div>
 
   <!-- Enhanced Language Toggle -->
   <div class="language-toggle-container">
