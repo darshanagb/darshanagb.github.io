@@ -1198,6 +1198,18 @@
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
 }
 
+.email-container i,
+.phone-container i {
+  font-size: 1rem;
+  color: white;
+}
+
+.email-container,
+.phone-container {
+  gap: 10px; /* already present, just in case */
+  flex-wrap: wrap;
+}
+
 
   </style>
 </head>
@@ -1491,27 +1503,31 @@
   
       <!-- PHONE -->
       <div class="phone-container">
+        <i class="fas fa-phone-alt" style="color:white;"></i>
         <span class="phone-text" id="phone">+91 98765 43210</span>
         <a href="tel:+919876543210" class="call-now-btn">
-          <i class="fas fa-phone-alt"></i> Call Now
+          <i class="fas fa-phone"></i> Call Now
         </a>
         <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="whatsapp-btn">
-          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
         <button class="copy-btn" onclick="copyPhone()">
           <i class="fas fa-copy"></i> Copy
         </button>
         <span class="copy-message" id="copy-phone-msg"></span>
       </div>
+      
   
       <!-- EMAIL -->
       <div class="email-container">
+        <i class="fas fa-envelope" style="color:white;"></i>
         <span class="email-text" id="email">darshanagbadrinath@gmail.com</span>
         <button class="copy-btn" onclick="copyEmail()">
           <i class="fas fa-copy"></i> Copy
         </button>
         <span class="copy-message" id="copy-msg"></span>
       </div>
+      
   
       <!-- SOCIAL LINKS -->
       <div class="social-links">
