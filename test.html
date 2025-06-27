@@ -529,8 +529,17 @@
       font-weight: 500;
       opacity: 0;
       transition: opacity 0.3s ease;
+      white-space: nowrap;
     }
-
+    
+    @media (max-width: 768px) {
+    .copy-message {
+      display: block;
+      margin: 8px 0 0;
+      text-align: center;
+      margin-left: 0;
+    }
+  }
     .social-links {
       display: flex;
       justify-content: center;
@@ -808,6 +817,15 @@
       margin-bottom: 30px;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    @media (max-width: 768px) {
+  .phone-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 
     .phone-container:hover {
       background: rgba(255, 255, 255, 0.15);
@@ -1127,6 +1145,60 @@
   }
 }
 
+.call-now-btn {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  align-items: center;
+  gap: 6px;
+  display: none; /* hidden by default */
+}
+
+.call-now-btn i {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .call-now-btn {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .email-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+
   </style>
 </head>
 <body>
@@ -1416,26 +1488,32 @@
         <i class="fas fa-envelope"></i>
         Let's Connect
       </h2>
-      
-      <div class="email-container">
-        <span class="email-text" id="email">darshanagbadrinath@gmail.com</span>
-        <button class="copy-btn" onclick="copyEmail()">
-          <i class="fas fa-copy"></i>
-          Copy
-        </button>
-        <span class="copy-message" id="copy-msg"></span>
-      </div>
-
+    
+      <!-- PHONE FIRST -->
       <div class="phone-container">
-        <span class="phone-text" id="phone">+91 89510 99268</span>
+        <span class="phone-text" id="phone">+91 98765 43210</span>
+        <a href="tel:+919876543210" class="call-now-btn">
+          <i class="fas fa-phone-alt"></i> Call Now
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="whatsapp-btn">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
         <button class="copy-btn" onclick="copyPhone()">
-          <i class="fas fa-copy"></i>
-          Copy
+          <i class="fas fa-copy"></i> Copy
         </button>
         <span class="copy-message" id="copy-phone-msg"></span>
       </div>
-      
+    
+      <!-- EMAIL SECOND -->
+      <div class="email-container">
+        <span class="email-text" id="email">darshanagbadrinath@gmail.com</span>
+        <button class="copy-btn" onclick="copyEmail()">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+        <span class="copy-message" id="copy-msg"></span>
+      </div>
     </div>
+    
     
     <div class="social-links">
       <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" aria-label="Instagram" class="social-link instagram">
@@ -1599,7 +1677,7 @@
   }
 
   function copyPhone() {
-  const phone = '+91 89510 99268';
+  const phone = '+918951099268';
   const copyMsg = document.getElementById('copy-phone-msg');
   
   if (navigator.clipboard && window.isSecureContext) {
