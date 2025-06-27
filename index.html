@@ -81,14 +81,15 @@
     }
 
     .header-image img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 32px rgba(233, 30, 99, 0.3);
-      animation: floatImage 4s ease-in-out infinite;
-    }
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(233, 30, 99, 0.3);
+  animation: floatImage 4s ease-in-out infinite;
+}
+
 
     @keyframes floatImage {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -1117,6 +1118,7 @@
     display: none;
   }
 }
+
   </style>
 </head>
 <body>
@@ -1141,49 +1143,51 @@
   </div>
 
   <header>
-
     <!-- Add this wrapper around your existing header content -->
-<div class="header-art-container">
+    <div class="header-art-container">
+      <!-- Animated sound wave visualization -->
+      <div class="sound-waves">
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+      </div>
   
-  <!-- Animated sound wave visualization -->
-  <div class="sound-waves">
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-    <div class="wave-bar"></div>
-  </div>
+      <!-- Vintage microphone illustration -->
+      <div class="vintage-mic">
+        <div class="mic-grille"></div>
+        <div class="mic-stand"></div>
+      </div>
   
-  <!-- Vintage microphone illustration -->
-  <div class="vintage-mic">
-    <div class="mic-grille"></div>
-    <div class="mic-stand"></div>
-  </div>
+      <!-- Floating geometric shapes -->
+      <div class="geo-shape triangle"></div>
+      <div class="geo-shape circle"></div>
+      <div class="geo-shape diamond"></div>
   
-  <!-- Floating geometric shapes -->
-  <div class="geo-shape triangle"></div>
-  <div class="geo-shape circle"></div>
-  <div class="geo-shape diamond"></div>
-  
-  <!-- Film strip decoration -->
-  <div class="film-strip"></div>
-  
-  <!-- Your existing header content goes here -->
-  
-</div>
-
-    <div class="lang-en">
-      <h1>DARSHANA GB</h1>
-      <h2>Dubbing | Voice-Over Artist</h2>
+      <!-- Film strip decoration -->
+      <div class="film-strip"></div>
     </div>
-    <div class="lang-kn" style="display: none;">
-      <h1>ದರ್ಶನಾ ಜಿ.ಬಿ</h1>
-      <h2>ಡಬ್ಬಿಂಗ್ | ಧ್ವನಿ ಕಲಾವಿದೆ</h2>
+  
+    <!-- Custom header with rounded image -->
+    <div class="header-content">
+      <div class="header-image">
+        <img src="DP.jpg" alt="Darshana GB Profile Picture">
+      </div>
+      <div class="header-text lang-en">
+        <h1>DARSHANA GB</h1>
+        <h2>Dubbing | Voice-Over Artist</h2>
+      </div>
+      <div class="header-text lang-kn" style="display: none;">
+        <h1>ದರ್ಶನಾ ಜಿ.ಬಿ</h1>
+        <h2>ಡಬ್ಬಿಂಗ್ | ಧ್ವನಿ ಕಲಾವಿದೆ</h2>
+      </div>
     </div>
   </header>
+  
 
 <nav>
   <a href="#about">
