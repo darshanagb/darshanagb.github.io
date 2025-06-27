@@ -71,13 +71,10 @@
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* Align content to the left */
-      gap: 20px;
+      gap: 40px;
       max-width: 1000px;
       width: 100%;
-      flex-wrap: nowrap;
     }
-
 
     .header-image {
       flex-shrink: 0;
@@ -100,9 +97,9 @@
     }
 
     .header-text {
-  flex: 1;
-  text-align: center;
-}
+      flex: 1;
+      text-align: center;
+    }
 
     header::before {
       content: '';
@@ -274,25 +271,21 @@
 
     @media (max-width: 768px) {
       .header-content {
-        flex-direction: row; /* prevent stacking on mobile */
-        flex-wrap: nowrap;
+        flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        gap: 15px;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .header-image img {
+        width: 120px;
+        height: 120px;
       }
 
       .header-text {
         text-align: center;
       }
 
-      .email-container {
-        flex-direction: column;
-        gap: 12px;
-        padding: 20px 15px;
-        border-radius: 20px;
-        max-width: calc(100vw - 60px);
-        margin: 0 auto 30px auto;
-      }
 
       .email-text {
         font-size: 0.9rem;
