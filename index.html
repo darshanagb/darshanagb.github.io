@@ -1127,6 +1127,33 @@
   }
 }
 
+.call-now-btn {
+    display: none; /* Hidden by default (desktop) */
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    border: none;
+    border-radius: 25px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .call-now-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .call-now-btn {
+      display: inline-flex; /* Show only on small screens */
+    }
+  }
+
   </style>
 </head>
 <body>
@@ -1428,12 +1455,15 @@
 
       <div class="phone-container">
         <span class="phone-text" id="phone">+918951099268</span>
+        <a href="tel:+918951099268" class="call-now-btn">
+          <i class="fas fa-phone-alt"></i> Call Now
+        </a>
         <button class="copy-btn" onclick="copyPhone()">
-          <i class="fas fa-copy"></i>
-          Copy
+          <i class="fas fa-copy"></i> Copy
         </button>
         <span class="copy-message" id="copy-phone-msg"></span>
       </div>
+      
       
     </div>
     
