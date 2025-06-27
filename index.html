@@ -270,14 +270,22 @@
     }
 
     @media (max-width: 768px) {
-      .email-container {
+      .header-content {
         flex-direction: column;
-        gap: 12px;
-        padding: 20px 15px;
-        border-radius: 20px;
-        max-width: calc(100vw - 60px);
-        margin: 0 auto 30px auto;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
       }
+
+      .header-image img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .header-text {
+        text-align: center;
+      }
+
 
       .email-text {
         font-size: 0.9rem;
