@@ -1118,6 +1118,53 @@
     display: none;
   }
 }
+
+@media (min-width: 769px) {
+  .header-image {
+    margin-left: -30px; /* Adjust this value as needed */
+  }
+}
+
+.header-content {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.header-image img {
+  width: 100px;
+  height: 100px;
+}
+
+@media (min-width: 769px) {
+  .header-image {
+    margin-left: -30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .header-image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header h2 {
+    font-size: 1rem;
+  }
+}
+
   </style>
 </head>
 <body>
