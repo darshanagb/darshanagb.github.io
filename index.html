@@ -1254,6 +1254,18 @@
 }
 
   </style>
+  <!-- AOS (Animate On Scroll) Library -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  });
+</script>
+
 </head>
 <body>
 
@@ -1339,13 +1351,13 @@
 </nav>
 
 <div style="background-color: #FAF9F5;" class="content" id="about">
-  <section class="bio lang-en">
+  <section class="bio lang-en" data-aos="zoom-in">
+
     <h2>About Me</h2>
-    <p>🎙️ I'm Darshana — a seasoned voice-over and dubbing artist from Bengaluru, with a voice that brings characters to life and stories to heart.</p>
-
-  <p>With years of experience behind the mic, I’ve lent my voice to celebrated international and Indian characters — from powerful heroines in blockbuster films to emotionally layered roles in web series, commercials, and animations.</p>
-
-  <p>If you're looking for a voice that not only speaks — but feels — I’d love to collaborate. ✨</p>
+    <p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
+    <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
+    <p>Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.</p>
+    <p>✨✨ Bringing every story to life. ✨✨</p>
   </section>
 
   <section class="bio lang-kn" style="display: none;">
@@ -1366,7 +1378,7 @@
 </div>
 
 <div style="background-color: #FAF9F5;"  class="portfolio" id="portfolio">
-  <div class="section-header">
+  <div class="section-header" data-aos="zoom-in">
   <h2><i class="fas fa-film section-icon"></i>Movies</h2>
   <p class="section-subtitle">Voice dubs for feature films</p>
 
