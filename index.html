@@ -1320,16 +1320,25 @@
   }
 
   .insta-mobile-preview .overlay-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    font-size: 32px;
-    padding: 12px;
-    border-radius: 50%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.overlay-play i {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.overlay-play span {
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
 }
 
 /* Optional: adjust modal iframe size for mobile */
@@ -1465,7 +1474,11 @@
 <h2>Avatar 2</h2>
 <h3>Voice of Kate Winslet</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" title="Instagram post - Avatar 2"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/avatar2.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzlBQMpLrBd/embed" title="Instagram post - Avatar 2"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzlBQMpLrBd/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/avatar2.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video">
 <h2>Barbie</h2>
@@ -1477,27 +1490,43 @@
 <!-- Mobile Thumbnail -->
 <div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C6k-iAGITMG/embed')">
 <img alt="Barbie Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/barbie.jpeg"/>
-<div class="overlay-play"><i class="fas fa-play"></i></div>
+<div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+
 </div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')">
 <h2>Citadel: Honey Bunny</h2>
 <h3>Voice of Samantha Ruth Prabhu</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" title="Instagram post - Citadel Honey Bunny"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/citadel.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/DD9uSgSo8J2/embed" title="Instagram post - Citadel Honey Bunny"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/DD9uSgSo8J2/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/citadel.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')">
 <h2>Juni</h2>
 <h3>Voice of Rishika Naik</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C58tMo5oaLw/embed" title="Instagram post - Juni"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/juni.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C58tMo5oaLw/embed" title="Instagram post - Juni"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C58tMo5oaLw/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/juni.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 <h3>Juni | Mansi | Chaki | Papu</h3>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')">
 <h2>Hanu-Man</h2>
 <h3>Voice of Varu Sharathkumar</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" title="Instagram post - Hanu-Man"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/hanuman.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" title="Instagram post - Hanu-Man"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C2FqAe9sSEZ/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/hanuman.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/CvhEkc7se6a/embed')">
   <h2>Dayaa</h2>
@@ -1515,7 +1544,11 @@
 <h2>Podcast</h2>
 <h3>Ugly-Duckling &amp; Kids Voices</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C0YRohUrCbA/embed" title="Instagram post - Podcast"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C0YRohUrCbA/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/podcast.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C0YRohUrCbA/embed" title="Instagram post - Podcast"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C0YRohUrCbA/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/podcast.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/C2kaglHMveZ/embed')">
   <h2>Karma Calling</h2>
@@ -1541,12 +1574,20 @@
 <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
 <h2>Sandhyaraga</h2>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrtiakcrNQN/embed" title="Instagram post - Centuary Mattress"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/sandhyaraga.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrtiakcrNQN/embed" title="Instagram post - Centuary Mattress"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/sandhyaraga.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')">
 <h2>Naga Panchami</h2>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzzAaagy27S/embed" title="Instagram post - Kalyan Jewellers"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/nagapanchami.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzzAaagy27S/embed" title="Instagram post - Kalyan Jewellers"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/nagapanchami.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -1560,18 +1601,30 @@
 <h2>Centuary Mattress</h2>
 <h3>Voice of Sania Mirza</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CypzPMlrngI/embed" title="Instagram post - Centuary Mattress"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/centuary.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CypzPMlrngI/embed" title="Instagram post - Centuary Mattress"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CypzPMlrngI/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/centuary.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')">
 <h2>Kalyan Jewellers</h2>
 <h3>Voice of Anaswara Rajan (Sister)</h3>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrXd9gsojOF/embed" title="Instagram post - Kalyan Jewellers"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/kalyan.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrXd9gsojOF/embed" title="Instagram post - Kalyan Jewellers"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrXd9gsojOF/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/kalyan.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video" onclick="openModal('https://www.instagram.com/p/C4FpLfcSulT/embed')">
 <h2>Maxvita Foods</h2>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C4FpLfcSulT/embed" title="Instagram post - Maxvita Foods"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C4FpLfcSulT/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/maxvita.png"/><div class="overlay-play"><i class="fas fa-play"></i></div></div>
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C4FpLfcSulT/embed" title="Instagram post - Maxvita Foods"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C4FpLfcSulT/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/maxvita.png"/><div class="overlay-play">
+  <i class="fas fa-play"></i>
+  <span>Click to Play</span>
+</div>
+</div>
 </div>
 <div class="video">
 <h2>Medimix Ayurveda Soap</h2>
