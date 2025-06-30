@@ -1872,25 +1872,36 @@
 </div>
 
 <script>
-  let lastScrollTop = 0;
   const floatingContact = document.querySelector('.floating-contact');
+  let lastScrollTop = 0;
+  let scrollTimeout;
 
   window.addEventListener('scroll', () => {
     let st = window.pageYOffset || document.documentElement.scrollTop;
 
+    // Hide on scroll down
     if (st > lastScrollTop) {
-      // scrolling down
       floatingContact.style.opacity = '0';
       floatingContact.style.pointerEvents = 'none';
-    } else {
-      // scrolling up
+    }
+
+    // Show on scroll up
+    if (st < lastScrollTop) {
       floatingContact.style.opacity = '1';
       floatingContact.style.pointerEvents = 'auto';
     }
 
+    // Re-show after scroll stops (e.g., user pauses)
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      floatingContact.style.opacity = '1';
+      floatingContact.style.pointerEvents = 'auto';
+    }, 300); // Adjust delay as needed (ms)
+
     lastScrollTop = st <= 0 ? 0 : st;
-  }, false);
+  });
 </script>
+
 
 </body>
 </html>
