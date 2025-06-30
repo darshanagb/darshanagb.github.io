@@ -646,7 +646,7 @@
     .scroll-to-top {
       position: fixed;
       bottom: 30px;
-      right: 30px;
+      right: 20px;
       width: 50px;
       height: 50px;
       background: linear-gradient(135deg, #e91e63, #031c2a);
@@ -662,6 +662,8 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
       z-index: 1000;
+      transition: bottom 0.3s ease, right 0.3s ease;
+
     }
 
     .scroll-to-top.show {
@@ -1254,13 +1256,14 @@
 }
 .floating-contact {
   position: fixed;
-  bottom: 20px;
+  bottom: 90px;
   right: 20px;
-  display: none;
   flex-direction: column;
   gap: 12px;
   z-index: 2000;
+  transition: opacity 0.3s ease;
 }
+
 
 .contact-btn {
   width: 50px;
@@ -1396,8 +1399,7 @@
 
     <h2>About Me</h2>
     <p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
-    <p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
-    <p>Whether it's a powerful narration, a lively character voice, or a crisp commercial tone, I am committed to delivering high-quality audio that elevates every project.</p>
+    With years of experience behind the mic, I’ve lent my voice to celebrated international and Indian characters — from powerful heroines in blockbuster films to emotionally layered roles in web series, commercials, and animations.
     <p>✨✨ Bringing every story to life. ✨✨</p>
   </section>
 
@@ -1867,6 +1869,38 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
+
+<script>
+  const floatingContact = document.querySelector('.floating-contact');
+  let lastScrollTop = 0;
+  let scrollTimeout;
+
+  window.addEventListener('scroll', () => {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Hide on scroll down
+    if (st > lastScrollTop) {
+      floatingContact.style.opacity = '0';
+      floatingContact.style.pointerEvents = 'none';
+    }
+
+    // Show on scroll up
+    if (st < lastScrollTop) {
+      floatingContact.style.opacity = '1';
+      floatingContact.style.pointerEvents = 'auto';
+    }
+
+    // Re-show after scroll stops (e.g., user pauses)
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      floatingContact.style.opacity = '1';
+      floatingContact.style.pointerEvents = 'auto';
+    }, 300); // Adjust delay as needed (ms)
+
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+</script>
+
 
 </body>
 </html>
