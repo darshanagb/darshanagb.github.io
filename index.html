@@ -1420,9 +1420,10 @@
 </div>
 <!-- Custom header with rounded image -->
 <div class="header-content">
-<div class="header-image" data-aos="fade-up">
-<img alt="Darshana GB Profile Picture" src="DP.jpg"/>
-</div>
+  <div class="header-image" data-aos="fade-up">
+    <img alt="Darshana GB Profile Picture" src="DP.jpg" oncontextmenu="return false" draggable="false" />
+  </div>
+  
 <div class="header-text lang-en">
 <h1>DARSHANA GB</h1>
 <h2>Dubbing | Voice-Over Artist</h2>
@@ -1957,7 +1958,10 @@ function closeModal() {
   document.getElementById('videoModal').style.display = 'none';
   document.getElementById('modalIframe').src = '';
 }
-
 </script>
+<script>
+  document.addEventListener("contextmenu", event => event.preventDefault());
+</script>
+
 </body>
 </html>
