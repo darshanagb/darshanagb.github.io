@@ -1360,8 +1360,82 @@
     display: none !important;
   }
 }
+.share-now-container {
+  position: relative;
+  text-align: center;
+  margin: 30px 0;
+}
 
+.share-now-btn {
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.share-now-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+}
+
+.share-options {
+  display: none;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.share-options.show {
+  display: flex;
+}
+
+.share-icon {
+  width: 40px;
+  height: 40px;
+  background: #f4f4f4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.share-icon:hover {
+  transform: scale(1.1);
+}
+
+.share-icon.whatsapp { background: #25D366; color: white; }
+.share-icon.facebook { background: #1877f2; color: white; }
+.share-icon.twitter { background: #1DA1F2; color: white; }
+.share-icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: white; }
+.share-icon.copy { background: #666; color: white; }
+
+.copy-confirm {
+  display: block;
+  color: green;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.copy-confirm.show {
+  opacity: 1;
+}
   </style>
+
 <!-- AOS (Animate On Scroll) Library -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -1434,6 +1508,30 @@
 </div>
 </div>
 </header>
+<div class="share-now-container">
+  <button class="share-now-btn" onclick="toggleShareOptions()">
+    <i class="fas fa-share-alt"></i> Share Now
+  </button>
+  <div class="share-options" id="shareOptions">
+    <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio%3A%20https%3A%2F%2Fdarshanagb.github.io" target="_blank" class="share-icon whatsapp" title="Share on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://darshanagb.github.io" target="_blank" class="share-icon facebook" title="Share on Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio!&url=https://darshanagb.github.io" target="_blank" class="share-icon twitter" title="Share on X">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+    <a href="https://www.instagram.com/darshana_srinivas" target="_blank" class="share-icon instagram" title="Visit Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <button class="share-icon copy" onclick="copySiteLink()" title="Copy link">
+      <i class="fas fa-link"></i>
+    </button>
+  </div>
+  <span id="copyConfirm" class="copy-confirm">Link copied!</span>
+</div>
+
 <nav>
 <a href="#about">
 <i class="fas fa-user"></i>
@@ -1962,6 +2060,21 @@ function closeModal() {
 <!--Below code prevents right-click across the page-->
 <script>
   document.addEventListener("contextmenu", event => event.preventDefault());
+</script>
+<script>
+  function toggleShareOptions() {
+    const shareOptions = document.getElementById('shareOptions');
+    shareOptions.classList.toggle('show');
+  }
+
+  function copySiteLink() {
+    const text = "https://darshanagb.github.io";
+    navigator.clipboard.writeText(text).then(() => {
+      const msg = document.getElementById('copyConfirm');
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 2000);
+    });
+  }
 </script>
 
 </body>
