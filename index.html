@@ -548,38 +548,43 @@
       margin-bottom: 40px;
     }
 
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
+    /* Common social link style */
+.social-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
 
-    .social-link:hover {
-      transform: translateY(-5px) scale(1.1);
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
+/* Icon color */
+.social-link i {
+  color: white;
+  font-size: 20px;
+}
 
-    .social-link.instagram:hover {
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    }
+/* Brand-colored backgrounds */
+.social-link.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
 
-    .social-link.youtube:hover {
-      background: #ff0000;
-    }
+.social-link.facebook {
+  background-color: #1877F2;
+}
 
-    .social-link.facebook:hover {
-      background: #1877f2;
-    }
+.social-link.youtube {
+  background-color: #FF0000;
+}
+
+/* Hover effect */
+.social-link:hover {
+  transform: scale(1.15);
+}
+
 
     .cta-section {
       background: rgba(233, 30, 99, 0.1);
@@ -1498,6 +1503,25 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+/* Disable tap highlight on mobile */
+button, .share-now-btn, .share-icon-box, a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Optional: Disable outline for clicked buttons */
+button:focus, .share-now-btn:focus, .share-icon-box:focus, a:focus {
+  outline: none;
+}
+
+button:active,
+.share-now-btn:active,
+.share-icon-box:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
 }
 
   </style>
