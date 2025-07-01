@@ -1524,6 +1524,58 @@ button:active,
   transition: transform 0.1s ease;
 }
 
+.about-modern {
+  background: linear-gradient(to bottom, #fdfbfa, #f4f1f1);
+  border-radius: 20px;
+  padding: 40px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #031c2a, #e91e63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(233, 30, 99, 0.2);
+}
+
+.about-description {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.about-highlight {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e91e63;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
+  }
+  .about-description {
+    font-size: 1rem;
+  }
+  .about-highlight {
+    font-size: 1.05rem;
+  }
+}
   </style>
 
 <!-- AOS (Animate On Scroll) Library -->
@@ -1615,20 +1667,40 @@ button:active,
     Contact
   </a>
 </nav>
-<div class="content" data-aos="zoom-in" id="about" style="background-color: #FAF9F5;">
-<section class="bio lang-en">
-<h2>About Me</h2>
-<p>Hello, I'm Darshana — a professional dubbing and voice-over artist based in Bengaluru, Karnataka.</p>
-<p>In the world of storytelling — from films to series, serials to ads — I strive to bring voices to life, adding depth and feeling to every moment.</p>
-    With years of experience behind the mic, I’ve lent my voice to celebrated international and Indian characters — from powerful heroines in blockbuster films to emotionally layered roles in web series, commercials, and animations.
-    <p>✨✨ Bringing every story to life. ✨✨</p>
-</section>
-<section class="bio lang-kn" style="display: none;">
-<h2>ನನ್ನ ಪರಿಚಯ</h2>
-<p>ನಮಸ್ಕಾರ, ನಾನು ದರ್ಶನಾ — ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.</p>
-<p>ಹಲವು ಜನಪ್ರಿಯ ವೆಬ್ ಸಿರೀಸ್, ಚಲನಚಿತ್ರಗಳು, ಧಾರಾವಾಹಿಗಳು ಮತ್ತು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ್ದೇನೆ.</p>
-</section>
+
+<div class="content about-modern" data-aos="zoom-in" id="about">
+  <section class="bio lang-en">
+    <div class="about-wrapper">
+      <div class="about-text">
+        <h2 class="about-title">👩‍🎤 About Me</h2>
+        <p class="about-description">
+          I’m <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
+        </p>
+        <p class="about-description">
+          My voice has echoed through stories big and small, powerful and tender — including characters played by <strong>Kate Winslet</strong>, <strong>Margot Robbie</strong>, and <strong>Samantha Ruth Prabhu</strong>. Every project has been a journey of emotion, tone, and truth.
+        </p>
+        <p class="about-highlight">Bringing every story to life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio lang-kn" style="display: none;">
+    <div class="about-wrapper">
+      <div class="about-text">
+        <h2 class="about-title">👩‍🎤 ನನ್ನ ಪರಿಚಯ</h2>
+        <p class="about-description">
+          ನಾನು <strong>ದರ್ಶನಾ</strong>, ಬೆಂಗಳೂರು ಮೂಲದ ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.
+        </p>
+        <p class="about-description">
+          ಹಲವಾರು ಧಾರಾವಾಹಿಗಳು, ಚಲನಚಿತ್ರಗಳು, ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿಯನ್ನು ನೀಡಿ, ಕಥೆಗಳಿಗೆ ಜೀವ ತುಂಬುತ್ತಿದ್ದೇನೆ.
+        </p>
+        <p class="about-highlight">🎙️ ಪ್ರತಿ ಪಾತ್ರಕ್ಕೂ ಧ್ವನಿಯ ರೂಪದಲ್ಲಿ ಪ್ರಾಣ ತುಂಬುವ ಪ್ರಯತ್ನ.</p>
+      </div>
+    </div>
+  </section>
 </div>
+
+
 <div class="works-header" id="portfolio">
 <div class="works-title-container">
 <h1 class="works-main-title">My Works</h1>
@@ -1883,8 +1955,6 @@ button:active,
 </a>
 </div>
 </div>
-
-
 <div class="share-now-container">
   <button class="share-now-btn" onclick="toggleShareOptions()">
     <i class="fas fa-share-alt"></i> Share Now
@@ -1913,12 +1983,12 @@ button:active,
       <div class="share-icon copy"><i class="fas fa-link"></i></div>
       <span class="share-label">Copy Link</span>
     </a>
+    
+      
     </button>
   </div>
   <span id="copyConfirm" class="copy-confirm">Link copied!</span>
 </div>
-
-
 <!-- CTA (Optional but good for lead gen) -->
 <div class="cta-section" data-aos="zoom-in">
 <h2 class="cta-title">Know someone looking for a voice artist?</h2>
