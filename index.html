@@ -1916,23 +1916,7 @@ button:active,
 <i class="fas fa-envelope"></i>
         Let's Connect
       </h2>
-<!-- PHONE -->
-<div class="phone-container">
-<div class="info-pill">
-<i class="fas fa-phone-alt"></i>
-<span>+918951099268</span>
-</div>
-<a class="call-now-btn" href="tel:+918951099268">
-<i class="fas fa-phone"></i> Call Now
-        </a>
-<a class="whatsapp-btn" href="https://wa.me/918951099268" rel="noopener" target="_blank">
-<i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-<button class="copy-btn" onclick="copyPhone()">
-<i class="fas fa-copy"></i> Copy
-        </button>
-<span class="copy-message" id="copy-phone-msg"></span>
-</div>
+
 <!-- EMAIL -->
 <div class="email-container">
 <div class="info-pill">
@@ -2131,20 +2115,7 @@ button:active,
     }, 2000);
   }
 
-  function copyPhone() {
-  const phone = '+918951099268';
-  const copyMsg = document.getElementById('copy-phone-msg');
   
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(phone).then(() => {
-      showCopyMessage(copyMsg, 'Phone copied!');
-    }).catch(() => {
-      fallbackCopy(phone, copyMsg);
-    });
-  } else {
-    fallbackCopy(phone, copyMsg);
-  }
-}
 </script>
 <script>
   const toggle = document.querySelector('.language-toggle-container');
@@ -2186,14 +2157,6 @@ button:active,
 
 </script>
 <!-- Floating Contact Button (Mobile) -->
-<div class="floating-contact">
-<a class="contact-btn call" href="tel:+918951099268">
-<i class="fas fa-phone"></i>
-</a>
-<a class="contact-btn whatsapp" href="https://wa.me/918951099268" rel="noopener" target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
-</div>
 <script>
   const floatingContact = document.querySelector('.floating-contact');
   let lastScrollTop = 0;
