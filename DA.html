@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Hour Data Analytics Course with Python</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 100px 0;
+            page-break-after: always;
+        }
+        
+        .cover-page h1 {
+            font-size: 42px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .cover-page .subtitle {
+            font-size: 24px;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+        
+        .cover-page .info {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            page-break-after: avoid;
+        }
+        
+        h4 {
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        .theory-box {
+            background: #ecf0f1;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .theory-box h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            page-break-inside: avoid;
+        }
+        
+        .output-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            page-break-inside: avoid;
+        }
+        
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+        
+        .string {
+            color: #98c379;
+        }
+        
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #d19a66;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .section-number {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 15px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .tip-box strong {
+            color: #0c5460;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .toc {
+            margin: 30px 0;
+        }
+        
+        .toc-item {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #3498db;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .btn-print:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">📄 Download as PDF</button>
+    
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <h1>Data Analytics with Python</h1>
+        <div class="subtitle">A Comprehensive 3-Hour Course</div>
+        <div style="margin: 60px 0;">
+            <div class="info"><strong>Course Duration:</strong> 3 Hours</div>
+            <div class="info"><strong>Level:</strong> Beginner to Intermediate</div>
+            <div class="info"><strong>Prerequisites:</strong> Basic Python Knowledge</div>
+        </div>
+        <div style="margin-top: 80px; color: #7f8c8d;">
+            <p>Covering Theory, Practice, and Exploratory Data Analysis</p>
+        </div>
+    </div>
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="page-break"></div>
+    <h2>Table of Contents</h2>
+    <div class="toc">
+        <div class="toc-item"><strong>Hour 1: Data Analytics Fundamentals & Python Basics</strong></div>
+        <div class="toc-item" style="padding-left: 40px;">1.1 Introduction to Data Analytics</div>
+        <div class="toc-item" style="padding-left: 40px;">1.2 Python Basics for Data Analytics</div>
+        <div class="toc-item" style="padding-left: 40px;">1.3 Statistical Concepts</div>
+        
+        <div class="toc-item" style="margin-top: 15px;"><strong>Hour 2: Data Loading, Cleaning & Transformation</strong></div>
+        <div class="toc-item" style="padding-left: 40px;">2.1 Creating Sample Datasets</div>
+        <div class="toc-item" style="padding-left: 40px;">2.2 Data Inspection</div>
+        <div class="toc-item" style="padding-left: 40px;">2.3 Data Cleaning</div>
+        <div class="toc-item" style="padding-left: 40px;">2.4 Data Transformation</div>
+        
+        <div class="toc-item" style="margin-top: 15px;"><strong>Hour 3: Exploratory Data Analysis (EDA)</strong></div>
+        <div class="toc-item" style="padding-left: 40px;">3.1 Univariate Analysis</div>
+        <div class="toc-item" style="padding-left: 40px;">3.2 Bivariate Analysis</div>
+        <div class="toc-item" style="padding-left: 40px;">3.3 Time Series Analysis</div>
+        <div class="toc-item" style="padding-left: 40px;">3.4 Advanced EDA Techniques</div>
+    </div>
+    
+    <!-- HOUR 1 -->
+    <div class="page-break"></div>
+    <h2><span class="section-number">HOUR 1:</span> Data Analytics Fundamentals & Python Basics</h2>
+    
+    <h3>1.1 Introduction to Data Analytics</h3>
+    
+    <div class="theory-box">
+        <h4>What is Data Analytics?</h4>
+        <p>Data Analytics is the process of examining datasets to draw conclusions about the information they contain. It involves systematic computational analysis of data to discover, interpret, and communicate meaningful patterns.</p>
+    </div>
+    
+    <h4>Four Types of Data Analytics:</h4>
+    
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Question</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Descriptive</strong></td>
+            <td>What happened?</td>
+            <td>Summarizing historical data, understanding patterns and trends</td>
+        </tr>
+        <tr>
+            <td><strong>Diagnostic</strong></td>
+            <td>Why did it happen?</td>
+            <td>Finding causes of outcomes, identifying correlations</td>
+        </tr>
+        <tr>
+            <td><strong>Predictive</strong></td>
+            <td>What will happen?</td>
+            <td>Forecasting future trends using statistical models</td>
+        </tr>
+        <tr>
+            <td><strong>Prescriptive</strong></td>
+            <td>What should we do?</td>
+            <td>Recommending actions and optimization strategies</td>
+        </tr>
+    </table>
+    
+    <h4>The Data Analytics Workflow:</h4>
+    <ol>
+        <li><strong>Define the problem</strong> - Understand business objectives</li>
+        <li><strong>Collect data</strong> - Gather relevant information</li>
+        <li><strong>Clean and prepare data</strong> - Handle missing values, outliers</li>
+        <li><strong>Explore and analyze</strong> - Discover patterns and insights</li>
+        <li><strong>Visualize findings</strong> - Create compelling charts and graphs</li>
+        <li><strong>Communicate insights</strong> - Present actionable recommendations</li>
+    </ol>
+    
+    <div class="page-break"></div>
+    <h3>1.2 Python Basics for Data Analytics</h3>
+    
+    <div class="theory-box">
+        <h4>Essential Libraries</h4>
+        <ul>
+            <li><strong>NumPy:</strong> Numerical computing with arrays and matrices</li>
+            <li><strong>Pandas:</strong> Data manipulation and analysis</li>
+            <li><strong>Matplotlib:</strong> Basic plotting and visualization</li>
+            <li><strong>Seaborn:</strong> Statistical data visualization</li>
+        </ul>
+    </div>
+    
+    <h4>Example 1: NumPy Basics</h4>
+    
+    <div class="code-block">
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Creating arrays</span>
+arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+<span class="keyword">print</span>(<span class="string">f"Array: {arr}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Mean: {arr.mean()}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Standard Deviation: {arr.std()}"</span>)
+
+<span class="comment"># Multi-dimensional arrays</span>
+matrix = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], 
+                   [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], 
+                   [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])
+<span class="keyword">print</span>(<span class="string">f"Matrix shape: {matrix.shape}"</span>)
+    </div>
+    
+    <div class="output-block">
+Array: [1 2 3 4 5]
+Mean: 3.0
+Standard Deviation: 1.4142135623730951
+Matrix shape: (3, 3)
+    </div>
+    
+    <h4>Example 2: Pandas DataFrames</h4>
+    
+    <div class="code-block">
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Creating a DataFrame</span>
+data = {
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>, <span class="string">'David'</span>, <span class="string">'Eve'</span>],
+    <span class="string">'Age'</span>: [<span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">28</span>, <span class="number">32</span>],
+    <span class="string">'Salary'</span>: [<span class="number">50000</span>, <span class="number">60000</span>, <span class="number">75000</span>, <span class="number">55000</span>, <span class="number">70000</span>],
+    <span class="string">'Department'</span>: [<span class="string">'HR'</span>, <span class="string">'IT'</span>, <span class="string">'IT'</span>, <span class="string">'Sales'</span>, <span class="string">'HR'</span>]
+}
+
+df = pd.DataFrame(data)
+<span class="keyword">print</span>(df.head())
+<span class="keyword">print</span>(<span class="string">f"Shape: {df.shape}"</span>)
+    </div>
+    
+    <div class="output-block">
+      Name  Age  Salary Department
+0    Alice   25   50000         HR
+1      Bob   30   60000         IT
+2  Charlie   35   75000         IT
+3    David   28   55000      Sales
+4      Eve   32   70000         HR
+Shape: (5, 4)
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>1.3 Statistical Concepts</h3>
+    
+    <h4>Measures of Central Tendency</h4>
+    
+    <div class="theory-box">
+        <h4>Understanding Central Tendency</h4>
+        <ul>
+            <li><strong>Mean (Average):</strong> Sum of values ÷ Number of values
+                <ul><li>Sensitive to outliers</li></ul>
+            </li>
+            <li><strong>Median (Middle value):</strong> The middle value when data is sorted
+                <ul><li>Robust to outliers</li></ul>
+            </li>
+            <li><strong>Mode:</strong> Most frequently occurring value
+                <ul><li>Can have multiple modes</li></ul>
+            </li>
+        </ul>
+    </div>
+    
+    <h4>Example 3: Central Tendency</h4>
+    
+    <div class="code-block">
+salaries = np.array([<span class="number">45000</span>, <span class="number">50000</span>, <span class="number">52000</span>, <span class="number">55000</span>, 
+                     <span class="number">58000</span>, <span class="number">60000</span>, <span class="number">65000</span>, <span class="number">120000</span>])
+
+mean_salary = salaries.mean()
+median_salary = np.median(salaries)
+
+<span class="keyword">print</span>(<span class="string">f"Mean salary: ${mean_salary:,.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Median salary: ${median_salary:,.2f}"</span>)
+    </div>
+    
+    <div class="output-block">
+Mean salary: $63,125.00
+Median salary: $56,500.00
+Notice: Mean is higher due to the outlier (120000)
+    </div>
+    
+    <h4>Measures of Dispersion</h4>
+    
+    <div class="theory-box">
+        <h4>Understanding Spread of Data</h4>
+        <ul>
+            <li><strong>Range:</strong> Maximum - Minimum</li>
+            <li><strong>Variance:</strong> Average squared deviation from mean</li>
+            <li><strong>Standard Deviation:</strong> Square root of variance</li>
+            <li><strong>Interquartile Range (IQR):</strong> Q3 - Q1 (middle 50%)</li>
+        </ul>
+    </div>
+    
+    <h4>Example 4: Dispersion Measures</h4>
+    
+    <div class="code-block">
+data = np.array([<span class="number">10</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">20</span>])
+
+<span class="keyword">print</span>(<span class="string">f"Range: {data.max() - data.min()}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Variance: {data.var():.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Standard Deviation: {data.std():.2f}"</span>)
+
+Q1 = np.percentile(data, <span class="number">25</span>)
+Q3 = np.percentile(data, <span class="number">75</span>)
+<span class="keyword">print</span>(<span class="string">f"IQR: {Q3 - Q1}"</span>)
+    </div>
+    
+    <div class="output-block">
+Range: 10
+Variance: 8.89
+Standard Deviation: 2.98
+IQR: 5.0
+    </div>
+    
+    <!-- HOUR 2 -->
+    <div class="page-break"></div>
+    <h2><span class="section-number">HOUR 2:</span> Data Loading, Cleaning & Transformation</h2>
+    
+    <h3>2.1 Creating Sample Datasets</h3>
+    
+    <p>For this course, we'll create a realistic e-commerce dataset to practice our skills.</p>
+    
+    <div class="code-block">
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+np.random.seed(<span class="number">42</span>)
+n_records = <span class="number">100</span>
+
+<span class="comment"># Create e-commerce dataset</span>
+ecommerce_data = pd.DataFrame({
+    <span class="string">'Date'</span>: pd.date_range(<span class="string">'2024-01-01'</span>, periods=n_records, freq=<span class="string">'D'</span>),
+    <span class="string">'Product'</span>: np.random.choice([<span class="string">'Laptop'</span>, <span class="string">'Phone'</span>, <span class="string">'Tablet'</span>, 
+                                    <span class="string">'Headphones'</span>, <span class="string">'Watch'</span>], n_records),
+    <span class="string">'Quantity'</span>: np.random.randint(<span class="number">1</span>, <span class="number">10</span>, n_records),
+    <span class="string">'Price'</span>: np.random.uniform(<span class="number">50</span>, <span class="number">1500</span>, n_records).round(<span class="number">2</span>),
+    <span class="string">'Customer_Age'</span>: np.random.randint(<span class="number">18</span>, <span class="number">70</span>, n_records),
+    <span class="string">'Rating'</span>: np.random.choice([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], n_records)
+})
+    </div>
+    
+    <h3>2.2 Data Inspection</h3>
+    
+    <div class="theory-box">
+        <h4>Key Questions for Data Inspection</h4>
+        <ol>
+            <li>What is the structure of the data?</li>
+            <li>What are the data types?</li>
+            <li>Are there missing values?</li>
+            <li>What are the basic statistics?</li>
+            <li>Are there any obvious data quality issues?</li>
+        </ol>
+    </div>
+    
+    <h4>Example 6: Essential Inspection Methods</h4>
+    
+    <div class="code-block">
+<span class="comment"># View first few rows</span>
+<span class="keyword">print</span>(df.head())
+
+<span class="comment"># Get dataset information</span>
+<span class="keyword">print</span>(df.info())
+
+<span class="comment"># Statistical summary</span>
+<span class="keyword">print</span>(df.describe())
+
+<span class="comment"># Check for missing values</span>
+<span class="keyword">print</span>(df.isnull().sum())
+
+<span class="comment"># Count unique values</span>
+<span class="keyword">print</span>(df.nunique())
+    </div>
+    
+    <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> Always perform thorough data inspection before analysis. Understanding your data structure prevents errors and ensures accurate insights.
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>2.3 Data Cleaning</h3>
+    
+    <h4>Handling Missing Values</h4>
+    
+    <div class="theory-box">
+        <h4>Missing Value Strategies</h4>
+        <p><strong>1. DELETION:</strong></p>
+        <ul>
+            <li>Remove rows with missing values (if &lt; 5% of data)</li>
+            <li>Remove columns with too many missing values</li>
+        </ul>
+        <p><strong>2. IMPUTATION:</strong></p>
+        <ul>
+            <li>Mean/Median for numerical data</li>
+            <li>Mode for categorical data</li>
+            <li>Forward/Backward fill for time series</li>
+            <li>Predictive imputation using models</li>
+        </ul>
+    </div>
+    
+    <h4>Example 7: Handling Missing Values</h4>
+    
+    <div class="code-block">
+<span class="comment"># Fill numerical missing values with median</span>
+df[<span class="string">'Price'</span>].fillna(df[<span class="string">'Price'</span>].median(), inplace=<span class="keyword">True</span>)
+
+<span class="comment"># Fill categorical missing values with mode</span>
+df[<span class="string">'Category'</span>].fillna(df[<span class="string">'Category'</span>].mode()[<span class="number">0</span>], inplace=<span class="keyword">True</span>)
+
+<span class="comment"># Drop rows with any missing values</span>
+df_clean = df.dropna()
+
+<span class="comment"># Drop columns with more than 50% missing</span>
+threshold = len(df) * <span class="number">0.5</span>
+df_clean = df.dropna(thresh=threshold, axis=<span class="number">1</span>)
+    </div>
+    
+    <h4>Example 8: Handling Duplicates</h4>
+    
+    <div class="code-block">
+<span class="comment"># Check for duplicates</span>
+<span class="keyword">print</span>(<span class="string">f"Duplicate rows: {df.duplicated().sum()}"</span>)
+
+<span class="comment"># Remove duplicates</span>
+df_clean = df.drop_duplicates()
+
+<span class="comment"># Remove duplicates based on specific columns</span>
+df_clean = df.drop_duplicates(subset=[<span class="string">'Customer_ID'</span>, <span class="string">'Date'</span>])
+    </div>
+    
+    <h4>Example 9: Data Type Conversion</h4>
+    
+    <div class="code-block">
+<span class="comment"># Convert to datetime</span>
+df[<span class="string">'Date'</span>] = pd.to_datetime(df[<span class="string">'Date'</span>])
+
+<span class="comment"># Convert to categorical</span>
+df[<span class="string">'Product'</span>] = df[<span class="string">'Product'</span>].astype(<span class="string">'category'</span>)
+
+<span class="comment"># Convert to integer</span>
+df[<span class="string">'Rating'</span>] = df[<span class="string">'Rating'</span>].astype(<span class="keyword">int</span>)
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>2.4 Data Transformation</h3>
+    
+    <h4>Feature Engineering</h4>
+    
+    <div class="theory-box">
+        <h4>Why Create New Features?</h4>
+        <ul>
+            <li>Capture domain knowledge</li>
+            <li>Improve model performance</li>
+            <li>Make analysis more meaningful</li>
+            <li>Reveal hidden patterns</li>
+        </ul>
+    </div>
+    
+    <h4>Example 10: Creating New Features</h4>
+    
+    <div class="code-block">
+<span class="comment"># Calculate total revenue</span>
+df[<span class="string">'Revenue'</span>] = df[<span class="string">'Quantity'</span>] * df[<span class="string">'Price'</span>]
+
+<span class="comment"># Extract date components</span>
+df[<span class="string">'Year'</span>] = df[<span class="string">'Date'</span>].dt.year
+df[<span class="string">'Month'</span>] = df[<span class="string">'Date'</span>].dt.month
+df[<span class="string">'DayOfWeek'</span>] = df[<span class="string">'Date'</span>].dt.dayofweek
+
+<span class="comment"># Create age groups</span>
+df[<span class="string">'Age_Group'</span>] = pd.cut(df[<span class="string">'Customer_Age'</span>], 
+                            bins=[<span class="number">0</span>, <span class="number">25</span>, <span class="number">35</span>, <span class="number">50</span>, <span class="number">100</span>], 
+                            labels=[<span class="string">'18-25'</span>, <span class="string">'26-35'</span>, <span class="string">'36-50'</span>, <span class="string">'50+'</span>])
+
+<span class="comment"># Create price categories</span>
+df[<span class="string">'Price_Category'</span>] = pd.cut(df[<span class="string">'Price'</span>], 
+                                 bins=[<span class="number">0</span>, <span class="number">100</span>, <span class="number">500</span>, <span class="number">1000</span>, <span class="number">2000</span>], 
+                                 labels=[<span class="string">'Budget'</span>, <span class="string">'Mid-Range'</span>, 
+                                         <span class="string">'Premium'</span>, <span class="string">'Luxury'</span>])
+    </div>
+    
+    <h4>Example 11: Aggregation and Grouping</h4>
+    
+    <div class="code-block">
+<span class="comment"># Group by product and calculate statistics</span>
+product_stats = df.groupby(<span class="string">'Product'</span>).agg({
+    <span class="string">'Quantity'</span>: <span class="string">'sum'</span>,
+    <span class="string">'Revenue'</span>: [<span class="string">'sum'</span>, <span class="string">'mean'</span>],
+    <span class="string">'Rating'</span>: <span class="string">'mean'</span>
+})
+
+<span class="comment"># Group by multiple columns</span>
+multi_group = df.groupby([<span class="string">'Category'</span>, <span class="string">'Age_Group'</span>]).agg({
+    <span class="string">'Revenue'</span>: <span class="string">'sum'</span>,
+    <span class="string">'Quantity'</span>: <span class="string">'sum'</span>
+})
+    </div>
+    
+    <!-- HOUR 3 -->
+    <div class="page-break"></div>
+    <h2><span class="section-number">HOUR 3:</span> Exploratory Data Analysis (EDA)</h2>
+    
+    <h3>3.1 Univariate Analysis</h3>
+    
+    <div class="theory-box">
+        <h4>What is Univariate Analysis?</h4>
+        <p>Examining <strong>ONE variable at a time</strong> to understand its distribution, central tendency, and spread.</p>
+        
+        <p><strong>For NUMERICAL variables:</strong></p>
+        <ul>
+            <li>Distribution (histogram, density plot)</li>
+            <li>Central tendency (mean, median)</li>
+            <li>Spread (std, range, quartiles)</li>
+            <li>Outliers (box plot)</li>
+        </ul>
+        
+        <p><strong>For CATEGORICAL variables:</strong></p>
+        <ul>
+            <li>Frequency counts</li>
+            <li>Proportions</li>
+            <li>Bar charts and pie charts</li>
+        </ul>
+    </div>
+    
+    <h4>Example 12: Analyzing Numerical Variables</h4>
+    
+    <div class="code-block">
+<span class="comment"># Statistical summary of Price</span>
+<span class="keyword">print</span>(df[<span class="string">'Price'</span>].describe())
+
+<span class="comment"># Create visualizations</span>
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+<span class="comment"># Histogram</span>
+plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))
+plt.hist(df[<span class="string">'Price'</span>], bins=<span class="number">20</span>, edgecolor=<span class="string">'black'</span>)
+plt.title(<span class="string">'Price Distribution'</span>)
+plt.xlabel(<span class="string">'Price ($)'</span>)
+plt.ylabel(<span class="string">'Frequency'</span>)
+plt.show()
+
+<span class="comment"># Box plot for outlier detection</span>
+plt.boxplot(df[<span class="string">'Price'</span>])
+plt.title(<span class="string">'Price Box Plot'</span>)
+plt.ylabel(<span class="string">'Price ($)'</span>)
+plt.show()
+    </div>
+    
+    <h4>Example 13: Analyzing Categorical Variables</h4>
+    
+    <div class="code-block">
+<span class="comment"># Frequency counts</span>
+product_counts = df[<span class="string">'Product'</span>].value_counts()
+<span class="keyword">print</span>(product_counts)
+
+<span class="comment"># Proportions</span>
+product_proportions = df[<span class="string">'Product'</span>].value_counts(normalize=<span class="keyword">True</span>)
+<span class="keyword">print</span>(product_proportions)
+
+<span class="comment"># Bar chart</span>
+product_counts.plot(kind=<span class="string">'bar'</span>, color=<span class="string">'skyblue'</span>)
+plt.title(<span class="string">'Product Sales Frequency'</span>)
+plt.xlabel(<span class="string">'Product'</span>)
+plt.ylabel(<span class="string">'Count'</span>)
+plt.show()
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>3.2 Bivariate Analysis</h3>
+    
+    <div class="theory-box">
+        <h4>What is Bivariate Analysis?</h4>
+        <p>Examining relationships between <strong>TWO variables</strong>:</p>
+        
+        <p><strong>1. Numerical vs Numerical:</strong></p>
+        <ul>
+            <li>Scatter plots</li>
+            <li>Correlation coefficients</li>
+            <li>Line plots</li>
+        </ul>
+        
+        <p><strong>2. Numerical vs Categorical:</strong></p>
+        <ul>
+            <li>Box plots by group</li>
+            <li>Bar charts with statistics</li>
+        </ul>
+        
+        <p><strong>3. Categorical vs Categorical:</strong></p>
+        <ul>
+            <li>Cross-tabulation</li>
+            <li>Stacked bar charts</li>
+        </ul>
+    </div>
+    
+    <h4>Example 14: Numerical vs Numerical</h4>
+    
+    <div class="code-block">
+<span class="comment"># Calculate correlation</span>
+correlation = df[[<span class="string">'Price'</span>, <span class="string">'Quantity'</span>, <span class="string">'Revenue'</span>]].corr()
+<span class="keyword">print</span>(correlation)
+
+<span class="comment"># Scatter plot</span>
+plt.scatter(df[<span class="string">'Price'</span>], df[<span class="string">'Revenue'</span>], alpha=<span class="number">0.5</span>)
+plt.title(<span class="string">'Price vs Revenue'</span>)
+plt.xlabel(<span class="string">'Price ($)'</span>)
+plt.ylabel(<span class="string">'Revenue ($)'</span>)
+plt.show()
+
+<span class="comment"># Correlation heatmap</span>
+<span class="keyword">import</span> seaborn <span class="keyword">as</span> sns
+sns.heatmap(correlation, annot=<span class="keyword">True</span>, cmap=<span class="string">'coolwarm'</span>)
+plt.title(<span class="string">'Correlation Heatmap'</span>)
+plt.show()
+    </div>
+    
+    <div class="tip-box">
+        <strong>💡 Correlation Interpretation:</strong>
+        <ul>
+            <li><strong>1.0:</strong> Perfect positive correlation</li>
+            <li><strong>0.7 to 0.9:</strong> Strong positive correlation</li>
+            <li><strong>0.4 to 0.6:</strong> Moderate correlation</li>
+            <li><strong>0.0:</strong> No correlation</li>
+            <li><strong>-1.0:</strong> Perfect negative correlation</li>
+        </ul>
+    </div>
+    
+    <h4>Example 15: Numerical vs Categorical</h4>
+    
+    <div class="code-block">
+<span class="comment"># Statistics by category</span>
+revenue_by_product = df.groupby(<span class="string">'Product'</span>)[<span class="string">'Revenue'</span>].describe()
+<span class="keyword">print</span>(revenue_by_product)
+
+<span class="comment"># Box plot by group</span>
+df.boxplot(column=<span class="string">'Revenue'</span>, by=<span class="string">'Product'</span>)
+plt.title(<span class="string">'Revenue Distribution by Product'</span>)
+plt.suptitle(<span class="string">''</span>)  <span class="comment"># Remove default title</span>
+plt.show()
+
+<span class="comment"># Bar plot with mean values</span>
+mean_revenue = df.groupby(<span class="string">'Product'</span>)[<span class="string">'Revenue'</span>].mean()
+mean_revenue.plot(kind=<span class="string">'bar'</span>, color=<span class="string">'coral'</span>)
+plt.title(<span class="string">'Average Revenue by Product'</span>)
+plt.ylabel(<span class="string">'Average Revenue ($)'</span>)
+plt.show()
+    </div>
+    
+    <h4>Example 16: Categorical vs Categorical</h4>
+    
+    <div class="code-block">
+<span class="comment"># Cross-tabulation</span>
+crosstab = pd.crosstab(df[<span class="string">'Product'</span>], df[<span class="string">'Age_Group'</span>])
+<span class="keyword">print</span>(crosstab)
+
+<span class="comment"># Normalized cross-tabulation (proportions)</span>
+crosstab_pct = pd.crosstab(df[<span class="string">'Product'</span>], df[<span class="string">'Age_Group'</span>], 
+                            normalize=<span class="string">'index'</span>)
+<span class="keyword">print</span>(crosstab_pct)
+
+<span class="comment"># Stacked bar chart</span>
+crosstab.plot(kind=<span class="string">'bar'</span>, stacked=<span class="keyword">True</span>)
+plt.title(<span class="string">'Product Sales by Age Group'</span>)
+plt.xlabel(<span class="string">'Product'</span>)
+plt.ylabel(<span class="string">'Count'</span>)
+plt.legend(title=<span class="string">'Age Group'</span>)
+plt.show()
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>3.3 Time Series Analysis</h3>
+    
+    <div class="theory-box">
+        <h4>Time Series Components</h4>
+        <p>Analyzing data over time to identify:</p>
+        <ul>
+            <li><strong>Trends:</strong> Long-term increase or decrease</li>
+            <li><strong>Seasonality:</strong> Regular patterns that repeat</li>
+            <li><strong>Cycles:</strong> Periodic fluctuations</li>
+            <li><strong>Irregular variations:</strong> Random fluctuations</li>
+        </ul>
+    </div>
+    
+    <h4>Example 17: Time Series Analysis</h4>
+    
+    <div class="code-block">
+<span class="comment"># Aggregate revenue by date</span>
+daily_revenue = df.groupby(<span class="string">'Date'</span>)[<span class="string">'Revenue'</span>].sum()
+
+<span class="comment"># Calculate rolling statistics (moving average)</span>
+rolling_mean = daily_revenue.rolling(window=<span class="number">7</span>).mean()
+rolling_std = daily_revenue.rolling(window=<span class="number">7</span>).std()
+
+<span class="comment"># Plot time series</span>
+plt.figure(figsize=(<span class="number">12</span>, <span class="number">6</span>))
+plt.plot(daily_revenue, label=<span class="string">'Daily Revenue'</span>, alpha=<span class="number">0.5</span>)
+plt.plot(rolling_mean, label=<span class="string">'7-Day Moving Average'</span>, 
+         linewidth=<span class="number">2</span>, color=<span class="string">'red'</span>)
+plt.title(<span class="string">'Daily Revenue Over Time'</span>)
+plt.xlabel(<span class="string">'Date'</span>)
+plt.ylabel(<span class="string">'Revenue ($)'</span>)
+plt.legend()
+plt.show()
+
+<span class="comment"># Monthly aggregation</span>
+df[<span class="string">'YearMonth'</span>] = df[<span class="string">'Date'</span>].dt.to_period(<span class="string">'M'</span>)
+monthly_revenue = df.groupby(<span class="string">'YearMonth'</span>)[<span class="string">'Revenue'</span>].sum()
+monthly_revenue.plot(kind=<span class="string">'bar'</span>, color=<span class="string">'green'</span>)
+plt.title(<span class="string">'Monthly Revenue'</span>)
+plt.ylabel(<span class="string">'Revenue ($)'</span>)
+plt.show()
+    </div>
+    
+    <div class="page-break"></div>
+    <h3>3.4 Advanced EDA Techniques</h3>
+    
+    <h4>Outlier Detection</h4>
+    
+    <div class="theory-box">
+        <h4>Outlier Detection Methods</h4>
+        
+        <p><strong>1. IQR Method (Interquartile Range):</strong></p>
+        <ul>
+            <li>Lower bound: Q1 - 1.5 × IQR</li>
+            <li>Upper bound: Q3 + 1.5 × IQR</li>
+            <li>Values outside these bounds are outliers</li>
+        </ul>
+        
+        <p><strong>2. Z-Score Method:</strong></p>
+        <ul>
+            <li>Calculate: z = (x - μ) / σ</li>
+            <li>Values with |z-score| > 3 are outliers</li>
+        </ul>
+        
+        <p><strong>3. Visual Inspection:</strong></p>
+        <ul>
+            <li>Box plots</li>
+            <li>Scatter plots</li>
+        </ul>
+    </div>
+    
+    <h4>Example 18: Outlier Detection Using IQR</h4>
+    
+    <div class="code-block">
+<span class="comment"># Calculate quartiles and IQR</span>
+Q1 = df[<span class="string">'Revenue'</span>].quantile(<span class="number">0.25</span>)
+Q3 = df[<span class="string">'Revenue'</span>].quantile(<span class="number">0.75</span>)
+IQR = Q3 - Q1
+
+<span class="comment"># Define bounds</span>
+lower_bound = Q1 - <span class="number">1.5</span> * IQR
+upper_bound = Q3 + <span class="number">1.5</span> * IQR
+
+<span class="comment"># Identify outliers</span>
+outliers = df[(df[<span class="string">'Revenue'</span>] < lower_bound) | 
+              (df[<span class="string">'Revenue'</span>] > upper_bound)]
+
+<span class="keyword">print</span>(<span class="string">f"Q1: ${Q1:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Q3: ${Q3:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"IQR: ${IQR:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Lower bound: ${lower_bound:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Upper bound: ${upper_bound:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Number of outliers: {len(outliers)}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Outlier percentage: {len(outliers)/len(df)*100:.2f}%"</span>)
+    </div>
+    
+    <h4>Example 19: Comprehensive EDA Summary</h4>
+    
+    <div class="code-block">
+<span class="comment"># Generate summary statistics</span>
+summary = {
+    <span class="string">'Total Records'</span>: len(df),
+    <span class="string">'Total Revenue'</span>: <span class="string">f"${df['Revenue'].sum():,.2f}"</span>,
+    <span class="string">'Average Order Value'</span>: <span class="string">f"${df['Revenue'].mean():,.2f}"</span>,
+    <span class="string">'Most Popular Product'</span>: df[<span class="string">'Product'</span>].mode()[<span class="number">0</span>],
+    <span class="string">'Average Rating'</span>: <span class="string">f"{df['Rating'].mean():.2f}"</span>,
+    <span class="string">'Date Range'</span>: <span class="string">f"{df['Date'].min()} to {df['Date'].max()}"</span>
+}
+
+<span class="keyword">for</span> key, value <span class="keyword">in</span> summary.items():
+    <span class="keyword">print</span>(<span class="string">f"{key}: {value}"</span>)
+    </div>
+    
+    <div class="page-break"></div>
+    <h2>Key Insights from EDA</h2>
+    
+    <p>After completing exploratory data analysis, you should be able to answer questions like:</p>
+    
+    <table>
+        <tr>
+            <th>Question</th>
+            <th>Analysis Method</th>
+        </tr>
+        <tr>
+            <td>What is the distribution of key variables?</td>
+            <td>Univariate analysis (histograms, box plots)</td>
+        </tr>
+        <tr>
+            <td>Are there any outliers or anomalies?</td>
+            <td>Box plots, IQR method, Z-scores</td>
+        </tr>
+        <tr>
+            <td>Which variables are correlated?</td>
+            <td>Correlation matrix, scatter plots</td>
+        </tr>
+        <tr>
+            <td>How do groups differ?</td>
+            <td>Group-by analysis, box plots by category</td>
+        </tr>
+        <tr>
+            <td>Are there trends over time?</td>
+            <td>Time series plots, moving averages</td>
+        </tr>
+        <tr>
+            <td>Which categories drive the most value?</td>
+            <td>Aggregation, bar charts</td>
+        </tr>
+    </table>
+    
+    <div class="page-break"></div>
+    <h2>Best Practices for Data Analytics</h2>
+    
+    <div class="theory-box">
+        <h4>1. Always Start with Data Understanding</h4>
+        <ul>
+            <li>Inspect structure, types, and quality</li>
+            <li>Check for missing values and duplicates</li>
+            <li>Understand the business context</li>
+        </ul>
+    </div>
+    
+    <div class="theory-box">
+        <h4>2. Clean Before You Analyze</h4>
+        <ul>
+            <li>Handle missing values appropriately</li>
+            <li>Remove or fix duplicates</li>
+            <li>Ensure correct data types</li>
+            <li>Document your cleaning steps</li>
+        </ul>
+    </div>
+    
+    <div class="theory-box">
+        <h4>3. Create Meaningful Features</h4>
+        <ul>
+            <li>Derive new variables from existing ones</li>
+            <li>Use domain knowledge</li>
+            <li>Create categories and bins when appropriate</li>
+        </ul>
+    </div>
+    
+    <div class="theory-box">
+        <h4>4. Visualize, Visualize, Visualize</h4>
+        <ul>
+            <li>Pictures tell better stories than numbers</li>
+            <li>Use appropriate chart types for your data</li>
+            <li>Make visualizations clear and interpretable</li>
+            <li>Include titles, labels, and legends</li>
+        </ul>
+    </div>
+    
+    <div class="theory-box">
+        <h4>5. Look for Patterns and Relationships</h4>
+        <ul>
+            <li>Start with univariate analysis</li>
+            <li>Move to bivariate relationships</li>
+            <li>Consider multivariate interactions</li>
+            <li>Think about time dependencies</li>
+        </ul>
+    </div>
+    
+    <div class="theory-box">
+        <h4>6. Communicate Insights Clearly</h4>
+        <ul>
+            <li>Provide summary statistics</li>
+            <li>Highlight key findings</li>
+            <li>Make actionable recommendations</li>
+            <li>Use visualizations to support your points</li>
+        </ul>
+    </div>
+    
+    <div class="page-break"></div>
+    <h2>Common Data Analytics Pitfalls to Avoid</h2>
+    
+    <table>
+        <tr>
+            <th>Pitfall</th>
+            <th>How to Avoid</th>
+        </tr>
+        <tr>
+            <td><strong>Not checking for missing data</strong></td>
+            <td>Always run .isnull().sum() first</td>
+        </tr>
+        <tr>
+            <td><strong>Ignoring outliers</strong></td>
+            <td>Use box plots and IQR method to detect</td>
+        </tr>
+        <tr>
+            <td><strong>Confusing correlation with causation</strong></td>
+            <td>Remember: correlation ≠ causation</td>
+        </tr>
+        <tr>
+            <td><strong>Using wrong chart types</strong></td>
+            <td>Histograms for distributions, scatter for relationships</td>
+        </tr>
+        <tr>
+            <td><strong>Not documenting your process</strong></td>
+            <td>Comment your code and document decisions</td>
+        </tr>
+        <tr>
+            <td><strong>Over-relying on mean</strong></td>
+            <td>Check median and mode too; mean is sensitive to outliers</td>
+        </tr>
+        <tr>
+            <td><strong>Forgetting data types</strong></td>
+            <td>Ensure dates are datetime, categories are categorical</td>
+        </tr>
+    </table>
+    
+    <div class="page-break"></div>
+    <h2>Quick Reference: Python Data Analytics Cheat Sheet</h2>
+    
+    <h3>Data Loading & Inspection</h3>
+    <div class="code-block">
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+df = pd.read_csv(<span class="string">'data.csv'</span>)
+df.head()              <span class="comment"># First 5 rows</span>
+df.info()              <span class="comment"># Data types and non-null counts</span>
+df.describe()          <span class="comment"># Statistical summary</span>
+df.shape               <span class="comment"># (rows, columns)</span>
+df.columns             <span class="comment"># Column names</span>
+df.dtypes              <span class="comment"># Data types</span>
+    </div>
+    
+    <h3>Data Cleaning</h3>
+    <div class="code-block">
+df.isnull().sum()                  <span class="comment"># Count missing values</span>
+df.dropna()                        <span class="comment"># Remove rows with missing</span>
+df.fillna(value)                   <span class="comment"># Fill missing values</span>
+df.drop_duplicates()               <span class="comment"># Remove duplicates</span>
+df[<span class="string">'col'</span>].astype(<span class="string">'type'</span>)          <span class="comment"># Convert data type</span>
+    </div>
+    
+    <h3>Data Exploration</h3>
+    <div class="code-block">
+df[<span class="string">'col'</span>].value_counts()        <span class="comment"># Frequency counts</span>
+df[<span class="string">'col'</span>].mean()                <span class="comment"># Mean</span>
+df[<span class="string">'col'</span>].median()              <span class="comment"># Median</span>
+df[<span class="string">'col'</span>].std()                 <span class="comment"># Standard deviation</span>
+df.corr()                         <span class="comment"># Correlation matrix</span>
+df.groupby(<span class="string">'col'</span>).agg()          <span class="comment"># Group and aggregate</span>
+    </div>
+    
+    <h3>Visualization</h3>
+    <div class="code-block">
+df[<span class="string">'col'</span>].hist()                <span class="comment"># Histogram</span>
+df[<span class="string">'col'</span>].plot(kind=<span class="string">'box'</span>)      <span class="comment"># Box plot</span>
+df.plot.scatter(x, y)             <span class="comment"># Scatter plot</span>
+df[<span class="string">'col'</span>].plot(kind=<span class="string">'bar'</span>)      <span class="comment"># Bar chart</span>
+sns.heatmap(df.corr())            <span class="comment"># Correlation heatmap</span>
+    </div>
+    
+    <div class="page-break"></div>
+    <h2>Next Steps in Your Data Analytics Journey</h2>
+    
+    <h3>Immediate Practice</h3>
+    <ol>
+        <li><strong>Work with real datasets:</strong>
+            <ul>
+                <li>Kaggle datasets (kaggle.com/datasets)</li>
+                <li>UCI Machine Learning Repository</li>
+                <li>Data.gov (government data)</li>
+                <li>Google Dataset Search</li>
+            </ul>
+        </li>
+        <li><strong>Practice projects:</strong>
+            <ul>
+                <li>Analyze e-commerce sales data</li>
+                <li>Explore customer churn patterns</li>
+                <li>Study stock market trends</li>
+                <li>Examine social media engagement</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>Advanced Topics to Learn</h3>
+    <ol>
+        <li><strong>Advanced Visualization:</strong> Plotly, Bokeh for interactive charts</li>
+        <li><strong>Statistical Testing:</strong> Hypothesis testing, A/B testing</li>
+        <li><strong>Machine Learning:</strong> Predictive modeling with scikit-learn</li>
+        <li><strong>Big Data Tools:</strong> SQL, Apache Spark, Hadoop</li>
+        <li><strong>Dashboard Creation:</strong> Tableau, Power BI, Streamlit</li>
+    </ol>
+    
+    <h3>Recommended Resources</h3>
+    
+    <table>
+        <tr>
+            <th>Resource</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Python for Data Analysis (Wes McKinney)</td>
+            <td>Book</td>
+            <td>Comprehensive guide by pandas creator</td>
+        </tr>
+        <tr>
+            <td>Kaggle Learn</td>
+            <td>Online Course</td>
+            <td>Free hands-on tutorials</td>
+        </tr>
+        <tr>
+            <td>Towards Data Science</td>
+            <td>Blog</td>
+            <td>Articles on data science topics</td>
+        </tr>
+        <tr>
+            <td>DataCamp / Coursera</td>
+            <td>Platform</td>
+            <td>Structured learning paths</td>
+        </tr>
+        <tr>
+            <td>Pandas Documentation</td>
+            <td>Reference</td>
+            <td>Official pandas documentation</td>
+        </tr>
+    </table>
+    
+    <h3>Building a Portfolio</h3>
+    <ol>
+        <li>Create a GitHub account</li>
+        <li>Document your projects with Jupyter notebooks</li>
+        <li>Write clear explanations of your analysis</li>
+        <li>Share visualizations and insights</li>
+        <li>Contribute to open-source projects</li>
+    </ol>
+    
+    <div class="page-break"></div>
+    <div class="footer">
+        <h2>Course Summary</h2>
+        <p style="font-size: 16px; text-align: left; margin: 20px 0;">
+            Congratulations on completing this 3-hour Data Analytics course! You've learned:
+        </p>
+        <ul style="text-align: left; margin: 20px 40px;">
+            <li>The fundamentals of data analytics and its types</li>
+            <li>Essential Python libraries (NumPy, Pandas, Matplotlib, Seaborn)</li>
+            <li>Statistical concepts for analyzing data</li>
+            <li>Data cleaning and transformation techniques</li>
+            <li>Comprehensive EDA methods (univariate, bivariate, time series)</li>
+            <li>Best practices for effective data analysis</li>
+        </ul>
+        <p style="font-size: 16px; text-align: left; margin: 20px 0;">
+            Remember: <strong>Data analytics is a journey, not a destination.</strong> Keep practicing, 
+            stay curious, and always ask questions of your data!
+        </p>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p>© 2024 Data Analytics with Python Course</p>
+            <p style="font-size: 12px;">For questions and updates, practice with real-world datasets</p>
+        </div>
+    </div>
+    
+</body>
+</html>
