@@ -328,7 +328,288 @@ ORDER BY month;</pre>
 FROM sales_data
 ORDER BY department, month;</pre>
 
-<h2>5. ROWS vs RANGE Clause</h2>
+<h2>5. Real-World Examples with Sample Schemas</h2>
+
+<h3>Sample Schema: Farmers Market</h3>
+<pre>CREATE TABLE farmers_market.sales (
+    sale_id INT,
+    sale_date DATE,
+    vendor_id INT,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    sale_amount DECIMAL(10, 2)
+);
+
+CREATE TABLE farmers_market.vendors (
+    vendor_id INT,
+    vendor_name VARCHAR(100),
+    vendor_type VARCHAR(50)
+);</pre>
+
+<h3>Sample Schema: Employees</h3>
+<pre>CREATE TABLE company.employees (
+    employee_id INT,
+    employee_name VARCHAR(100),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2),
+    hire_date DATE,
+    manager_id INT
+);</pre>
+
+<h3>Example Question 1: Running Total of Vendor Sales</h3>
+<div class="example-box">
+    <strong>Question:</strong> For each vendor, show their sales chronologically with a running total of sales amounts.
+</div>
+<pre>SELECT 
+    v.vendor_name,
+    s.sale_date,
+    s.sale_amount,
+    SUM(s.sale_amount) OVER (
+        PARTITION BY s.vendor_id 
+        ORDER BY s.sale_date, s.sale_id
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS running_total_sales
+FROM farmers_market.sales s
+JOIN farmers_market.vendors v ON s.vendor_id = v.vendor_id
+ORDER BY v.vendor_name, s.sale_date;</pre>
+
+<p><strong>Explanation:</strong> UNBOUNDED PRECEDING AND CURRENT ROW creates a running total by including all sales from the beginning of each vendor's partition up to the current row. As you go down each vendor's data, the running total grows.</p>
+
+<table>
+    <tr>
+        <th>Vendor Name</th>
+        <th>Sale Date</th>
+        <th>Amount</th>
+        <th>Running Total</th>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>2024-01-06</td>
+        <td>$42.50</td>
+        <td>$42.50</td>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>2024-01-13</td>
+        <td>$55.00</td>
+        <td>$97.50</td>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>2024-01-20</td>
+        <td>$38.75</td>
+        <td>$136.25</td>
+    </tr>
+</table>
+
+<h3>Example Question 2: Compare Salary to Department Average</h3>
+<div class="example-box">
+    <strong>Question:</strong> Show each employee's salary alongside the average salary within 1 salary level above and below theirs (by value, not rank).
+</div>
+<pre>SELECT 
+    employee_name,
+    department,
+    salary,
+    AVG(salary) OVER (
+        PARTITION BY department 
+        ORDER BY salary
+        RANGE BETWEEN 5000 PRECEDING AND 5000 FOLLOWING
+    ) AS nearby_avg_salary
+FROM company.employees
+ORDER BY department, salary;</pre>
+
+<p><strong>Explanation:</strong> RANGE BETWEEN 5000 PRECEDING AND 5000 FOLLOWING includes all employees in the same department whose salary is within $5,000 (±) of the current employee's salary. This is different from ROWS, which would only look at 5 specific rows.</p>
+
+<table>
+    <tr>
+        <th>Employee</th>
+        <th>Dept</th>
+        <th>Salary</th>
+        <th>Nearby Avg</th>
+    </tr>
+    <tr>
+        <td>Alice Johnson</td>
+        <td>Engineering</td>
+        <td>$95,000</td>
+        <td>$94,667</td>
+    </tr>
+    <tr>
+        <td>Bob Smith</td>
+        <td>Engineering</td>
+        <td>$98,000</td>
+        <td>$97,000</td>
+    </tr>
+    <tr>
+        <td>Carol White</td>
+        <td>Engineering</td>
+        <td>$99,500</td>
+        <td>$97,750</td>
+    </tr>
+</table>
+
+<h3>Example Question 3: 3-Row Moving Average of Sales</h3>
+<div class="example-box">
+    <strong>Question:</strong> Calculate a 3-day moving average of total daily sales at the farmers market (1 day before, current day, 1 day after).
+</div>
+<pre>SELECT 
+    s.sale_date,
+    SUM(s.sale_amount) AS daily_sales,
+    AVG(SUM(s.sale_amount)) OVER (
+        ORDER BY s.sale_date
+        ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
+    ) AS three_day_moving_avg
+FROM farmers_market.sales s
+GROUP BY s.sale_date
+ORDER BY s.sale_date;</pre>
+
+<p><strong>Explanation:</strong> ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING creates a window of 3 consecutive days for each date. This smooths out daily fluctuations to show trends more clearly.</p>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Daily Sales</th>
+        <th>3-Day Moving Avg</th>
+    </tr>
+    <tr>
+        <td>2024-01-06</td>
+        <td>$450.00</td>
+        <td>$491.67</td>
+    </tr>
+    <tr>
+        <td>2024-01-13</td>
+        <td>$580.00</td>
+        <td>$550.00</td>
+    </tr>
+    <tr>
+        <td>2024-01-20</td>
+        <td>$510.00</td>
+        <td>$513.33</td>
+    </tr>
+</table>
+
+<h3>Example Question 4: Year-to-Date Sales vs Annual Total</h3>
+<div class="example-box">
+    <strong>Question:</strong> For each vendor, show their year-to-date sales (cumulative) and full year projection for 2024.
+</div>
+<pre>SELECT 
+    v.vendor_name,
+    EXTRACT(MONTH FROM s.sale_date) AS month,
+    SUM(s.sale_amount) AS monthly_sales,
+    SUM(SUM(s.sale_amount)) OVER (
+        PARTITION BY s.vendor_id 
+        ORDER BY EXTRACT(MONTH FROM s.sale_date)
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS ytd_sales,
+    SUM(SUM(s.sale_amount)) OVER (
+        PARTITION BY s.vendor_id
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS full_year_total
+FROM farmers_market.sales s
+JOIN farmers_market.vendors v ON s.vendor_id = v.vendor_id
+WHERE EXTRACT(YEAR FROM s.sale_date) = 2024
+GROUP BY v.vendor_id, v.vendor_name, EXTRACT(MONTH FROM s.sale_date)
+ORDER BY v.vendor_name, month;</pre>
+
+<p><strong>Explanation:</strong> This example uses two different frames:
+<ul>
+    <li><strong>UNBOUNDED PRECEDING AND CURRENT ROW:</strong> Calculates YTD (cumulative) sales</li>
+    <li><strong>UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING:</strong> Looks at all rows in the vendor partition to get annual total</li>
+</ul>
+</p>
+
+<table>
+    <tr>
+        <th>Vendor</th>
+        <th>Month</th>
+        <th>Sales</th>
+        <th>YTD</th>
+        <th>Annual Total</th>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>1</td>
+        <td>$450</td>
+        <td>$450</td>
+        <td>$4,200</td>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>2</td>
+        <td>$520</td>
+        <td>$970</td>
+        <td>$4,200</td>
+    </tr>
+    <tr>
+        <td>Fresh Farms</td>
+        <td>3</td>
+        <td>$480</td>
+        <td>$1,450</td>
+        <td>$4,200</td>
+    </tr>
+</table>
+
+<h3>Example Question 5: Employee Rank with Salary Comparison</h3>
+<div class="example-box">
+    <strong>Question:</strong> For each employee, show their salary compared to the previous and next employee's salary in their department (when sorted by salary).
+</div>
+<pre>SELECT 
+    employee_name,
+    department,
+    salary,
+    LAG(salary) OVER (
+        PARTITION BY department 
+        ORDER BY salary
+    ) AS prev_emp_salary,
+    LEAD(salary) OVER (
+        PARTITION BY department 
+        ORDER BY salary
+    ) AS next_emp_salary,
+    salary - LAG(salary) OVER (
+        PARTITION BY department 
+        ORDER BY salary
+    ) AS salary_increase_from_prev
+FROM company.employees
+ORDER BY department, salary;</pre>
+
+<p><strong>Explanation:</strong> LAG (1 PRECEDING) and LEAD (1 FOLLOWING) are shortcuts for accessing adjacent rows. This shows salary progression within each department without complex frame syntax.</p>
+
+<table>
+    <tr>
+        <th>Employee</th>
+        <th>Dept</th>
+        <th>Salary</th>
+        <th>Prev</th>
+        <th>Next</th>
+        <th>Increase</th>
+    </tr>
+    <tr>
+        <td>Alice Johnson</td>
+        <td>Engineering</td>
+        <td>$95,000</td>
+        <td>NULL</td>
+        <td>$98,000</td>
+        <td>NULL</td>
+    </tr>
+    <tr>
+        <td>Bob Smith</td>
+        <td>Engineering</td>
+        <td>$98,000</td>
+        <td>$95,000</td>
+        <td>$99,500</td>
+        <td>$3,000</td>
+    </tr>
+    <tr>
+        <td>Carol White</td>
+        <td>Engineering</td>
+        <td>$99,500</td>
+        <td>$98,000</td>
+        <td>NULL</td>
+        <td>$1,500</td>
+    </tr>
+</table>
+
+<h2>6. ROWS vs RANGE Clause</h2>
 
 <p><strong>ROWS:</strong> Counts a specific number of physical rows.</p>
 <pre>ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
