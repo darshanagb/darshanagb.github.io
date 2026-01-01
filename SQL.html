@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Window Frames: PRECEDING, FOLLOWING, and More</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        .example-box {
+            background-color: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .frame-diagram {
+            background-color: white;
+            border: 1px solid #bdc3c7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-family: monospace;
+            line-height: 1.8;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        .highlight {
+            background-color: #fff9e6;
+            padding: 2px 4px;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .concept-box, .example-box, .note {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>SQL Window Frames: PRECEDING, FOLLOWING, and More</h1>
+
+<div class="concept-box">
+    <strong>Overview:</strong> Window frame specifications define which rows are included in a window function's calculation relative to the current row. They're used with the ROWS or RANGE clause in window functions.
+</div>
+
+<h2>1. What is a Window Frame?</h2>
+
+<p>A window frame specifies the set of rows within a window partition that a window function operates on. For each row, the frame defines a range of rows to include in calculations.</p>
+
+<p><strong>Basic Syntax:</strong></p>
+<pre>SELECT column_name,
+    FUNCTION_NAME(column) OVER (
+        PARTITION BY partition_column
+        ORDER BY sort_column
+        ROWS BETWEEN frame_start AND frame_end
+    )
+FROM table_name;</pre>
+
+<h2>2. Frame Boundaries</h2>
+
+<h3>UNBOUNDED PRECEDING</h3>
+<div class="concept-box">
+    Includes all rows from the beginning of the partition up to the current row.
+</div>
+<div class="frame-diagram">
+    [START] ... (current row)<br>
+    ↑ UNBOUNDED PRECEDING ↑
+</div>
+
+<h3>PRECEDING</h3>
+<div class="concept-box">
+    Includes a specific number of rows <span class="highlight">before</span> the current row. Syntax: <code>n PRECEDING</code> where n is an integer.
+</div>
+<div class="frame-diagram">
+    Row n-2 | Row n-1 | (current row)<br>
+    ← 2 PRECEDING → | CURRENT
+</div>
+
+<h3>CURRENT ROW</h3>
+<div class="concept-box">
+    Includes only the current row in the frame.
+</div>
+<div class="frame-diagram">
+    ... | (current row) | ...<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;CURRENT ROW
+</div>
+
+<h3>FOLLOWING</h3>
+<div class="concept-box">
+    Includes a specific number of rows <span class="highlight">after</span> the current row. Syntax: <code>n FOLLOWING</code> where n is an integer.
+</div>
+<div class="frame-diagram">
+    (current row) | Row n+1 | Row n+2<br>
+    CURRENT &nbsp; | ← 2 FOLLOWING →
+</div>
+
+<h3>UNBOUNDED FOLLOWING</h3>
+<div class="concept-box">
+    Includes all rows from the current row to the end of the partition.
+</div>
+<div class="frame-diagram">
+    (current row) ... [END]<br>
+    ↓ UNBOUNDED FOLLOWING ↓
+</div>
+
+<h2>3. Common Frame Combinations</h2>
+
+<table>
+    <tr>
+        <th>Frame Specification</th>
+        <th>Includes</th>
+        <th>Use Case</th>
+    </tr>
+    <tr>
+        <td><code>UNBOUNDED PRECEDING AND CURRENT ROW</code></td>
+        <td>All rows from partition start to current row</td>
+        <td>Running total, cumulative sum</td>
+    </tr>
+    <tr>
+        <td><code>CURRENT ROW AND UNBOUNDED FOLLOWING</code></td>
+        <td>Current row through partition end</td>
+        <td>Running balance backwards</td>
+    </tr>
+    <tr>
+        <td><code>1 PRECEDING AND 1 FOLLOWING</code></td>
+        <td>1 row before, current row, 1 row after</td>
+        <td>Moving average of 3 rows</td>
+    </tr>
+    <tr>
+        <td><code>UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</code></td>
+        <td>All rows in partition</td>
+        <td>Partition-level calculations</td>
+    </tr>
+</table>
+
+<h2>4. Practical Examples</h2>
+
+<h3>Example 1: Running Total (Cumulative Sum)</h3>
+<div class="example-box">
+    <strong>Scenario:</strong> Calculate cumulative sales for each employee ordered by date.
+</div>
+<pre>SELECT 
+    employee_id,
+    sale_date,
+    amount,
+    SUM(amount) OVER (
+        PARTITION BY employee_id 
+        ORDER BY sale_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS cumulative_sales
+FROM sales
+ORDER BY employee_id, sale_date;</pre>
+
+<p><strong>Result Structure:</strong></p>
+<table>
+    <tr>
+        <th>Employee</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Cumulative</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2024-01-01</td>
+        <td>100</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2024-01-05</td>
+        <td>150</td>
+        <td>250</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2024-01-10</td>
+        <td>200</td>
+        <td>450</td>
+    </tr>
+</table>
+
+<h3>Example 2: Moving Average</h3>
+<div class="example-box">
+    <strong>Scenario:</strong> Calculate a 3-row moving average of daily temperatures.
+</div>
+<pre>SELECT 
+    date,
+    temperature,
+    AVG(temperature) OVER (
+        ORDER BY date
+        ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
+    ) AS moving_avg_3day
+FROM weather_data
+ORDER BY date;</pre>
+
+<p>For each row, this includes the previous day, current day, and next day in the average calculation.</p>
+
+<h3>Example 3: Remaining Balance</h3>
+<div class="example-box">
+    <strong>Scenario:</strong> Calculate remaining balance from current month to end of year.
+</div>
+<pre>SELECT 
+    month,
+    revenue,
+    SUM(revenue) OVER (
+        ORDER BY month
+        ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
+    ) AS remaining_revenue
+FROM monthly_revenue
+WHERE year = 2024
+ORDER BY month;</pre>
+
+<h3>Example 4: Year-to-Date and Partition Total</h3>
+<div class="example-box">
+    <strong>Scenario:</strong> Compare year-to-date sales with yearly total.
+</div>
+<pre>SELECT 
+    department,
+    month,
+    sales,
+    SUM(sales) OVER (
+        PARTITION BY department 
+        ORDER BY month
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS ytd_sales,
+    SUM(sales) OVER (
+        PARTITION BY department
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS annual_total
+FROM sales_data
+ORDER BY department, month;</pre>
+
+<h2>5. ROWS vs RANGE Clause</h2>
+
+<p><strong>ROWS:</strong> Counts a specific number of physical rows.</p>
+<pre>ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+-- Includes exactly 2 rows before + current row</pre>
+
+<p><strong>RANGE:</strong> Includes all rows with values within a specified range (useful for dealing with ties).</p>
+<pre>RANGE BETWEEN 100 PRECEDING AND CURRENT ROW
+-- Includes all rows where value is between (current_value - 100) and current_value</pre>
+
+<h2>6. Default Frame Behavior</h2>
+
+<div class="note">
+    <strong>Important:</strong> When you use ORDER BY without specifying a frame, SQL defaults to <code>ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</code>. Without ORDER BY, the default is <code>ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</code>.
+</div>
+
+<p>This means window functions like SUM and AVG automatically compute running totals when you include ORDER BY, unless you explicitly specify a different frame.</p>
+
+<h2>7. Best Practices</h2>
+
+<ul>
+    <li><strong>Always specify the frame explicitly</strong> rather than relying on defaults for clarity</li>
+    <li><strong>Use ROWS for physical row counts</strong> when the offset is a fixed number</li>
+    <li><strong>Use RANGE for value-based ranges</strong> when dealing with time intervals or value ranges</li>
+    <li><strong>Test edge cases</strong> like partition boundaries and NULL values</li>
+    <li><strong>Consider performance</strong> with large datasets—window functions can be expensive</li>
+    <li><strong>Be precise with ORDER BY</strong>—the order dramatically affects which rows are included</li>
+</ul>
+
+<h2>8. Summary Table</h2>
+
+<table>
+    <tr>
+        <th>Keyword</th>
+        <th>Direction</th>
+        <th>Scope</th>
+    </tr>
+    <tr>
+        <td><code>UNBOUNDED PRECEDING</code></td>
+        <td>Backward</td>
+        <td>Start of partition to current row</td>
+    </tr>
+    <tr>
+        <td><code>n PRECEDING</code></td>
+        <td>Backward</td>
+        <td>n rows before current row</td>
+    </tr>
+    <tr>
+        <td><code>CURRENT ROW</code></td>
+        <td>Neither</td>
+        <td>Only current row</td>
+    </tr>
+    <tr>
+        <td><code>n FOLLOWING</code></td>
+        <td>Forward</td>
+        <td>n rows after current row</td>
+    </tr>
+    <tr>
+        <td><code>UNBOUNDED FOLLOWING</code></td>
+        <td>Forward</td>
+        <td>Current row to end of partition</td>
+    </tr>
+</table>
+
+</body>
+</html>
