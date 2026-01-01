@@ -96,12 +96,37 @@
             background-color: #fff9e6;
             padding: 2px 4px;
         }
+        .print-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .print-button:hover {
+            background-color: #2980b9;
+        }
         @media print {
+            * {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+            }
             body {
                 background-color: white;
+                padding: 20px !important;
+            }
+            .print-button {
+                display: none;
             }
             .concept-box, .example-box, .note {
                 page-break-inside: avoid;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
             }
         }
     </style>
@@ -109,6 +134,8 @@
 <body>
 
 <h1>SQL Window Frames: PRECEDING, FOLLOWING, and More</h1>
+
+<button class="print-button" onclick="window.print()">🖨️ Print to PDF</button>
 
 <div class="concept-box">
     <strong>Overview:</strong> Window frame specifications define which rows are included in a window function's calculation relative to the current row. They're used with the ROWS or RANGE clause in window functions.
