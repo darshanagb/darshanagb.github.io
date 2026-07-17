@@ -1619,28 +1619,14 @@ button:active,
     font-size: 1.05rem;
   }
 }
-/* ===== Voices Of showcase strip ===== */
-.voices-strip {
-  padding: 48px 0 56px;
-  margin: 0;
-  overflow: hidden;
+/* ===== Unified hero + voices background ===== */
+.hero-unit {
   position: relative;
-  /* flat deep navy — no competing gradient bands */
-  background: #061f2e;
+  overflow: hidden;
+  /* the hero's original gradient, now spanning hero + strip as one taller section */
+  background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
 }
-/* hero's colors bleed softly into the strip's top edge (continuation, not repetition) */
-.voices-strip::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 75% 55% at 88% -12%, rgba(233, 30, 99, 0.22), transparent 62%),
-    radial-gradient(ellipse 70% 50% at 8% -12%, rgba(26, 74, 92, 0.55), transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-/* same animated shimmer as the hero, so both read as one unit */
-.voices-strip::after {
+.hero-unit::after {
   content: '';
   position: absolute;
   top: -50%;
@@ -1650,14 +1636,33 @@ button:active,
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(233, 30, 99, 0.10),
+    rgba(233, 30, 99, 0.22),
     transparent,
-    rgba(26, 74, 92, 0.16),
+    rgba(26, 74, 92, 0.28),
     transparent
   );
   animation: gradientShift 15s ease infinite;
   z-index: 0;
   pointer-events: none;
+}
+.hero-unit > header,
+.hero-unit > .voices-strip {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+/* the old per-section shimmer is replaced by the unified one */
+.hero-unit header::after {
+  display: none;
+}
+
+/* ===== Voices Of showcase strip ===== */
+.voices-strip {
+  padding: 48px 0 56px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
 }
 .voices-strip .lang-en,
 .voices-strip .lang-kn,
@@ -1705,8 +1710,8 @@ button:active,
   gap: 14px;
   padding: 14px 22px 14px 14px;
   border-radius: 60px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(233,30,99,0.35);
+  background: rgba(3, 28, 42, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(6px);
   white-space: nowrap;
 }
@@ -1802,6 +1807,7 @@ button:active,
 <button class="lang-option" data-lang="kn">ಕ</button>
 </div>
 </div>
+<div class="hero-unit">
 <header>
 <!-- Add this wrapper around your existing header content -->
 <div class="header-art-container">
@@ -1857,7 +1863,7 @@ button:active,
   </div>
   <div class="lang-kn" style="display: none;">
     <h2 class="voices-heading">🌟 ತಾರೆಯರ ಹಿಂದಿನ ಧ್ವನಿ</h2>
-    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ</p>
+    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ ತಾರೆಯರು</p>
   </div>
 
   <div class="voices-track-wrap">
@@ -1886,6 +1892,7 @@ button:active,
       </div>
     </div>
   </div></div>
+</div>
 
 <nav>
 <a href="#about">
@@ -1909,8 +1916,11 @@ button:active,
       <div class="about-text">
         <h2 class="about-title">💃🏻 About Me</h2>
         <p class="about-description">
-          I’m <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka.</p>
-          <p>Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.</p>
+          I’m <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
+        </p>
+        <p class="about-description">
+          My voice has echoed through stories big and small, powerful and tender — including characters played by <!--strong>Kate Winslet</strong--> <strong>Wamiqa Gabbi,</strong> <strong>Raveena Tandon,</strong> <strong>Margot Robbie,</strong> and <strong>Samantha Ruth Prabhu</strong> etc in <em>Kannada</em>. Every project has been a journey of emotion, tone, and truth.
+        </p>
         <p class="about-highlight">Bringing every story to life.</p>
       </div>
     </div>
