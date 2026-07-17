@@ -1559,8 +1559,19 @@ button:active,
 .about-modern {
   background: linear-gradient(to bottom, #fdfbfa, #f4f1f1);
   border-radius: 20px;
-  padding: 40px 20px;
+  padding: 40px 60px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+}
+
+.about-modern .about-wrapper {
+  max-width: 1050px;
+}
+
+@media (max-width: 768px) {
+  .about-modern {
+    padding: 30px 20px;
+  }
 }
 
 .about-wrapper {
@@ -1611,8 +1622,48 @@ button:active,
 /* ===== Voices Of showcase strip ===== */
 .voices-strip {
   padding: 48px 0 56px;
+  margin: 0;
   overflow: hidden;
-  background: linear-gradient(135deg, #031c2a 0%, #123a4a 60%, #2a1a33 100%);
+  position: relative;
+  /* flat deep navy — no competing gradient bands */
+  background: #061f2e;
+}
+/* hero's colors bleed softly into the strip's top edge (continuation, not repetition) */
+.voices-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 88% -12%, rgba(233, 30, 99, 0.22), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 8% -12%, rgba(26, 74, 92, 0.55), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* same animated shimmer as the hero, so both read as one unit */
+.voices-strip::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(233, 30, 99, 0.10),
+    transparent,
+    rgba(26, 74, 92, 0.16),
+    transparent
+  );
+  animation: gradientShift 15s ease infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+.voices-strip .lang-en,
+.voices-strip .lang-kn,
+.voices-track-wrap {
+  position: relative;
+  z-index: 1;
 }
 .voices-strip .voices-heading {
   text-align: center;
@@ -1796,30 +1847,17 @@ button:active,
 <!---->
 
 
-<nav>
-<a href="#about">
-<i class="fas fa-user"></i>
-    About
-  </a>
-<a href="#portfolio">
-<i class="fas fa-microphone-lines"></i>
-    Works
-  </a>
-<a href="#contact">
-<i class="fas fa-envelope"></i>
-    Contact
-  </a>
-</nav>
+
 
 <!-- Voices Of showcase strip -->
-<div class="voices-strip" data-aos="fade-up">
+<div class="voices-strip">
   <div class="lang-en">
     <h2 class="voices-heading">🌟 The Voice Behind the Stars</h2>
     <p class="voices-sub">Actors brought to life in Kannada by Darshana</p>
   </div>
   <div class="lang-kn" style="display: none;">
     <h2 class="voices-heading">🌟 ತಾರೆಯರ ಹಿಂದಿನ ಧ್ವನಿ</h2>
-    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ ತಾರೆಯರು</p>
+    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ</p>
   </div>
 
   <div class="voices-track-wrap">
@@ -1849,6 +1887,21 @@ button:active,
     </div>
   </div></div>
 
+<nav>
+<a href="#about">
+<i class="fas fa-user"></i>
+    About
+  </a>
+<a href="#portfolio">
+<i class="fas fa-microphone-lines"></i>
+    Works
+  </a>
+<a href="#contact">
+<i class="fas fa-envelope"></i>
+    Contact
+  </a>
+</nav>
+
 
 <div class="content about-modern" data-aos="zoom-in" id="about">
   <section class="bio lang-en">
@@ -1856,11 +1909,8 @@ button:active,
       <div class="about-text">
         <h2 class="about-title">💃🏻 About Me</h2>
         <p class="about-description">
-          I’m <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
-        </p>
-        <p class="about-description">
-          My voice has echoed through stories big and small, powerful and tender — including characters played by <!--strong>Kate Winslet</strong--> <strong>Wamiqa Gabbi,</strong> <strong>Raveena Tandon,</strong> <strong>Margot Robbie,</strong> and <strong>Samantha Ruth Prabhu</strong> etc in <em>Kannada</em>. Every project has been a journey of emotion, tone, and truth.
-        </p>
+          I’m <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka.</p>
+          <p>Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.</p>
         <p class="about-highlight">Bringing every story to life.</p>
       </div>
     </div>
