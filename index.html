@@ -173,8 +173,9 @@
       font-weight: 700;
       margin: 0;
       background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
-      background-clip: text;
+
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
       letter-spacing: 3px;
@@ -243,6 +244,7 @@
       position: relative;
       display: inline-flex;
       background: rgba(255, 255, 255, 0.15);
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-radius: 50px;
       padding: 4px;
@@ -366,6 +368,13 @@
       padding: 12px 24px;
       margin: 0 auto 20px auto;
       background: rgba(255, 255, 255, 0.25);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border-radius: 16px;
       max-width: fit-content;
@@ -1775,6 +1784,9 @@ button:active,
   box-shadow: 0 4px 14px rgba(233,30,99,0.35);
 }
 .category-hidden { display: none !important; }
+    .website-design {
+      color: rgba(255, 255, 255, 0.6);
+    }
   </style>
 
 <!-- AOS (Animate On Scroll) Library -->
@@ -2198,22 +2210,22 @@ button:active,
     <i class="fas fa-share-alt"></i> Share Now
   </button>
   <div class="share-options" id="shareOptions">
-    <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio%3A%20https%3A%2F%2Fdarshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio%3A%20https%3A%2F%2Fdarshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
       <span class="share-label">WhatsApp</span>
     </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://darshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://darshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon facebook"><i class="fab fa-facebook-f"></i></div>
       <span class="share-label">Facebook</span>
     </a>
-    <a href="https://twitter.com/intent/tweet?text=Check%20this%20out!&url=https://darshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://twitter.com/intent/tweet?text=Check%20this%20out!&url=https://darshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon twitter">
         <img src="logo-white.png" alt="X Logo" style="width: 22px; height: 22px;" />
       </div>
       <span class="share-label">X (Twitter)</span>
     </a>
     
-    <a href="https://www.instagram.com/darshana_srinivas" target="_blank" class="share-icon-box">
+    <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon instagram"><i class="fab fa-instagram"></i></div>
       <span class="share-label">Instagram</span>
     </a>
@@ -2229,7 +2241,7 @@ button:active,
 <h2 class="cta-title">Know someone looking for a voice artist?</h2>
 <h3 class="cta-subtitle">Feel free to pass my name along.</h3>
 <div class="cta-emoji">✨🎙️</div>
-</div>
+  <h2 class="cta-title website-design">Website Design | Shrinivasa PH</h2>
 <div class="divider"></div>
 </div>
   <h2 style="color:rgba(255, 255, 255, 0.6);" class="cta-title">Website Design | Shrinivasa PH</h2>
