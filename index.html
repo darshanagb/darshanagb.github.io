@@ -173,8 +173,10 @@
       font-weight: 700;
       margin: 0;
       background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
-      background-clip: text;
+
       -webkit-background-clip: text;
+      background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
       letter-spacing: 3px;
@@ -243,6 +245,7 @@
       position: relative;
       display: inline-flex;
       background: rgba(255, 255, 255, 0.15);
+      -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       border-radius: 50px;
       padding: 4px;
@@ -366,6 +369,13 @@
       padding: 12px 24px;
       margin: 0 auto 20px auto;
       background: rgba(255, 255, 255, 0.25);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border-radius: 16px;
       max-width: fit-content;
@@ -1559,8 +1569,19 @@ button:active,
 .about-modern {
   background: linear-gradient(to bottom, #fdfbfa, #f4f1f1);
   border-radius: 20px;
-  padding: 40px 20px;
+  padding: 40px 60px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+}
+
+.about-modern .about-wrapper {
+  max-width: 1050px;
+}
+
+@media (max-width: 768px) {
+  .about-modern {
+    padding: 30px 20px;
+  }
 }
 
 .about-wrapper {
@@ -1608,6 +1629,168 @@ button:active,
     font-size: 1.05rem;
   }
 }
+/* ===== Unified hero + voices background ===== */
+.hero-unit {
+  position: relative;
+  overflow: hidden;
+  /* the hero's original gradient, now spanning hero + strip as one taller section */
+  background: linear-gradient(135deg, #031c2a 0%, #1a4a5c 50%, #e91e63 100%);
+}
+.hero-unit::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(233, 30, 99, 0.22),
+    transparent,
+    rgba(26, 74, 92, 0.28),
+    transparent
+  );
+  animation: gradientShift 15s ease infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-unit > header,
+.hero-unit > .voices-strip {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+/* the old per-section shimmer is replaced by the unified one */
+.hero-unit header::after {
+  display: none;
+}
+
+/* ===== Voices Of showcase strip ===== */
+.voices-strip {
+  padding: 48px 0 56px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+}
+.voices-strip .lang-en,
+.voices-strip .lang-kn,
+.voices-track-wrap {
+  position: relative;
+  z-index: 1;
+}
+.voices-strip .voices-heading {
+  text-align: center;
+  font-size: 1.9rem;
+  margin: 0 0 8px;
+  background: linear-gradient(45deg, #ffffff, #f8f9fa, #e91e63);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.voices-strip .voices-sub {
+  text-align: center;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  margin: 0 0 34px;
+}
+.voices-track-wrap {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.voices-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: voicesScroll 38s linear infinite;
+}
+.voices-track:hover { animation-play-state: paused; }
+@keyframes voicesScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voices-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
+  .voices-dup { display: none !important; }
+}
+.voice-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 14px;
+  border-radius: 60px;
+  background: rgba(3, 28, 42, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+.voice-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  flex-shrink: 0;
+}
+.voice-card .voice-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.voice-card .voice-project {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+}
+@media (max-width: 600px) {
+  .voices-strip .voices-heading { font-size: 1.4rem; }
+  .voice-avatar { width: 44px; height: 44px; font-size: 0.8rem; }
+}
+
+/* ===== Portfolio filter chips ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px 16px 6px;
+  background-color: #FAF9F5;
+}
+.filter-chip {
+  border: 1.5px solid rgba(3,28,42,0.25);
+  background: transparent;
+  color: #031c2a;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+.filter-chip:hover {
+  border-color: #e91e63;
+  color: #e91e63;
+}
+.filter-chip.active {
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(233,30,99,0.35);
+}
+.category-hidden { display: none !important; }
+    .website-design {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  .hidden {
+    display: none;
+  }
   </style>
 
 <!-- AOS (Animate On Scroll) Library -->
@@ -1640,6 +1823,7 @@ button:active,
 <button class="lang-option" data-lang="kn">ಕ</button>
 </div>
 </div>
+<div class="hero-unit">
 <header>
 <!-- Add this wrapper around your existing header content -->
 <div class="header-art-container">
@@ -1685,6 +1869,47 @@ button:active,
 <!---->
 
 
+
+
+<!-- Voices Of showcase strip -->
+<div class="voices-strip">
+  <div class="lang-en">
+    <h2 class="voices-heading">🌟 The Voice Behind the Stars</h2>
+    <p class="voices-sub">Actors brought to life in Kannada by Darshana</p>
+  </div>
+  <div class="lang-kn" style="display: none;">
+    <h2 class="voices-heading">🌟 ತಾರೆಯರ ಹಿಂದಿನ ಧ್ವನಿ</h2>
+    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ ತಾರೆಯರು</p>
+  </div>
+
+  <div class="voices-track-wrap">
+    <div class="voices-track">
+      <!-- set 1 -->
+      <div class="voice-card"><div class="voice-avatar">MR</div><div><div class="voice-name">Margot Robbie</div><div class="voice-project">Barbie</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">SRP</div><div><div class="voice-name">Samantha Ruth Prabhu</div><div class="voice-project">Citadel: Honey Bunny</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">RT</div><div><div class="voice-name">Raveena Tandon</div><div class="voice-project">Karma Calling</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">WG</div><div><div class="voice-name">Wamiqa Gabbi</div><div class="voice-project">Jubilee</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">NS</div><div><div class="voice-name">Nimisha Sajayan</div><div class="voice-project">Poacher</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">RN</div><div><div class="voice-name">Ramya Nambessan</div><div class="voice-project">Dayaa</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">VS</div><div><div class="voice-name">Varu Sharathkumar</div><div class="voice-project">Hanu-Man</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">SM</div><div><div class="voice-name">Sania Mirza</div><div class="voice-project">Centuary Mattress</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">AR</div><div><div class="voice-name">Anaswara Rajan</div><div class="voice-project">Kalyan Jewellers</div></div></div>
+      <!-- set 2 (duplicate for seamless loop, hidden from screen readers) -->
+      <div class="voices-dup" style="display: contents;" aria-hidden="true">
+      <div class="voice-card"><div class="voice-avatar">MR</div><div><div class="voice-name">Margot Robbie</div><div class="voice-project">Barbie</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">SRP</div><div><div class="voice-name">Samantha Ruth Prabhu</div><div class="voice-project">Citadel: Honey Bunny</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">RT</div><div><div class="voice-name">Raveena Tandon</div><div class="voice-project">Karma Calling</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">WG</div><div><div class="voice-name">Wamiqa Gabbi</div><div class="voice-project">Jubilee</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">NS</div><div><div class="voice-name">Nimisha Sajayan</div><div class="voice-project">Poacher</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">RN</div><div><div class="voice-name">Ramya Nambessan</div><div class="voice-project">Dayaa</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">VS</div><div><div class="voice-name">Varu Sharathkumar</div><div class="voice-project">Hanu-Man</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">SM</div><div><div class="voice-name">Sania Mirza</div><div class="voice-project">Centuary Mattress</div></div></div>
+      <div class="voice-card"><div class="voice-avatar">AR</div><div><div class="voice-name">Anaswara Rajan</div><div class="voice-project">Kalyan Jewellers</div></div></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
 <nav>
 <a href="#about">
 <i class="fas fa-user"></i>
@@ -1700,6 +1925,7 @@ button:active,
   </a>
 </nav>
 
+
 <div class="content about-modern" data-aos="zoom-in" id="about">
   <section class="bio lang-en">
     <div class="about-wrapper">
@@ -1713,7 +1939,7 @@ button:active,
         </p>
         <p class="about-highlight">Bringing every story to life.</p>
       </div>
-    </div>
+  <section class="bio lang-kn hidden">
   </section>
 
   <section class="bio lang-kn" style="display: none;">
@@ -1733,6 +1959,7 @@ button:active,
 </div>
 
 
+
 <div class="works-header" id="portfolio">
 <div class="works-title-container">
 <h1 class="works-main-title">My Works</h1>
@@ -1742,7 +1969,15 @@ button:active,
 </div>
 </div>
 </div>
-<div class="portfolio" id="portfolio" style="background-color: #FAF9F5;">
+<!-- Portfolio filter chips -->
+<div class="filter-bar" data-aos="fade-up">
+  <button class="filter-chip active" data-filter="all">All</button>
+  <button class="filter-chip" data-filter="movies">🎬 Movies</button>
+  <button class="filter-chip" data-filter="serials">📺 Serials</button>
+  <button class="filter-chip" data-filter="ads">📢 Ads</button>
+  <button class="filter-chip" data-filter="original">✨ Original Series</button>
+</div>
+<div class="portfolio" data-category="movies" style="background-color: #FAF9F5;">
 <div class="section-header" data-aos="zoom-in">
 <h2><i class="fas fa-film section-icon"></i>Movies</h2>
 <p class="section-subtitle">Voice dubs for feature films</p>
@@ -1765,7 +2000,7 @@ button:active,
 <h3>Voice of Margot Robbie</h3>
 <hr/>
 <!-- Desktop Embed -->
-<iframe allowtransparency="true" class="instagram-embed instagram-embed" src="https://www.instagram.com/p/C6k-iAGITMG/embed" title="Instagram post - Barbie">
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/C6k-iAGITMG/embed" title="Instagram post - Barbie">
 </iframe>
 <!-- Mobile Thumbnail -->
 <div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/C6k-iAGITMG/embed')">
@@ -1803,7 +2038,7 @@ button:active,
   <h2>Hanu-Man</h2>
 <h3>Voice of Varu Sharathkumar</h3>
   <hr>
-  <iframe title="Instagram post - Dayaa" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
+  <iframe title="Instagram post - Hanu-Man" src="https://www.instagram.com/p/C2FqAe9sSEZ/embed" allowtransparency="true"></iframe>
 </div>
 
 <div class="video" onclick="openModal('https://www.instagram.com/p/CvhEkc7se6a/embed')">
@@ -1842,7 +2077,7 @@ button:active,
 </div>
 </div>
 </div>
-<section class="content" style="background-color: #FAF9F5;">
+<section class="content" data-category="serials" style="background-color: #FAF9F5;">
 <div class="section-header" data-aos="zoom-in">
 <h2><i class="fas fa-tv section-icon"></i>Television Serials</h2>
 <p class="section-subtitle">Popular Kannada TV voice roles</p>
@@ -1852,7 +2087,7 @@ button:active,
 <div class="video" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')">
 <h2>Sandhyaraga</h2>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrtiakcrNQN/embed" title="Instagram post - Centuary Mattress"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/sandhyaraga.png"/><div class="overlay-play">
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CrtiakcrNQN/embed" title="Instagram post - Sandhyaraga"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CrtiakcrNQN/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/sandhyaraga.png"/><div class="overlay-play">
   <i class="fas fa-play"></i>
   <span>Click to Play</span>
 </div>
@@ -1861,7 +2096,7 @@ button:active,
 <div class="video" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')">
 <h2>Naga Panchami</h2>
 <hr/>
-<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzzAaagy27S/embed" title="Instagram post - Kalyan Jewellers"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/nagapanchami.png"/><div class="overlay-play">
+<iframe allowtransparency="true" class="instagram-embed" src="https://www.instagram.com/p/CzzAaagy27S/embed" title="Instagram post - Naga Panchami"></iframe><div class="insta-mobile-preview" onclick="openModal('https://www.instagram.com/p/CzzAaagy27S/embed')"><img alt="Instagram Preview" src="https://raw.githubusercontent.com/darshanagb/darshanagb.github.io/main/thumbnails/nagapanchami.png"/><div class="overlay-play">
   <i class="fas fa-play"></i>
   <span>Click to Play</span>
 </div>
@@ -1870,7 +2105,7 @@ button:active,
 </div>
 </section>
 
-<section class="content" style="background-color: #FAF9F5;">
+<section class="content" data-category="ads" style="background-color: #FAF9F5;">
 <div class="section-header" data-aos="zoom-in">
 <h2><i class="fas fa-bullhorn section-icon"></i>Commercial Ads</h2>
 <p class="section-subtitle">Voiceovers for brands and commercials</p>
@@ -1918,7 +2153,7 @@ button:active,
 </div>
 </div>
 </section>
-<section class="content" style="background-color: #FAF9F5;">
+<section class="content" data-category="original" style="background-color: #FAF9F5;">
 <div class="section-header" data-aos="zoom-in">
 <h2><i class="fab fa-youtube section-icon"></i>Kanasina Odalali</h2>
 <p class="section-subtitle">An original series of dreamy stories</p>
@@ -1979,22 +2214,22 @@ button:active,
     <i class="fas fa-share-alt"></i> Share Now
   </button>
   <div class="share-options" id="shareOptions">
-    <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio%3A%20https%3A%2F%2Fdarshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20amazing%20voice%20artist%20portfolio%3A%20https%3A%2F%2Fdarshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
       <span class="share-label">WhatsApp</span>
     </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://darshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://darshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon facebook"><i class="fab fa-facebook-f"></i></div>
       <span class="share-label">Facebook</span>
     </a>
-    <a href="https://twitter.com/intent/tweet?text=Check%20this%20out!&url=https://darshanagb.github.io" target="_blank" class="share-icon-box">
+    <a href="https://twitter.com/intent/tweet?text=Check%20this%20out!&url=https://darshanagb.github.io" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon twitter">
         <img src="logo-white.png" alt="X Logo" style="width: 22px; height: 22px;" />
       </div>
       <span class="share-label">X (Twitter)</span>
     </a>
     
-    <a href="https://www.instagram.com/darshana_srinivas" target="_blank" class="share-icon-box">
+    <a href="https://www.instagram.com/darshana_srinivas" target="_blank" rel="noopener" class="share-icon-box">
       <div class="share-icon instagram"><i class="fab fa-instagram"></i></div>
       <span class="share-label">Instagram</span>
     </a>
@@ -2002,9 +2237,6 @@ button:active,
       <div class="share-icon copy"><i class="fas fa-link"></i></div>
       <span class="share-label">Copy Link</span>
     </a>
-    
-      
-    </button>
   </div>
   <span id="copyConfirm" class="copy-confirm">Link copied!</span>
 </div>
@@ -2013,12 +2245,10 @@ button:active,
 <h2 class="cta-title">Know someone looking for a voice artist?</h2>
 <h3 class="cta-subtitle">Feel free to pass my name along.</h3>
 <div class="cta-emoji">✨🎙️</div>
-</div>
+  <h2 class="cta-title website-design">Website Design | Shrinivasa PH</h2>
 <div class="divider"></div>
 </div>
-  <h2 style="color:rgba(255, 255, 255, 0.6);" class="cta-title">Website Design | Shrinivasa PH</h2>
-  <div class="divider"></div>
-
+</div>
 </footer>
 <!-- Modal Section -->
 <div class="modal" id="videoModal">
@@ -2103,6 +2333,23 @@ button:active,
         langEnElements.forEach(el => el.style.display = 'none');
         langKnElements.forEach(el => el.style.display = 'block');
       }
+    });
+  });
+
+  // Portfolio category filter
+  const filterChips = document.querySelectorAll('.filter-chip');
+  const categorySections = document.querySelectorAll('[data-category]');
+
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.getAttribute('data-filter');
+      categorySections.forEach(sec => {
+        const show = filter === 'all' || sec.getAttribute('data-category') === filter;
+        sec.classList.toggle('category-hidden', !show);
+      });
+      if (typeof AOS !== 'undefined') { AOS.refresh(); }
     });
   });
 
@@ -2192,43 +2439,36 @@ button:active,
 <!-- Floating Contact Button (Mobile) -->
 <script>
   const floatingContact = document.querySelector('.floating-contact');
-  let lastScrollTop = 0;
-  let scrollTimeout;
 
-  window.addEventListener('scroll', () => {
-    let st = window.pageYOffset || document.documentElement.scrollTop;
+  if (floatingContact) {
+    let lastScrollTop = 0;
+    let scrollTimeout;
 
-    // Hide on scroll down
-    if (st > lastScrollTop) {
-      floatingContact.style.opacity = '0';
-      floatingContact.style.pointerEvents = 'none';
-    }
+    window.addEventListener('scroll', () => {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Show on scroll up
-    if (st < lastScrollTop) {
-      floatingContact.style.opacity = '1';
-      floatingContact.style.pointerEvents = 'auto';
-    }
+      // Hide on scroll down
+      if (st > lastScrollTop) {
+        floatingContact.style.opacity = '0';
+        floatingContact.style.pointerEvents = 'none';
+      }
 
-    // Re-show after scroll stops (e.g., user pauses)
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      floatingContact.style.opacity = '1';
-      floatingContact.style.pointerEvents = 'auto';
-    }, 300); // Adjust delay as needed (ms)
+      // Show on scroll up
+      if (st < lastScrollTop) {
+        floatingContact.style.opacity = '1';
+        floatingContact.style.pointerEvents = 'auto';
+      }
 
-    lastScrollTop = st <= 0 ? 0 : st;
-  });
+      // Re-show after scroll stops (e.g., user pauses)
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        floatingContact.style.opacity = '1';
+        floatingContact.style.pointerEvents = 'auto';
+      }, 300); // Adjust delay as needed (ms)
 
-  function openModal(url) {
-  document.getElementById('modalIframe').src = url;
-  document.getElementById('videoModal').style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('videoModal').style.display = 'none';
-  document.getElementById('modalIframe').src = '';
-}
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
+  }
 </script>
 <!--Below code prevents right-click across the page-->
 <script>
