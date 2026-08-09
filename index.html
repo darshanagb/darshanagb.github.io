@@ -1868,53 +1868,6 @@ button:active,
   }
 }
 
-
-/* ===== Hero: one continuous atmosphere (removes the seam under the title) ===== */
-/* The old radial glow lived on header::before, so header's overflow:hidden sliced it
-   off with a hard horizontal edge exactly where the voices strip began. Promote the
-   same glow to the whole hero-unit so it flows behind title AND strip as one layer. */
-.hero-unit > header::before {
-  display: none;
-}
-.hero-unit::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 70%, rgba(233, 30, 99, 0.32) 0%, transparent 55%),
-    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 42% 38%, rgba(233, 30, 99, 0.24) 0%, transparent 62%),
-    radial-gradient(circle at 62% 85%, rgba(26, 74, 92, 0.20) 0%, transparent 50%);
-  animation: waveMotion 8s ease-in-out infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Title block and strip breathe as one unit instead of two stacked blocks */
-.hero-unit > header {
-  padding-bottom: 16px;
-  min-height: 0;
-}
-.hero-unit > .voices-strip {
-  padding-top: 34px;
-}
-
-@media (max-width: 768px) {
-  .hero-unit > header {
-    padding-bottom: 10px;
-  }
-  .hero-unit > .voices-strip {
-    padding-top: 24px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-unit::before,
-  .hero-unit::after {
-    animation: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   [data-aos] {
     opacity: 1 !important;
@@ -2084,7 +2037,7 @@ button:active,
         <p class="about-description">
           ಹಲವಾರು ಧಾರಾವಾಹಿಗಳು, ಚಲನಚಿತ್ರಗಳು, ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಧ್ವನಿಯನ್ನು ನೀಡಿ, ಕಥೆಗಳಿಗೆ ಜೀವ ತುಂಬುತ್ತಿದ್ದೇನೆ.
         </p>
-        <p class="about-highlight">🎙️ ಪ್ರತಿ ಪಾತ್ರಕ್ಕೂ ಧ್ವನಿಯ ರೂಪದಲ್ಲಿ ಜೀವ ತುಂಬುವ ಪ್ರಯತ್ನ.</p>
+        <p class="about-highlight">🎙️ ಪ್ರತಿ ಪಾತ್ರದ ಧ್ವನಿಗೂ ಜೀವ ತುಂಬುವ ಪ್ರಯತ್ನ.</p>
       </div>
     </div>
   </section>
