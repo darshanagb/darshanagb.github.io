@@ -372,10 +372,6 @@
       -webkit-backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border-radius: 16px;
       max-width: fit-content;
@@ -692,7 +688,8 @@
 
     .scroll-to-top {
       position: fixed;
-      bottom: 30px;
+      /* env() keeps the button above mobile browser toolbars / safe areas */
+      bottom: calc(30px + env(safe-area-inset-bottom, 0px));
       right: 20px;
       width: 50px;
       height: 50px;
@@ -706,11 +703,11 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
-      z-index: 1000;
-      transition: bottom 0.3s ease, right 0.3s ease;
-
+      z-index: 2100;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.3s;
     }
 
     .scroll-to-top.show {
@@ -1722,6 +1719,7 @@ button:active,
   border-radius: 60px;
   background: rgba(3, 28, 42, 0.32);
   border: 1px solid rgba(255, 255, 255, 0.28);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   white-space: nowrap;
 }
@@ -1932,14 +1930,14 @@ button:active,
       <div class="about-text">
         <h2 class="about-title">💃🏻 About Me</h2>
         <p class="about-description">
-          I am <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
+          I'm <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
         </p>
         <p class="about-highlight">Bringing every story to life.</p>
       </div>
   <section class="bio lang-kn hidden">
   </section>
 
-  <section class="bio lang-kn" style="display: none;">
+  <section class="bio lang-kn hidden">
     <div class="about-wrapper">
       <div class="about-text">
         <h2 class="about-title">👩‍🎤 ನನ್ನ ಪರಿಚಯ</h2>
@@ -2281,14 +2279,17 @@ button:active,
     });
   }
 
-  window.addEventListener('scroll', function() {
+  function updateScrollTopBtn() {
     const scrollToTopBtn = document.getElementById('scrollToTop');
-    if (window.pageYOffset > 300) {
-      scrollToTopBtn.classList.add('show');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-    }
-  });
+    if (!scrollToTopBtn) return;
+    const y = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    scrollToTopBtn.classList.toggle('show', y > 200);
+  }
+
+  window.addEventListener('scroll', updateScrollTopBtn, { passive: true });
+  window.addEventListener('resize', updateScrollTopBtn);
+  window.addEventListener('load', updateScrollTopBtn);
+  updateScrollTopBtn(); // run once so the button is correct even on a mid-page load (e.g. #anchor or refresh)
 
   const sections = document.querySelectorAll("section[id], div[id]");
   const navLinks = document.querySelectorAll("nav a");
