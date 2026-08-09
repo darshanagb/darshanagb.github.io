@@ -1789,6 +1789,92 @@ button:active,
   .hidden {
     display: none;
   }
+
+/* ===== Unified full-bleed band layout (About -> Works -> Portfolio) ===== */
+:root {
+  --band-inner: 1100px;
+  --band-cream: #FAF9F5;
+}
+
+/* About becomes a full-width band instead of a floating card */
+#about.about-modern {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 72px 24px 64px;
+  border-radius: 0;
+  box-shadow: none;
+  background: linear-gradient(180deg, #FFFDFC 0%, var(--band-cream) 100%);
+}
+#about .about-wrapper,
+#about.about-modern .about-wrapper {
+  max-width: var(--band-inner);
+  margin: 0 auto;
+}
+
+/* Works header continues the same cream band - no seam between them */
+.works-header {
+  background: var(--band-cream);
+  padding: 56px 24px 24px;
+  margin: 0;
+}
+.works-title-container {
+  max-width: var(--band-inner);
+}
+
+/* Portfolio sections: full-bleed bands with a shared inner width */
+.portfolio[data-category],
+.content[data-category] {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 8px 24px 48px;
+  box-shadow: none;
+  border-radius: 0;
+}
+.portfolio[data-category] > *,
+.content[data-category] > * {
+  max-width: var(--band-inner);
+  margin-left: auto;
+  margin-right: auto;
+}
+.filter-bar {
+  padding: 24px 24px 10px;
+}
+
+/* Section headers sit inside the band, lighter now that they aren't competing with a card */
+.section-header {
+  margin: 40px auto 26px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+.portfolio[data-category] .video-container,
+.content[data-category] .video-container {
+  max-width: var(--band-inner);
+}
+
+@media (max-width: 768px) {
+  #about.about-modern {
+    padding: 48px 18px 44px;
+  }
+  .works-header {
+    padding: 40px 18px 18px;
+  }
+  .portfolio[data-category],
+  .content[data-category] {
+    padding: 6px 14px 36px;
+  }
+  .section-header {
+    margin: 28px auto 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
   </style>
 
 <!-- AOS (Animate On Scroll) Library -->
@@ -1796,9 +1882,13 @@ button:active,
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     AOS.init({
-      duration: 1000,
-      once: true
+      duration: 600,
+      easing: 'ease-out',
+      offset: 60,
+      once: true,
+      disable: reduceMotion || window.innerWidth < 768
     });
   });
 </script>
@@ -1924,7 +2014,7 @@ button:active,
 </nav>
 
 
-<div class="content about-modern" data-aos="zoom-in" id="about">
+<div class="content about-modern" data-aos="fade-up" id="about">
   <section class="bio lang-en">
     <div class="about-wrapper">
       <div class="about-text">
@@ -1973,7 +2063,7 @@ button:active,
   <button class="filter-chip" data-filter="original">✨ Original Series</button>
 </div>
 <div class="portfolio" data-category="movies" style="background-color: #FAF9F5;">
-<div class="section-header" data-aos="zoom-in">
+<div class="section-header" data-aos="fade-up">
 <h2><i class="fas fa-film section-icon"></i>Movies</h2>
 <p class="section-subtitle">Voice dubs for feature films</p>
 </div>
@@ -2073,7 +2163,7 @@ button:active,
 </div>
 </div>
 <section class="content" data-category="serials" style="background-color: #FAF9F5;">
-<div class="section-header" data-aos="zoom-in">
+<div class="section-header" data-aos="fade-up">
 <h2><i class="fas fa-tv section-icon"></i>Television Serials</h2>
 <p class="section-subtitle">Popular Kannada TV voice roles</p>
 </div>
@@ -2101,7 +2191,7 @@ button:active,
 </section>
 
 <section class="content" data-category="ads" style="background-color: #FAF9F5;">
-<div class="section-header" data-aos="zoom-in">
+<div class="section-header" data-aos="fade-up">
 <h2><i class="fas fa-bullhorn section-icon"></i>Commercial Ads</h2>
 <p class="section-subtitle">Voiceovers for brands and commercials</p>
 </div>
@@ -2149,7 +2239,7 @@ button:active,
 </div>
 </section>
 <section class="content" data-category="original" style="background-color: #FAF9F5;">
-<div class="section-header" data-aos="zoom-in">
+<div class="section-header" data-aos="fade-up">
 <h2><i class="fab fa-youtube section-icon"></i>Kanasina Odalali</h2>
 <p class="section-subtitle">An original series of dreamy stories</p>
 </div>
