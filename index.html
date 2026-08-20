@@ -2577,6 +2577,184 @@ button:active,
     });
   }
 </script>
-
+<!-- ===== Hero motion pack ===== -->
+<style>
+  /* 1 · name reveal */
+  .dv-motion .header-text h1 .dv-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.6em) rotateX(-40deg);
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
+  }
+  .dv-motion .header-text.dv-reveal h1 .dv-char {
+    animation: dvCharIn .62s cubic-bezier(.2,1.4,.4,1) forwards;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+  @keyframes dvCharIn {
+    0%   { opacity: 0; transform: translateY(0.6em) rotateX(-40deg); }
+    62%  { opacity: 1; transform: translateY(-0.12em) rotateX(0deg); }
+    100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+  }
+  .dv-motion .header-text h2 { opacity: 0; }
+  .dv-motion .header-text.dv-reveal h2 {
+    animation: dvSubIn .7s ease forwards;
+    animation-delay: calc(var(--n, 8) * 45ms + 160ms);
+  }
+  @keyframes dvSubIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+  
+  /* 2 · reactive sound waves */
+  .dv-motion .sound-waves {
+    transform: scaleY(var(--amp, 1));
+    transform-origin: bottom right;
+    transition: transform .16s ease-out;
+  }
+  
+  /* 3 · ripple rings from the photo */
+  .dv-motion .header-image {
+    position: relative;
+    line-height: 0;
+    animation: floatImage 4s ease-in-out infinite;
+  }
+  .dv-motion .header-image img {
+    animation: none;
+    position: relative;
+    z-index: 2;
+  }
+  .dv-motion .header-image::before,
+  .dv-motion .header-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .45);
+    z-index: 1;
+    pointer-events: none;
+    animation: dvRipple 4.4s ease-out infinite;
+  }
+  .dv-motion .header-image::after { animation-delay: 2.2s; }
+  @keyframes dvRipple {
+    0%   { transform: scale(1);    opacity: .5; }
+    60%  {                          opacity: 0; }
+    100% { transform: scale(1.75); opacity: 0; }
+  }
+  
+  /* 4 · scroll handoff */
+  .dv-motion .header-content { will-change: transform, opacity; }
+  </style>
+  
+  <script>
+  (function () {
+    var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq && mq.matches) return;
+    document.documentElement.classList.add('dv-motion');
+  
+    /* ---------- 1 · name reveal ---------- */
+    function graphemes(str) {
+      if (window.Intl && Intl.Segmenter) {
+        var seg = new Intl.Segmenter('kn', { granularity: 'grapheme' });
+        return Array.from(seg.segment(str), function (s) { return s.segment; });
+      }
+      return Array.from(str);
+    }
+  
+    function splitOnce(block) {
+      if (!block || block.dataset.dvSplit) return;
+      var h1 = block.querySelector('h1');
+      if (!h1) return;
+      var parts = graphemes(h1.textContent.trim());
+      h1.textContent = '';
+      parts.forEach(function (ch, i) {
+        var s = document.createElement('span');
+        s.className = 'dv-char';
+        s.style.setProperty('--i', i);
+        s.textContent = (ch === ' ') ? '\u00A0' : ch;
+        h1.appendChild(s);
+      });
+      block.style.setProperty('--n', parts.length);
+      block.dataset.dvSplit = '1';
+    }
+  
+    function reveal(block) {
+      if (!block) return;
+      splitOnce(block);
+      block.classList.remove('dv-reveal');
+      void block.offsetWidth;              // force reflow so the animation restarts
+      block.classList.add('dv-reveal');
+    }
+  
+    var enBlock = document.querySelector('.header-text.lang-en');
+    var knBlock = document.querySelector('.header-text.lang-kn');
+    splitOnce(knBlock);
+    reveal(enBlock);
+  
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        reveal(btn.getAttribute('data-lang') === 'kn' ? knBlock : enBlock);
+      });
+    });
+  
+    /* ---------- 2 · reactive waves ---------- */
+    var waves    = document.querySelector('.sound-waves');
+    var hero     = document.querySelector('.hero-unit');
+    var targetAmp = 1, curAmp = 1, ampTick = false;
+  
+    function pumpAmp() {
+      if (!ampTick) { ampTick = true; requestAnimationFrame(stepAmp); }
+    }
+    function stepAmp() {
+      curAmp += (targetAmp - curAmp) * 0.12;
+      if (waves) waves.style.setProperty('--amp', curAmp.toFixed(3));
+      if (Math.abs(targetAmp - curAmp) > 0.002) requestAnimationFrame(stepAmp);
+      else ampTick = false;
+    }
+  
+    if (hero && waves) {
+      hero.addEventListener('pointermove', function (e) {
+        var r = waves.getBoundingClientRect();
+        var d = Math.hypot(e.clientX - (r.left + r.width / 2),
+                           e.clientY - (r.top + r.height / 2));
+        targetAmp = 1 + Math.max(0, 1 - d / 520) * 0.75;
+        pumpAmp();
+      }, { passive: true });
+  
+      hero.addEventListener('pointerleave', function () {
+        targetAmp = 1; pumpAmp();
+      }, { passive: true });
+    }
+  
+    /* ---------- 4 · scroll handoff (+ touch amp boost) ---------- */
+    var headerEl = document.querySelector('.hero-unit > header');
+    var content  = headerEl && headerEl.querySelector('.header-content');
+    var coarse   = window.matchMedia('(pointer: coarse)').matches;
+    var lastY = window.scrollY, scrollTick = false;
+  
+    window.addEventListener('scroll', function () {
+      if (!scrollTick) { scrollTick = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+  
+    function onScroll() {
+      scrollTick = false;
+      var y = window.scrollY;
+      var h = headerEl ? headerEl.offsetHeight : 1;
+      var p = Math.min(1, Math.max(0, y / h));
+  
+      if (content) {
+        content.style.transform = 'translate3d(0,' + (p * -60).toFixed(1) + 'px,0)';
+        content.style.opacity   = (1 - p * 0.85).toFixed(3);
+      }
+  
+      if (coarse) {
+        var v = Math.min(1, Math.abs(y - lastY) / 60);
+        targetAmp = 1 + v * 0.6;
+        pumpAmp();
+      }
+      lastY = y;
+    }
+  })();
+  </script>
 </body>
 </html>
