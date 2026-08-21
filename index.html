@@ -4377,7 +4377,7 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
   font-size: 0.85em;
 }
 .dv-portrait-name::before { content: '\f3c9'; color: #ff4081; }
-.dv-portrait-proj::before { content: '\e131'; color: rgba(255, 255, 255, 0.45); }
+.dv-portrait-proj::before { content: '\f03d'; color: rgba(255, 255, 255, 0.45); }
 </style>
 
 <script>
@@ -4388,7 +4388,7 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
 
     Array.prototype.forEach.call(cards, function (card) {
       [['.voice-name', 'mic', 'fa-microphone-lines'],
-       ['.voice-project', 'clap', 'fa-clapperboard']].forEach(function (spec) {
+       ['.voice-project', 'clap', 'fa-video']].forEach(function (spec) {
         var el = card.querySelector(spec[0]);
         if (!el || (el.parentElement && el.parentElement.classList.contains('vc-row'))) return;
 
@@ -4475,5 +4475,110 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
 }
 </style>
 
+<!-- ===== Project icon: vintage cine camera ===== -->
+<style>
+/* FA6 Free has no reel-topped movie camera, so this is a custom glyph. It
+   inherits the chip's colour via currentColor, so the amber/dark pairing set
+   earlier applies untouched. The reels are punched discs rather than stroked
+   circles — at 22px a thin stroke fills in and merges with the body. */
+.vc-cam {
+  width: 14px;
+  height: auto;
+  display: block;
+}
+.vc-clap .vc-ic { font-size: 0; }   /* collapses the leftover FA glyph box */
+
+/* The popover chip can't hold a child element, so the same camera is layered
+   as a background image above the amber gradient. */
+.dv-portrait-proj::before {
+  content: '';
+  background-image: url("data:image/svg+xml,<svg viewBox="0 0 26 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.1 4.0 a3.9 3.9 0 1 0 7.8 0 a3.9 3.9 0 1 0 -7.8 0 M4.65 4.0 a1.35 1.35 0 1 1 2.7 0 a1.35 1.35 0 1 1 -2.7 0 Z" fill="%2523261800" fill-rule="evenodd"/><path d="M10.6 4.9 a3.0 3.0 0 1 0 6.0 0 a3.0 3.0 0 1 0 -6.0 0 M12.549999999999999 4.9 a1.05 1.05 0 1 1 2.1 0 a1.05 1.05 0 1 1 -2.1 0 Z" fill="%2523261800" fill-rule="evenodd"/><rect x="1.4" y="9.2" width="14" height="9.2" rx="2" fill="%2523261800"/><path d="M17 11.7 L23.8 8.9 L23.8 18.4 L17 15.6 Z" fill="%2523261800"/></svg>"),
+                    linear-gradient(135deg, #f7a712, #ffcc3f);
+  background-size: 13px auto, 100% 100%;
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+}
+</style>
+
+<script>
+(function () {
+  try {
+    var CAM = '<svg viewBox="0 0 26 20" xmlns="http://www.w3.org/2000/svg" class="vc-cam" aria-hidden="true"><path d="M2.1 4.0 a3.9 3.9 0 1 0 7.8 0 a3.9 3.9 0 1 0 -7.8 0 M4.65 4.0 a1.35 1.35 0 1 1 2.7 0 a1.35 1.35 0 1 1 -2.7 0 Z" fill="currentColor" fill-rule="evenodd"/><path d="M10.6 4.9 a3.0 3.0 0 1 0 6.0 0 a3.0 3.0 0 1 0 -6.0 0 M12.549999999999999 4.9 a1.05 1.05 0 1 1 2.1 0 a1.05 1.05 0 1 1 -2.1 0 Z" fill="currentColor" fill-rule="evenodd"/><rect x="1.4" y="9.2" width="14" height="9.2" rx="2" fill="currentColor"/><path d="M17 11.7 L23.8 8.9 L23.8 18.4 L17 15.6 Z" fill="currentColor"/></svg>';
+    var slots = document.querySelectorAll('.vc-clap .vc-ic');
+    Array.prototype.forEach.call(slots, function (el) {
+      if (el.querySelector('svg')) return;
+      el.className = 'vc-ic';        // drop the Font Awesome classes
+      el.innerHTML = CAM;
+    });
+  } catch (err) {
+    console.error('[voices] camera icon disabled:', err);
+  }
+})();
+</script>
+
+<!-- ===== Voices strip: Kannada names ===== -->
+<script>
+  (function () {
+    // Keys must match the English text in the cards exactly.
+    var KN_NAMES = {
+      'Margot Robbie':        'ಮಾರ್ಗೋಟ್ ರಾಬಿ',
+      'Samantha Ruth Prabhu': 'ಸಮಂತಾ ರುತ್ ಪ್ರಭು',
+      'Raveena Tandon':       'ರವೀನಾ ಟಂಡನ್',
+      'Wamiqa Gabbi':         'ವಾಮಿಕಾ ಗಬ್ಬಿ',
+      'Nimisha Sajayan':      'ನಿಮಿಷಾ ಸಜಯನ್',
+      'Ramya Nambessan':      'ರಮ್ಯಾ ನಂಬೀಶನ್',
+      'Varu Sharathkumar':    'ವರು ಶರತ್‌ಕುಮಾರ್',
+      'Sania Mirza':          'ಸಾನಿಯಾ ಮಿರ್ಜಾ',
+      'Anaswara Rajan':       'ಅನಸ್ವರಾ ರಾಜನ್'
+    };
+  
+    var KN_PROJECTS = {
+      'Barbie':                'ಬಾರ್ಬಿ',
+      'Citadel: Honey Bunny':  'ಸಿಟಾಡೆಲ್: ಹನಿ ಬನ್ನಿ',
+      'Karma Calling':         'ಕರ್ಮ ಕಾಲಿಂಗ್',
+      'Jubilee':               'ಜುಬಿಲಿ',
+      'Poacher':               'ಪೋಚರ್',
+      'Dayaa':                 'ದಯಾ',
+      'Hanu-Man':              'ಹನು-ಮಾನ್',
+      'Centuary Mattress':     'ಸೆಂಚುರಿ ಮ್ಯಾಟ್ರೆಸ್',
+      'Kalyan Jewellers':      'ಕಲ್ಯಾಣ್ ಜ್ಯುವೆಲರ್ಸ್'
+    };
+  
+    try {
+      // Stash the English text once, so switching back is exact rather than a
+      // reverse lookup (two actors could share a project title).
+      var fields = document.querySelectorAll('.voice-name, .voice-project');
+      if (!fields.length) return;
+  
+      Array.prototype.forEach.call(fields, function (el) {
+        if (!el.hasAttribute('data-en')) {
+          el.setAttribute('data-en', el.textContent.trim());
+        }
+      });
+  
+      function apply(lang) {
+        Array.prototype.forEach.call(fields, function (el) {
+          var en = el.getAttribute('data-en');
+          var map = el.classList.contains('voice-name') ? KN_NAMES : KN_PROJECTS;
+          // Fall back to English for anything not in the map, so a missing
+          // entry shows the original rather than going blank.
+          el.textContent = (lang === 'kn' && map[en]) ? map[en] : en;
+        });
+      }
+  
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          apply(btn.getAttribute('data-lang'));
+        });
+      });
+  
+      // Respect whichever button is already active on load
+      var active = document.querySelector('.lang-option.active');
+      if (active) apply(active.getAttribute('data-lang'));
+    } catch (err) {
+      console.error('[voices] Kannada names disabled:', err);
+    }
+  })();
+  </script>
 </body>
 </html>
