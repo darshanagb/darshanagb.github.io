@@ -2983,6 +2983,23 @@ footer .footer-content,
 .dv-prop.dv-l { left: 10px; }
 .dv-prop.dv-r { right: 10px; }
 
+/* Bleed anchoring: the inner edge always clears the content column; when the
+   gutter is narrower than the prop, it runs off the viewport edge instead. */
+.dv-prop.dv-bl,
+.dv-prop.dv-br { width: var(--w); }
+.dv-prop.dv-bl { left:  min(-14px, calc(50% - (var(--band-inner, 1100px) / 2) - var(--w) - 14px)); }
+.dv-prop.dv-br { right: min(-14px, calc(50% - (var(--band-inner, 1100px) / 2) - var(--w) - 14px)); }
+
+/* DAW windows read as lit screens, so they carry their own palette */
+.dv-prop.dv-screen {
+  opacity: 0.58;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(3, 28, 42, 0.26);
+}
+.dv-prop.dv-screen svg { display: block; width: 100%; height: auto; }
+.dv-props.dv-dark .dv-prop.dv-screen { opacity: 0.5; }
+
 /* Black acoustic panel — wedge-cut, lit from the top-left */
 .dv-prop.dv-foam {
   aspect-ratio: 1 / 1;
@@ -3132,6 +3149,106 @@ footer .footer-content,
           '<rect class="solid" x="90" y="64" width="12" height="7" rx="2.5"/>' +
           '<rect class="solid" x="120" y="54" width="12" height="7" rx="2.5"/>' +
         '</svg>',
+      daw_arrange:
+        '<svg viewBox="0 0 300 196" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect width="300" height="196" rx="9" fill="#0f1c25"/>' +
+          '<rect width="300" height="19" rx="9" fill="#172b36"/><rect y="10" width="300" height="9" fill="#172b36"/>' +
+          '<circle cx="13" cy="10" r="3.4" fill="#e0625a"/><circle cx="25" cy="10" r="3.4" fill="#e8b84b"/><circle cx="37" cy="10" r="3.4" fill="#5aba6a"/>' +
+          '<rect x="0" y="19" width="72" height="177" fill="#142530"/>' +
+          '<rect x="72" y="19" width="228" height="13" fill="#1b323f"/>' +
+          '<g fill="#5d7d8c">' +
+            '<rect x="86" y="22" width="1.6" height="7"/><rect x="126" y="22" width="1.6" height="7"/>' +
+            '<rect x="166" y="22" width="1.6" height="7"/><rect x="206" y="22" width="1.6" height="7"/>' +
+            '<rect x="246" y="22" width="1.6" height="7"/><rect x="286" y="22" width="1.6" height="7"/>' +
+          '</g>' +
+          '<g fill="#20323d">' +
+            '<rect x="8" y="40" width="56" height="10" rx="2"/><rect x="8" y="78" width="56" height="10" rx="2"/>' +
+            '<rect x="8" y="116" width="56" height="10" rx="2"/><rect x="8" y="154" width="56" height="10" rx="2"/>' +
+          '</g>' +
+          '<g fill="#2f9e8f">' +
+            '<circle cx="14" cy="58" r="3.4"/><circle cx="14" cy="96" r="3.4"/>' +
+            '<circle cx="14" cy="134" r="3.4"/><circle cx="14" cy="172" r="3.4"/>' +
+          '</g>' +
+          '<g stroke="#1d2f3a" stroke-width="1">' +
+            '<line x1="72" y1="70" x2="300" y2="70"/><line x1="72" y1="108" x2="300" y2="108"/><line x1="72" y1="146" x2="300" y2="146"/>' +
+          '</g>' +
+          '<rect x="84" y="38" width="96" height="28" rx="4" fill="#2f9e8f" opacity=".55"/>' +
+          '<rect x="196" y="38" width="72" height="28" rx="4" fill="#2f9e8f" opacity=".38"/>' +
+          '<rect x="100" y="76" width="130" height="28" rx="4" fill="#3f8fbf" opacity=".5"/>' +
+          '<rect x="84" y="114" width="80" height="28" rx="4" fill="#2f9e8f" opacity=".42"/>' +
+          '<rect x="180" y="114" width="104" height="28" rx="4" fill="#3f8fbf" opacity=".38"/>' +
+          '<rect x="120" y="152" width="150" height="28" rx="4" fill="#2f9e8f" opacity=".3"/>' +
+          '<g stroke="#cfe9e4" stroke-width="1.1" opacity=".75">' +
+            '<line x1="94" y1="46" x2="94" y2="58"/><line x1="102" y1="42" x2="102" y2="62"/><line x1="110" y1="48" x2="110" y2="56"/>' +
+            '<line x1="118" y1="40" x2="118" y2="64"/><line x1="126" y1="46" x2="126" y2="58"/><line x1="134" y1="43" x2="134" y2="61"/>' +
+            '<line x1="142" y1="49" x2="142" y2="55"/><line x1="150" y1="41" x2="150" y2="63"/><line x1="158" y1="47" x2="158" y2="57"/>' +
+            '<line x1="166" y1="44" x2="166" y2="60"/>' +
+            '<line x1="112" y1="84" x2="112" y2="96"/><line x1="122" y1="80" x2="122" y2="100"/><line x1="132" y1="86" x2="132" y2="94"/>' +
+            '<line x1="142" y1="78" x2="142" y2="102"/><line x1="152" y1="84" x2="152" y2="96"/><line x1="162" y1="81" x2="162" y2="99"/>' +
+            '<line x1="172" y1="87" x2="172" y2="93"/><line x1="182" y1="79" x2="182" y2="101"/><line x1="192" y1="85" x2="192" y2="95"/>' +
+          '</g>' +
+          '<rect x="188" y="19" width="1.8" height="177" fill="#e91e63"/>' +
+          '<path d="M184 19 h10 l-5 7 z" fill="#e91e63"/>' +
+        '</svg>',
+      daw_mixer:
+        '<svg viewBox="0 0 300 196" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect width="300" height="196" rx="9" fill="#0f1c25"/>' +
+          '<rect width="300" height="19" rx="9" fill="#172b36"/><rect y="10" width="300" height="9" fill="#172b36"/>' +
+          '<circle cx="13" cy="10" r="3.4" fill="#e0625a"/><circle cx="25" cy="10" r="3.4" fill="#e8b84b"/><circle cx="37" cy="10" r="3.4" fill="#5aba6a"/>' +
+          '<g>' +
+            '<rect x="10" y="28" width="42" height="160" rx="4" fill="#142530"/>' +
+            '<rect x="62" y="28" width="42" height="160" rx="4" fill="#142530"/>' +
+            '<rect x="114" y="28" width="42" height="160" rx="4" fill="#142530"/>' +
+            '<rect x="166" y="28" width="42" height="160" rx="4" fill="#142530"/>' +
+            '<rect x="218" y="28" width="42" height="160" rx="4" fill="#142530"/>' +
+            '<rect x="270" y="28" width="22" height="160" rx="4" fill="#1a2f3b"/>' +
+          '</g>' +
+          '<g fill="none" stroke="#4d6c7c" stroke-width="2">' +
+            '<circle cx="31" cy="46" r="8"/><circle cx="83" cy="46" r="8"/><circle cx="135" cy="46" r="8"/>' +
+            '<circle cx="187" cy="46" r="8"/><circle cx="239" cy="46" r="8"/>' +
+          '</g>' +
+          '<g stroke="#2a4150" stroke-width="3" stroke-linecap="round">' +
+            '<line x1="24" y1="72" x2="24" y2="176"/><line x1="76" y1="72" x2="76" y2="176"/><line x1="128" y1="72" x2="128" y2="176"/>' +
+            '<line x1="180" y1="72" x2="180" y2="176"/><line x1="232" y1="72" x2="232" y2="176"/>' +
+          '</g>' +
+          '<g fill="#c3d6de">' +
+            '<rect x="17" y="112" width="14" height="7" rx="2"/><rect x="69" y="96" width="14" height="7" rx="2"/>' +
+            '<rect x="121" y="128" width="14" height="7" rx="2"/><rect x="173" y="104" width="14" height="7" rx="2"/>' +
+            '<rect x="225" y="140" width="14" height="7" rx="2"/>' +
+          '</g>' +
+          '<g>' +
+            '<rect x="40" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="40" y="120" width="6" height="56" rx="3" fill="#4caf72"/>' +
+            '<rect x="92" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="92" y="104" width="6" height="72" rx="3" fill="#4caf72"/>' +
+            '<rect x="144" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="144" y="134" width="6" height="42" rx="3" fill="#4caf72"/>' +
+            '<rect x="196" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="196" y="88" width="6" height="16" rx="3" fill="#e8b84b"/><rect x="196" y="104" width="6" height="72" rx="3" fill="#4caf72"/>' +
+            '<rect x="248" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="248" y="146" width="6" height="30" rx="3" fill="#4caf72"/>' +
+            '<rect x="276" y="72" width="6" height="104" rx="3" fill="#16262f"/><rect x="276" y="98" width="6" height="78" rx="3" fill="#4caf72"/>' +
+          '</g>' +
+        '</svg>',
+      daw_eq:
+        '<svg viewBox="0 0 300 196" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect width="300" height="196" rx="9" fill="#0f1c25"/>' +
+          '<rect width="300" height="19" rx="9" fill="#172b36"/><rect y="10" width="300" height="9" fill="#172b36"/>' +
+          '<circle cx="13" cy="10" r="3.4" fill="#e0625a"/><circle cx="25" cy="10" r="3.4" fill="#e8b84b"/><circle cx="37" cy="10" r="3.4" fill="#5aba6a"/>' +
+          '<g stroke="#1c2e39" stroke-width="1">' +
+            '<line x1="60" y1="24" x2="60" y2="188"/><line x1="120" y1="24" x2="120" y2="188"/>' +
+            '<line x1="180" y1="24" x2="180" y2="188"/><line x1="240" y1="24" x2="240" y2="188"/>' +
+            '<line x1="12" y1="66" x2="288" y2="66"/><line x1="12" y1="106" x2="288" y2="106"/><line x1="12" y1="146" x2="288" y2="146"/>' +
+          '</g>' +
+          '<g fill="#25454f">' +
+            '<rect x="20" y="140" width="7" height="46"/><rect x="34" y="126" width="7" height="60"/><rect x="48" y="112" width="7" height="74"/>' +
+            '<rect x="62" y="120" width="7" height="66"/><rect x="76" y="98" width="7" height="88"/><rect x="90" y="108" width="7" height="78"/>' +
+            '<rect x="104" y="86" width="7" height="100"/><rect x="118" y="102" width="7" height="84"/><rect x="132" y="94" width="7" height="92"/>' +
+            '<rect x="146" y="116" width="7" height="70"/><rect x="160" y="106" width="7" height="80"/><rect x="174" y="124" width="7" height="62"/>' +
+            '<rect x="188" y="132" width="7" height="54"/><rect x="202" y="122" width="7" height="64"/><rect x="216" y="144" width="7" height="42"/>' +
+            '<rect x="230" y="152" width="7" height="34"/><rect x="244" y="142" width="7" height="44"/><rect x="258" y="160" width="7" height="26"/>' +
+            '<rect x="272" y="168" width="7" height="18"/>' +
+          '</g>' +
+          '<path d="M12 116 C 48 116, 56 74, 88 74 C 118 74, 128 128, 158 128 C 188 128, 196 62, 228 62 C 258 62, 268 100, 288 100" fill="none" stroke="#3fb6a6" stroke-width="3"/>' +
+          '<g fill="#0f1c25" stroke="#e91e63" stroke-width="2.6">' +
+            '<circle cx="88" cy="74" r="6.5"/><circle cx="158" cy="128" r="6.5"/><circle cx="228" cy="62" r="6.5"/>' +
+          '</g>' +
+        '</svg>',
       interface:
         '<svg viewBox="0 0 142 78" xmlns="http://www.w3.org/2000/svg">' +
           '<rect x="4" y="8" width="134" height="62" rx="10"/>' +
@@ -3208,21 +3325,24 @@ footer .footer-content,
         { art: 'foam',    css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' },
         { art: 'monitor',   cls: 'dv-r', css: '--w:clamp(56px,5.4vw,82px); bottom:70px;' },
         { art: 'interface', cls: 'dv-l', css: '--w:clamp(92px,8.6vw,140px); bottom:190px;' },
-        { art: 'laptop',    cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:60px;' }
+        { art: 'laptop',      cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:60px;' },
+        { art: 'daw_arrange', cls: 'dv-bl', css: '--w:clamp(210px,19vw,310px); top:24px; transform:rotate(-2deg);' }
       ]],
       ['.content[data-category="serials"]', false, [
         { art: 'keyboard', cls: 'dv-l', css: '--w:clamp(96px,9vw,148px); top:120px;' },
         { art: 'micstand', cls: 'dv-r', css: '--w:clamp(70px,6.8vw,106px); bottom:60px;' },
         { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' },
         { art: 'vumeter',  cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); top:34px;' },
-        { art: 'stool',    cls: 'dv-l', css: '--w:clamp(60px,5.8vw,90px); bottom:56px;' }
+        { art: 'stool',     cls: 'dv-l', css: '--w:clamp(60px,5.8vw,90px); bottom:56px;' },
+        { art: 'daw_mixer', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:210px; transform:rotate(2deg);' }
       ]],
       ['.content[data-category="ads"]', false, [
         { art: 'headphones', cls: 'dv-r', css: '--w:clamp(74px,7vw,112px); top:110px;' },
         { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' },
         { art: 'console',    cls: 'dv-l', css: '--w:clamp(98px,9.2vw,150px); bottom:80px;' },
         { art: 'interface',  cls: 'dv-r', css: '--w:clamp(92px,8.6vw,140px); bottom:80px;' },
-        { art: 'foam',       cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); top:40px; transform:rotate(6deg);' }
+        { art: 'foam',    cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); top:40px; transform:rotate(6deg);' },
+        { art: 'daw_eq',  cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:250px; transform:rotate(-2deg);' }
       ]],
       ['.content[data-category="original"]', false, [
         { art: 'mic',        cls: 'dv-l', css: '--w:clamp(52px,5.2vw,80px); top:104px;' },
@@ -3238,7 +3358,8 @@ footer .footer-content,
         { art: 'monitor',  cls: 'dv-r', css: '--w:clamp(56px,5.4vw,84px); top:56px;' },
         { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' },
         { art: 'script',   cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:40px;' },
-        { art: 'foam',     css: 'bottom:-48px; left:-38px; width:120px; transform:rotate(-6deg);' }
+        { art: 'foam',        css: 'bottom:-48px; left:-38px; width:120px; transform:rotate(-6deg);' },
+        { art: 'daw_arrange', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); bottom:110px; transform:rotate(2deg);' }
       ]]
     ];
 
@@ -3257,6 +3378,10 @@ footer .footer-content,
           el.className = 'dv-prop dv-foam';
         } else {
           el.className = 'dv-prop dv-gear';
+          el.innerHTML = ART[p.art] || '';
+        }
+        if (p.art.indexOf('daw_') === 0) {
+          el.className = 'dv-prop dv-screen';
           el.innerHTML = ART[p.art] || '';
         }
         if (p.cls) { el.className += ' ' + p.cls; }
