@@ -4112,5 +4112,155 @@ footer#contact {
 }
 </style>
 
+<!-- ===== Voices strip: drag / swipe to scrub ===== -->
+<style>
+.voices-track.dv-swipe {
+  animation: none !important;   /* JS owns the transform now */
+  will-change: transform;
+}
+.voices-track-wrap.dv-swipe-wrap {
+  cursor: grab;
+  touch-action: pan-y;          /* horizontal drag here, vertical page scroll passes through */
+}
+.voices-track-wrap.dv-swipe-wrap.dv-grabbing { cursor: grabbing; }
+
+/* The portrait popover is hover-driven; suppress it mid-drag */
+body.dv-dragging .dv-portrait { opacity: 0 !important; }
+</style>
+
+<script>
+(function () {
+  try {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;   // reduced-motion already renders a static wrapped grid
+
+    var wrap  = document.querySelector('.voices-track-wrap');
+    var track = document.querySelector('.voices-track');
+    if (!wrap || !track) return;
+
+    var AUTO = 0;          // px/sec, derived from the original 38s loop
+    var period = 0;        // px covered before the strip repeats
+    var offset = 0;
+    var vel = 0;
+    var dragging = false, hovering = false, moved = 0;
+    var startX = 0, startOffset = 0, lastX = 0, lastT = 0;
+
+    function measure() {
+      // The duplicate set uses display:contents, so its first card is a direct
+      // flex item. Its offsetLeft is the exact repeat distance — using 50% of
+      // the total width (as the CSS did) lands half a gap short and produces a
+      // small jump at the loop point.
+      var dup = track.querySelector('.voices-dup');
+      var first = track.querySelector('.voice-card');
+      var dupFirst = dup && dup.querySelector('.voice-card');
+      if (!first || !dupFirst) return false;
+      period = dupFirst.offsetLeft - first.offsetLeft;
+      if (period <= 0) return false;
+      AUTO = period / 38;    // matches the original animation speed
+      return true;
+    }
+
+    if (!measure()) return;
+
+    track.classList.add('dv-swipe');
+    wrap.classList.add('dv-swipe-wrap');
+
+    function wrapOffset(v) {
+      v %= period;
+      if (v < 0) v += period;
+      return v;
+    }
+
+    var last = performance.now();
+    function frame(now) {
+      var dt = Math.min((now - last) / 1000, 0.05);   // clamp after tab switches
+      last = now;
+
+      if (!dragging) {
+        // Ease velocity toward the resting speed: momentum after a swipe decays
+        // smoothly back into the drift instead of stopping dead.
+        var target = hovering ? 0 : AUTO;
+        vel += (target - vel) * (1 - Math.exp(-dt / 0.55));
+        offset = wrapOffset(offset + vel * dt);
+      }
+
+      track.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    wrap.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      dragging = true;
+      moved = 0;
+      vel = 0;
+      startX = lastX = e.clientX;
+      startOffset = offset;
+      lastT = performance.now();
+      wrap.classList.add('dv-grabbing');
+      document.body.classList.add('dv-dragging');
+      if (wrap.setPointerCapture) { try { wrap.setPointerCapture(e.pointerId); } catch (_) {} }
+    });
+
+    wrap.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      offset = wrapOffset(startOffset - dx);
+
+      var now = performance.now();
+      var dt = (now - lastT) / 1000;
+      if (dt > 0.004) {
+        // instantaneous velocity, smoothed so one jittery sample can't dominate
+        var v = -(e.clientX - lastX) / dt;
+        vel = vel * 0.6 + v * 0.4;
+        lastX = e.clientX;
+        lastT = now;
+      }
+    });
+
+    function release(e) {
+      if (!dragging) return;
+      dragging = false;
+      wrap.classList.remove('dv-grabbing');
+      document.body.classList.remove('dv-dragging');
+      // cap a violent flick so it can't shoot off
+      vel = Math.max(-4000, Math.min(vel, 4000));
+      if (e && e.pointerId != null && wrap.releasePointerCapture) {
+        try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+      }
+    }
+    wrap.addEventListener('pointerup', release);
+    wrap.addEventListener('pointercancel', release);
+    wrap.addEventListener('pointerleave', release);
+
+    // a drag shouldn't fire a click on whatever card ended up under the cursor
+    wrap.addEventListener('click', function (e) {
+      if (moved > 6) { e.stopPropagation(); e.preventDefault(); }
+    }, true);
+
+    // Preserve the original hover-to-pause, now as a velocity target
+    wrap.addEventListener('mouseenter', function () { hovering = true; });
+    wrap.addEventListener('mouseleave', function () { hovering = false; });
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        var prev = period;
+        if (measure() && prev > 0) { offset = wrapOffset(offset * (period / prev)); }
+      }, 150);
+    });
+
+    window.addEventListener('load', function () {
+      var prev = period;
+      if (measure() && prev > 0) { offset = wrapOffset(offset * (period / prev)); }
+    });
+  } catch (err) {
+    console.error('[voices] swipe disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
