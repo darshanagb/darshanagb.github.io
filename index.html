@@ -2962,6 +2962,7 @@ button:active,
 /* Content sits above the props */
 #about.about-modern .about-wrapper,
 .works-title-container,
+footer .footer-content,
 .portfolio[data-category] > *:not(.dv-props),
 .content[data-category] > *:not(.dv-props) {
   position: relative;
@@ -3001,6 +3002,19 @@ button:active,
   stroke-linejoin: round;
 }
 .dv-prop.dv-gear svg .solid { fill: currentColor; stroke: none; }
+
+/* Dark bands (footer) — invert the gear, deepen the panels */
+.dv-props.dv-dark .dv-prop.dv-gear { color: #ffffff; opacity: 0.13; }
+.dv-props.dv-dark .dv-prop.dv-foam {
+  background-color: #081117;
+  background-image: conic-gradient(from 45deg at 50% 50%,
+    #0d1a22 0deg 90deg,
+    #050c11 90deg 180deg,
+    #10212b 180deg 270deg,
+    #17323f 270deg 360deg);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+  opacity: 0.85;
+}
 
 /* No gutters to hide in below this width */
 @media (max-width: 1199px) {
@@ -3060,6 +3074,58 @@ button:active,
           '<rect class="solid" x="70" y="22" width="9" height="19" rx="2"/>' +
           '<rect class="solid" x="88" y="22" width="9" height="19" rx="2"/>' +
           '<rect class="solid" x="106" y="22" width="9" height="19" rx="2"/>' +
+        '</svg>',
+      micstand:
+        '<svg viewBox="0 0 112 152" xmlns="http://www.w3.org/2000/svg">' +
+          '<line x1="46" y1="36" x2="46" y2="128"/>' +
+          '<line x1="46" y1="128" x2="20" y2="146"/>' +
+          '<line x1="46" y1="128" x2="72" y2="146"/>' +
+          '<line x1="46" y1="128" x2="46" y2="148"/>' +
+          '<circle cx="46" cy="36" r="6"/>' +
+          '<line x1="50" y1="33" x2="94" y2="20"/>' +
+          '<rect x="86" y="6" width="17" height="30" rx="8.5"/>' +
+          '<line x1="46" y1="70" x2="46" y2="70"/>' +
+        '</svg>',
+      lyricstand:
+        '<svg viewBox="0 0 122 152" xmlns="http://www.w3.org/2000/svg">' +
+          '<path d="M16 46 L100 24 L108 52 L24 74 Z"/>' +
+          '<line x1="30" y1="54" x2="96" y2="37"/>' +
+          '<line x1="34" y1="64" x2="100" y2="47"/>' +
+          '<line x1="60" y1="62" x2="60" y2="128"/>' +
+          '<line x1="60" y1="128" x2="34" y2="146"/>' +
+          '<line x1="60" y1="128" x2="86" y2="146"/>' +
+          '<line x1="60" y1="128" x2="60" y2="148"/>' +
+        '</svg>',
+      monitor:
+        '<svg viewBox="0 0 92 132" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="5" y="5" width="82" height="122" rx="7"/>' +
+          '<circle cx="46" cy="84" r="26"/>' +
+          '<circle cx="46" cy="84" r="9"/>' +
+          '<circle cx="46" cy="34" r="11"/>' +
+          '<rect x="31" y="112" width="30" height="7" rx="3.5"/>' +
+        '</svg>',
+      console:
+        '<svg viewBox="0 0 152 92" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="4" y="6" width="144" height="80" rx="8"/>' +
+          '<circle cx="26" cy="26" r="6"/>' +
+          '<circle cx="56" cy="26" r="6"/>' +
+          '<circle cx="96" cy="26" r="6"/>' +
+          '<circle cx="126" cy="26" r="6"/>' +
+          '<line x1="26" y1="46" x2="26" y2="74"/>' +
+          '<line x1="56" y1="46" x2="56" y2="74"/>' +
+          '<line x1="96" y1="46" x2="96" y2="74"/>' +
+          '<line x1="126" y1="46" x2="126" y2="74"/>' +
+          '<rect class="solid" x="20" y="58" width="12" height="7" rx="2.5"/>' +
+          '<rect class="solid" x="50" y="50" width="12" height="7" rx="2.5"/>' +
+          '<rect class="solid" x="90" y="64" width="12" height="7" rx="2.5"/>' +
+          '<rect class="solid" x="120" y="54" width="12" height="7" rx="2.5"/>' +
+        '</svg>',
+      cable:
+        '<svg viewBox="0 0 112 102" xmlns="http://www.w3.org/2000/svg">' +
+          '<circle cx="50" cy="50" r="34"/>' +
+          '<circle cx="50" cy="50" r="23"/>' +
+          '<path d="M84 50 C 100 50, 100 76, 88 84"/>' +
+          '<rect x="80" y="80" width="17" height="13" rx="3.5"/>' +
         '</svg>'
     };
 
@@ -3067,30 +3133,41 @@ button:active,
     // deliberately allowed to bleed past the band edge so they read as a wall
     // continuing off-screen rather than as floating squares.
     var SPEC = [
-      ['#about.about-modern', [
+      ['#about.about-modern', false, [
         { art: 'foam',       css: 'top:-34px; left:-46px; width:158px; transform:rotate(-7deg);' },
         { art: 'foam',       css: 'bottom:-52px; right:-38px; width:132px; transform:rotate(6deg);' },
         { art: 'mic',        css: 'top:64px; right:2.2%; width:clamp(54px,5.4vw,82px);' },
         { art: 'headphones', css: 'bottom:46px; left:2.4%; width:clamp(72px,7vw,112px);' }
       ]],
-      ['.works-header', [
+      ['.works-header', false, [
         { art: 'foam',      css: 'top:-40px; right:-34px; width:126px; transform:rotate(9deg);' },
         { art: 'popfilter', css: 'bottom:14px; left:2.6%; width:clamp(70px,6.6vw,104px);' }
       ]],
-      ['.portfolio[data-category="movies"]', [
-        { art: 'guitar', css: 'top:90px; right:2.2%; width:clamp(56px,5.6vw,84px);' },
-        { art: 'foam',   css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' }
+      ['.portfolio[data-category="movies"]', false, [
+        { art: 'guitar',  css: 'top:90px; right:2.2%; width:clamp(56px,5.6vw,84px);' },
+        { art: 'foam',    css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' },
+        { art: 'monitor', css: 'bottom:70px; right:2.6%; width:clamp(56px,5.4vw,82px);' }
       ]],
-      ['.content[data-category="serials"]', [
-        { art: 'keyboard', css: 'top:120px; left:2.2%; width:clamp(96px,9vw,148px);' }
+      ['.content[data-category="serials"]', false, [
+        { art: 'keyboard', css: 'top:120px; left:2.2%; width:clamp(96px,9vw,148px);' },
+        { art: 'micstand', css: 'bottom:60px; right:2.2%; width:clamp(70px,6.8vw,106px);' },
+        { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' }
       ]],
-      ['.content[data-category="ads"]', [
+      ['.content[data-category="ads"]', false, [
         { art: 'headphones', css: 'top:110px; right:2.4%; width:clamp(74px,7vw,112px);' },
-        { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' }
+        { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' },
+        { art: 'console',    css: 'bottom:80px; left:2.2%; width:clamp(98px,9.2vw,150px);' }
       ]],
-      ['.content[data-category="original"]', [
-        { art: 'mic',  css: 'top:104px; left:2.6%; width:clamp(52px,5.2vw,80px);' },
-        { art: 'foam', css: 'top:60px; right:-50px; width:146px; transform:rotate(-8deg);' }
+      ['.content[data-category="original"]', false, [
+        { art: 'mic',        css: 'top:104px; left:2.6%; width:clamp(52px,5.2vw,80px);' },
+        { art: 'foam',       css: 'top:60px; right:-50px; width:146px; transform:rotate(-8deg);' },
+        { art: 'lyricstand', css: 'bottom:66px; right:2.4%; width:clamp(72px,7vw,110px);' },
+        { art: 'cable',      css: 'bottom:74px; left:2.8%; width:clamp(58px,5.6vw,88px);' }
+      ]],
+      ['footer#contact', true, [
+        { art: 'micstand', css: 'bottom:0; left:2.4%; width:clamp(74px,7vw,112px);' },
+        { art: 'monitor',  css: 'top:56px; right:3%; width:clamp(56px,5.4vw,84px);' },
+        { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' }
       ]]
     ];
 
@@ -3100,10 +3177,10 @@ button:active,
 
       host.classList.add('dv-host');
       var layer = document.createElement('div');
-      layer.className = 'dv-props';
+      layer.className = 'dv-props' + (entry[1] ? ' dv-dark' : '');
       layer.setAttribute('aria-hidden', 'true');
 
-      entry[1].forEach(function (p) {
+      entry[2].forEach(function (p) {
         var el = document.createElement('div');
         if (p.art === 'foam') {
           el.className = 'dv-prop dv-foam';
