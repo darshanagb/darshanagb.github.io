@@ -2760,43 +2760,6 @@ button:active,
   to   { background-position: 100% 50%; }
 }
 
-/* Equalizer — always present so card width never changes on hover */
-.dv-vfx .voice-eq {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 17px;
-  margin-left: 6px;
-  flex-shrink: 0;
-}
-.dv-vfx .voice-eq i {
-  display: block;
-  width: 3px;
-  height: 17px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.32);
-  transform: scaleY(.28);
-  transform-origin: bottom;
-  transition: background-color .3s ease, transform .3s ease;
-}
-.dv-vfx .voice-card:hover .voice-eq i {
-  background: #ff4081;
-  animation: dvEq .9s ease-in-out infinite;
-  animation-delay: var(--b, 0ms);
-}
-@keyframes dvEq {
-  0%, 100% { transform: scaleY(.28); }
-  50%      { transform: scaleY(1);   }
-}
-
-/* Touch devices have no hover — give the bars a slow idle pulse instead */
-@media (hover: none) {
-  .dv-vfx .voice-eq i {
-    background: rgba(255, 64, 129, 0.7);
-    animation: dvEq 1.6s ease-in-out infinite;
-    animation-delay: var(--b, 0ms);
-  }
-}
 </style>
 
 <script>
@@ -2806,25 +2769,7 @@ button:active,
   var root = document.documentElement;
 
   try {
-    var cards = document.querySelectorAll('.voice-card');
-    if (!cards.length) return;
-
-    // Bars go on every card including the .voices-dup copies, so both halves of
-    // the marquee stay identical in width and the -50% loop stays seamless.
-    var delays = ['0ms', '160ms', '80ms', '320ms'];
-    Array.prototype.forEach.call(cards, function (card) {
-      if (card.querySelector('.voice-eq')) return;
-      var eq = document.createElement('span');
-      eq.className = 'voice-eq';
-      eq.setAttribute('aria-hidden', 'true');
-      for (var i = 0; i < 4; i++) {
-        var b = document.createElement('i');
-        b.style.setProperty('--b', delays[i]);
-        eq.appendChild(b);
-      }
-      card.appendChild(eq);
-    });
-
+    if (!document.querySelectorAll('.voice-card').length) return;
     root.classList.add('dv-vfx');
   } catch (err) {
     root.classList.remove('dv-vfx');
@@ -4125,6 +4070,47 @@ footer#contact {
   }
 })();
 </script>
+
+<!-- ===== Touch: stop accidental text selection ===== -->
+<style>
+/* Scoped to coarse pointers only. On desktop, selection stays fully enabled —
+   locking it there would stop visitors copying the email or a credit, and
+   breaks assistive tooling for no benefit, since a mouse click doesn't
+   accidentally select the way a tap-and-hold does. */
+@media (pointer: coarse) {
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;   /* no long-press "Copy / Look Up" sheet */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Double-tap-to-zoom is what causes the tap delay and the stray selection on
+     the second tap. Pinch zoom is unaffected. */
+  body,
+  .voice-card,
+  .filter-chip,
+  .video,
+  .lang-option,
+  .social-link,
+  .copy-btn {
+    touch-action: manipulation;
+  }
+
+  /* Anything a visitor may genuinely want to select stays selectable */
+  input,
+  textarea,
+  [contenteditable],
+  .info-pill span,
+  .email-container span {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
+}
+</style>
 
 </body>
 </html>
