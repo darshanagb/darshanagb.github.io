@@ -2578,5 +2578,157 @@ button:active,
   }
 </script>
 
+<!-- ===== Works filter: sliding pill + animated section swap ===== -->
+<style>
+/* The pill supplies the gradient; the active chip goes transparent so the
+   gradient can travel between chips instead of snapping on and off. */
+.dv-fx .filter-bar { position: relative; }
+.dv-fx .filter-chip { position: relative; z-index: 1; }
+.dv-fx .filter-chip.active,
+.dv-fx .filter-chip.active:hover {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: #fff;
+}
+.dv-fx .dv-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.35);
+  pointer-events: none;
+  transition:
+    transform .42s cubic-bezier(.22, 1, .36, 1),
+    width     .42s cubic-bezier(.22, 1, .36, 1),
+    height    .42s cubic-bezier(.22, 1, .36, 1),
+    opacity   .2s ease;
+}
+.dv-fx .dv-pill.dv-ready { opacity: 1; }
+.dv-fx .dv-pill.dv-instant { transition: none; }
+
+/* Section swap */
+.dv-fx [data-category].dv-out {
+  animation: dvSecOut .22s ease forwards;
+}
+@keyframes dvSecOut {
+  to { opacity: 0; transform: translateY(-10px); }
+}
+.dv-fx [data-category].dv-in {
+  animation: dvSecIn .5s cubic-bezier(.22, 1, .36, 1) backwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes dvSecIn {
+  from { opacity: 0; transform: translateY(18px); }
+}
+</style>
+
+<script>
+(function () {
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) return;              // original handler stays in charge
+  var root = document.documentElement;
+
+  try {
+    var bar = document.querySelector('.filter-bar');
+    var chips = bar ? Array.prototype.slice.call(bar.querySelectorAll('.filter-chip')) : [];
+    var sections = Array.prototype.slice.call(document.querySelectorAll('[data-category]'));
+    if (!bar || !chips.length || !sections.length) return;
+
+    root.classList.add('dv-fx');
+
+    /* ---------- sliding pill ---------- */
+    var pill = document.createElement('span');
+    pill.className = 'dv-pill';
+    pill.setAttribute('aria-hidden', 'true');
+    bar.insertBefore(pill, bar.firstChild);
+
+    function place(chip, instant) {
+      if (!chip || !chip.offsetWidth) return;
+      if (instant) pill.classList.add('dv-instant');
+      pill.style.width  = chip.offsetWidth + 'px';
+      pill.style.height = chip.offsetHeight + 'px';
+      pill.style.transform = 'translate(' + chip.offsetLeft + 'px,' + chip.offsetTop + 'px)';
+      pill.classList.add('dv-ready');
+      if (instant) {
+        void pill.offsetWidth;               // flush before re-enabling transitions
+        pill.classList.remove('dv-instant');
+      }
+    }
+
+    function activeChip() {
+      return bar.querySelector('.filter-chip.active') || chips[0];
+    }
+
+    place(activeChip(), true);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { place(activeChip(), true); });
+    }
+    var rsTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(rsTimer);
+      rsTimer = setTimeout(function () { place(activeChip(), true); }, 120);
+    });
+
+    /* ---------- filtering ---------- */
+    var busy = false;
+
+    function applyFilter(chip) {
+      chips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      place(chip, false);
+
+      var filter = chip.getAttribute('data-filter');
+      var incoming = [], outgoing = [];
+
+      sections.forEach(function (sec) {
+        var show = (filter === 'all') || (sec.getAttribute('data-category') === filter);
+        var visible = !sec.classList.contains('category-hidden');
+        if (show && !visible) incoming.push(sec);
+        else if (!show && visible) outgoing.push(sec);
+      });
+
+      if (!incoming.length && !outgoing.length) return;
+
+      busy = true;
+      outgoing.forEach(function (sec) { sec.classList.add('dv-out'); });
+
+      setTimeout(function () {
+        outgoing.forEach(function (sec) {
+          sec.classList.remove('dv-out');
+          sec.classList.add('category-hidden');
+        });
+        incoming.forEach(function (sec, i) {
+          sec.classList.remove('category-hidden', 'dv-in');
+          void sec.offsetWidth;              // restart the entrance animation
+          sec.style.setProperty('--d', (i * 90) + 'ms');
+          sec.classList.add('dv-in');
+        });
+        if (typeof AOS !== 'undefined') { AOS.refresh(); }
+        busy = false;
+      }, outgoing.length ? 220 : 0);
+    }
+
+    // Capture phase + stopImmediatePropagation: this replaces the original
+    // per-chip click handler, which hides sections synchronously and so leaves
+    // no window for an exit animation.
+    bar.addEventListener('click', function (e) {
+      var chip = e.target && e.target.closest && e.target.closest('.filter-chip');
+      if (!chip) return;
+      e.stopImmediatePropagation();
+      if (busy) return;
+      applyFilter(chip);
+    }, true);
+
+  } catch (err) {
+    root.classList.remove('dv-fx');
+    console.error('[works filter fx] disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
