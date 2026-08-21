@@ -4331,69 +4331,84 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
   height: auto;
 }
 </style>
-<!-- ===== Voices strip: Kannada names ===== -->
+
+<!-- ===== Voice cards: icon-led structure ===== -->
+<style>
+.vc-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.vc-ic {
+  flex: 0 0 14px;
+  width: 14px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1;
+}
+/* Pink mic = who. Muted clapper = what. The colour split carries the
+   hierarchy, so the two lines read as different KINDS of fact, not just
+   different sizes of text. */
+.vc-mic .vc-ic  { color: #ff4081; }
+.vc-clap .vc-ic { color: rgba(255, 255, 255, 0.45); font-size: 10px; }
+.vc-clap { margin-top: 2px; }
+
+/* Hairline between the two rows — separates person from project without
+   adding a word */
+.vc-clap::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 14px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-3px);
+}
+.vc-clap { position: relative; }
+
+/* Same treatment inside the portrait popover */
+.dv-portrait-name::before,
+.dv-portrait-proj::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-right: 7px;
+  font-size: 0.85em;
+}
+.dv-portrait-name::before { content: '\f3c9'; color: #ff4081; }
+.dv-portrait-proj::before { content: '\e131'; color: rgba(255, 255, 255, 0.45); }
+</style>
+
 <script>
-  (function () {
-    // Keys must match the English text in the cards exactly.
-    var KN_NAMES = {
-      'Margot Robbie':        'ಮಾರ್ಗೋಟ್ ರಾಬಿ',
-      'Samantha Ruth Prabhu': 'ಸಮಂತಾ ರುತ್ ಪ್ರಭು',
-      'Raveena Tandon':       'ರವೀನಾ ಟಂಡನ್',
-      'Wamiqa Gabbi':         'ವಾಮಿಕಾ ಗಬ್ಬಿ',
-      'Nimisha Sajayan':      'ನಿಮಿಷಾ ಸಜಯನ್',
-      'Ramya Nambessan':      'ರಮ್ಯಾ ನಂಬೀಶನ್',
-      'Varu Sharathkumar':    'ವರು ಶರತ್‌ಕುಮಾರ್',
-      'Sania Mirza':          'ಸಾನಿಯಾ ಮಿರ್ಜಾ',
-      'Anaswara Rajan':       'ಅನಸ್ವರಾ ರಾಜನ್'
-    };
-  
-    var KN_PROJECTS = {
-      'Barbie':                'ಬಾರ್ಬಿ',
-      'Citadel: Honey Bunny':  'ಸಿಟಾಡೆಲ್: ಹನಿ ಬನ್ನಿ',
-      'Karma Calling':         'ಕರ್ಮ ಕಾಲಿಂಗ್',
-      'Jubilee':               'ಜುಬಿಲಿ',
-      'Poacher':               'ಪೋಚರ್',
-      'Dayaa':                 'ದಯಾ',
-      'Hanu-Man':              'ಹನು-ಮಾನ್',
-      'Centuary Mattress':     'ಸೆಂಚುರಿ ಮ್ಯಾಟ್ರೆಸ್',
-      'Kalyan Jewellers':      'ಕಲ್ಯಾಣ್ ಜ್ಯುವೆಲರ್ಸ್'
-    };
-  
-    try {
-      // Stash the English text once, so switching back is exact rather than a
-      // reverse lookup (two actors could share a project title).
-      var fields = document.querySelectorAll('.voice-name, .voice-project');
-      if (!fields.length) return;
-  
-      Array.prototype.forEach.call(fields, function (el) {
-        if (!el.hasAttribute('data-en')) {
-          el.setAttribute('data-en', el.textContent.trim());
-        }
+(function () {
+  try {
+    var cards = document.querySelectorAll('.voice-card');
+    if (!cards.length) return;
+
+    Array.prototype.forEach.call(cards, function (card) {
+      [['.voice-name', 'mic', 'fa-microphone-lines'],
+       ['.voice-project', 'clap', 'fa-clapperboard']].forEach(function (spec) {
+        var el = card.querySelector(spec[0]);
+        if (!el || (el.parentElement && el.parentElement.classList.contains('vc-row'))) return;
+
+        // The icon is a SIBLING of .voice-name / .voice-project, never inside
+        // them: the Kannada swap rewrites their textContent, which would wipe
+        // out any icon nested within.
+        var row = document.createElement('div');
+        row.className = 'vc-row vc-' + spec[1];
+        var ic = document.createElement('i');
+        ic.className = 'fas ' + spec[2] + ' vc-ic';
+        ic.setAttribute('aria-hidden', 'true');
+
+        el.parentNode.insertBefore(row, el);
+        row.appendChild(ic);
+        row.appendChild(el);
       });
-  
-      function apply(lang) {
-        Array.prototype.forEach.call(fields, function (el) {
-          var en = el.getAttribute('data-en');
-          var map = el.classList.contains('voice-name') ? KN_NAMES : KN_PROJECTS;
-          // Fall back to English for anything not in the map, so a missing
-          // entry shows the original rather than going blank.
-          el.textContent = (lang === 'kn' && map[en]) ? map[en] : en;
-        });
-      }
-  
-      document.querySelectorAll('.lang-option').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          apply(btn.getAttribute('data-lang'));
-        });
-      });
-  
-      // Respect whichever button is already active on load
-      var active = document.querySelector('.lang-option.active');
-      if (active) apply(active.getAttribute('data-lang'));
-    } catch (err) {
-      console.error('[voices] Kannada names disabled:', err);
-    }
-  })();
-  </script>
+    });
+  } catch (err) {
+    console.error('[voices] icon structure disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
