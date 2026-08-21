@@ -1967,7 +1967,7 @@ button:active,
   </div>
   <div class="lang-kn" style="display: none;">
     <h2 class="voices-heading">🌟 ತಾರೆಯರ ಹಿಂದಿನ ಧ್ವನಿ</h2>
-    <p class="voices-sub">ದರ್ಶನಾ ಅವರಿಂದ ಕನ್ನಡದಲ್ಲಿ ಜೀವಂತಗೊಳಿಸಲ್ಪಟ್ಟ ಪಾತ್ರಗಳು</p>
+    <p class="voices-sub">ಕನ್ನಡದಲ್ಲಿ ಧ್ವನಿ ನೀಡಿದ ತಾರೆಯರು</p>
   </div>
 
   <div class="voices-track-wrap">
@@ -2930,10 +2930,15 @@ footer .footer-content,
 
 /* Bleed anchoring: the inner edge always clears the content column; when the
    gutter is narrower than the prop, it runs off the viewport edge instead. */
+/* Previously these forced a deliberate bleed past the viewport edge. Now they
+   behave like dv-l / dv-r: width is capped by the real gutter so the whole prop
+   is visible, at the cost of rendering smaller where the gutter is tight. */
 .dv-prop.dv-bl,
-.dv-prop.dv-br { width: var(--w); }
-.dv-prop.dv-bl { left:  min(-14px, calc(50% - (var(--band-inner, 1100px) / 2) - var(--w) - 14px)); }
-.dv-prop.dv-br { right: min(-14px, calc(50% - (var(--band-inner, 1100px) / 2) - var(--w) - 14px)); }
+.dv-prop.dv-br {
+  width: min(var(--w), calc(50% - (var(--band-inner, 1100px) / 2) - 20px));
+}
+.dv-prop.dv-bl { left: 10px; }
+.dv-prop.dv-br { right: 10px; }
 
 /* DAW windows read as lit screens, so they carry their own palette */
 .dv-prop.dv-screen {
@@ -2994,8 +2999,8 @@ footer .footer-content,
    a much smaller set of corner bleeds tagged .dv-m. */
 @media (max-width: 1279px) {
   .dv-prop:not(.dv-m) { display: none !important; }
-  .dv-prop.dv-m.dv-screen { opacity: 0.42; }
-  .dv-prop.dv-m.dv-foam   { opacity: 0.5; }
+  .dv-prop.dv-m.dv-screen { opacity: 0.3; }
+  .dv-prop.dv-m.dv-foam   { opacity: 0.38; }
   .dv-prop.dv-m.dv-gear   { opacity: 0.18; }
 }
 @media (min-width: 1280px) {
@@ -3354,80 +3359,80 @@ footer .footer-content,
     // continuing off-screen rather than as floating squares.
     var SPEC = [
       ['#about.about-modern', false, [
-        { art: 'foam',       css: 'top:-34px; left:-46px; width:158px; transform:rotate(-7deg);' },
-        { art: 'foam',       css: 'bottom:-52px; right:-38px; width:132px; transform:rotate(6deg);' },
+        { art: 'foam', cls: 'dv-l', css: '--w:clamp(66px,8.5vw,123px); top:22px; transform:rotate(-7deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(55px,7.1vw,102px); bottom:22px; transform:rotate(6deg);' },
         { art: 'mic',        cls: 'dv-l', css: '--w:clamp(54px,5.4vw,82px); top:40px;' },
         { art: 'daw_mixer',  cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:40px; transform:rotate(2deg);' },
-        { art: 'foam',       cls: 'dv-m', css: 'width:98px; top:-26px; left:-36px; transform:rotate(-6deg);' },
+        { art: 'foam', cls: 'dv-m', css: 'width:68px; top:18px; left:8px; transform:rotate(-6deg);' },
         { art: 'headphones', cls: 'dv-l', css: '--w:clamp(72px,7vw,112px); bottom:46px;' },
         { art: 'piano',      cls: 'dv-r', css: '--w:clamp(86px,8vw,128px); bottom:44px;' },
         { art: 'script',     cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:52px;' }
       ]],
       ['.works-header', false, [
-        { art: 'foam',      css: 'top:-40px; right:-34px; width:126px; transform:rotate(9deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(54px,6.8vw,98px); top:22px; transform:rotate(9deg);' },
         { art: 'popfilter', cls: 'dv-l', css: '--w:clamp(70px,6.6vw,104px); bottom:14px;' },
         { art: 'vumeter',       cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); bottom:20px;' },
         { art: 'plugin_reverb', cls: 'dv-l', css: '--w:clamp(124px,11.5vw,186px); bottom:96px;' },
         { art: 'plugin_comp',   cls: 'dv-r', css: '--w:clamp(120px,11vw,180px); top:96px; transform:rotate(2deg);' },
         { art: 'foam',      cls: 'dv-r', css: '--w:clamp(56px,5.4vw,84px); top:24px; transform:rotate(-5deg);' },
         { art: 'daw_eq',    cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:26px; transform:rotate(-2deg);' },
-        { art: 'daw_eq',    cls: 'dv-m', css: 'width:150px; top:8px; left:-70px; transform:rotate(2deg);' }
+        { art: 'daw_eq', cls: 'dv-m', css: 'width:84px; top:8px; left:8px; transform:rotate(2deg);' }
       ]],
       ['.portfolio[data-category="movies"]', false, [
         { art: 'guitar',  cls: 'dv-r', css: '--w:clamp(56px,5.6vw,84px); top:90px;' },
-        { art: 'foam',    css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' },
+        { art: 'foam', cls: 'dv-l', css: '--w:clamp(58px,7.6vw,109px); top:180px; transform:rotate(-5deg);' },
         { art: 'monitor',   cls: 'dv-r', css: '--w:clamp(56px,5.4vw,82px); bottom:70px;' },
         { art: 'interface', cls: 'dv-l', css: '--w:clamp(92px,8.6vw,140px); bottom:190px;' },
         { art: 'laptop',        cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:60px;' },
         { art: 'daw_pianoroll', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:230px; transform:rotate(2deg);' },
         { art: 'daw_arrange',   cls: 'dv-bl', css: '--w:clamp(190px,16vw,268px); top:430px; transform:rotate(-2deg);' },
-        { art: 'foam',          css: 'bottom:-38px; right:-30px; width:112px; transform:rotate(6deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(54px,6.0vw,87px); bottom:22px; transform:rotate(6deg);' },
         { art: 'daw_arrange', cls: 'dv-bl', css: '--w:clamp(210px,19vw,310px); top:24px; transform:rotate(-2deg);' },
-        { art: 'foam',        cls: 'dv-m', css: 'width:94px; top:44px; right:-40px; transform:rotate(5deg);' }
+        { art: 'foam', cls: 'dv-m', css: 'width:68px; top:44px; right:8px; transform:rotate(5deg);' }
       ]],
       ['.content[data-category="serials"]', false, [
         { art: 'keyboard',    cls: 'dv-l', css: '--w:clamp(96px,9vw,148px); top:120px;' },
         { art: 'plugin_comp', cls: 'dv-l', css: '--w:clamp(120px,11vw,180px); bottom:190px; transform:rotate(-2deg);' },
         { art: 'micstand', cls: 'dv-r', css: '--w:clamp(70px,6.8vw,106px); bottom:60px;' },
-        { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(54px,6.9vw,99px); bottom:22px; transform:rotate(-6deg);' },
         { art: 'vumeter',  cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); top:34px;' },
         { art: 'stool',     cls: 'dv-l', css: '--w:clamp(60px,5.8vw,90px); bottom:56px;' },
         { art: 'daw_mixer', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(2deg);' },
-        { art: 'daw_mixer', cls: 'dv-m', css: 'width:150px; top:16px; left:-72px; transform:rotate(-2deg);' }
+        { art: 'daw_mixer', cls: 'dv-m', css: 'width:84px; top:16px; left:8px; transform:rotate(-2deg);' }
       ]],
       ['.content[data-category="ads"]', false, [
         { art: 'headphones', cls: 'dv-r', css: '--w:clamp(74px,7vw,112px); top:110px;' },
-        { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' },
+        { art: 'foam', cls: 'dv-l', css: '--w:clamp(54px,6.7vw,96px); bottom:22px; transform:rotate(4deg);' },
         { art: 'console',    cls: 'dv-l', css: '--w:clamp(98px,9.2vw,150px); bottom:80px;' },
         { art: 'interface',     cls: 'dv-r', css: '--w:clamp(92px,8.6vw,140px); bottom:80px;' },
         { art: 'daw_pianoroll', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); bottom:200px; transform:rotate(-2deg);' },
         { art: 'foam',    cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); top:40px; transform:rotate(6deg);' },
         { art: 'daw_eq',  cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(-2deg);' },
-        { art: 'daw_pianoroll', cls: 'dv-m', css: 'width:150px; top:20px; left:-70px; transform:rotate(-2deg);' }
+        { art: 'daw_pianoroll', cls: 'dv-m', css: 'width:84px; top:20px; left:8px; transform:rotate(-2deg);' }
       ]],
       ['.content[data-category="original"]', false, [
         { art: 'mic',        cls: 'dv-l', css: '--w:clamp(52px,5.2vw,80px); top:104px;' },
-        { art: 'foam',       css: 'bottom:-44px; right:-46px; width:146px; transform:rotate(-8deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(61px,7.8vw,113px); bottom:22px; transform:rotate(-8deg);' },
         { art: 'lyricstand',    cls: 'dv-r', css: '--w:clamp(72px,7vw,110px); bottom:66px;' },
         { art: 'plugin_reverb', cls: 'dv-l', css: '--w:clamp(124px,11.5vw,186px); top:330px; transform:rotate(2deg);' },
         { art: 'guitar',        cls: 'dv-r', css: '--w:clamp(60px,5.8vw,88px); bottom:280px;' },
-        { art: 'plugin_comp',   cls: 'dv-m', css: 'width:140px; top:24px; right:-62px; transform:rotate(-3deg);' },
+        { art: 'plugin_comp', cls: 'dv-m', css: 'width:84px; top:24px; right:8px; transform:rotate(-3deg);' },
         { art: 'cable',      cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); bottom:74px;' },
         { art: 'stool',      cls: 'dv-r', css: '--w:clamp(60px,5.8vw,90px); top:300px;' },
         { art: 'laptop',     cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:230px;' },
-        { art: 'foam',       css: 'bottom:-40px; left:-44px; width:134px; transform:rotate(5deg);' }
+        { art: 'foam', cls: 'dv-l', css: '--w:clamp(56px,7.2vw,104px); bottom:22px; transform:rotate(5deg);' }
       ]],
       ['footer#contact', true, [
         { art: 'micstand', cls: 'dv-l', css: '--w:clamp(88px,8.2vw,132px); bottom:34px;' },
         { art: 'monitor',  cls: 'dv-r', css: '--w:clamp(72px,6.6vw,104px); top:56px;' },
         { art: 'daw_eq',   cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:40px; transform:rotate(-2deg);' },
         { art: 'piano',    cls: 'dv-r', css: '--w:clamp(94px,8.6vw,138px); bottom:56px;' },
-        { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' },
+        { art: 'foam', cls: 'dv-r', css: '--w:clamp(54px,7.0vw,101px); top:22px; transform:rotate(7deg);' },
         { art: 'script',   cls: 'dv-r', css: '--w:clamp(64px,6vw,94px); bottom:40px;' },
-        { art: 'foam',     cls: 'dv-m', css: 'width:102px; bottom:-32px; right:-36px; transform:rotate(6deg);' },
-        { art: 'foam',        css: 'bottom:-48px; left:-38px; width:120px; transform:rotate(-6deg);' },
+        { art: 'foam', cls: 'dv-m', css: 'width:68px; bottom:18px; right:8px; transform:rotate(6deg);' },
+        { art: 'foam', cls: 'dv-l', css: '--w:clamp(54px,6.5vw,93px); bottom:22px; transform:rotate(-6deg);' },
         { art: 'daw_arrange', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(2deg);' },
-        { art: 'daw_arrange', cls: 'dv-m', css: 'width:150px; top:16px; right:-72px; transform:rotate(2deg);' }
+        { art: 'daw_arrange', cls: 'dv-m', css: 'width:84px; top:16px; right:8px; transform:rotate(2deg);' }
       ]]
     ];
 
@@ -4298,69 +4303,6 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
   }
 })();
 </script>
-<!-- ===== Voices strip: Kannada names ===== -->
-<script>
-  (function () {
-    // Keys must match the English text in the cards exactly.
-    var KN_NAMES = {
-      'Margot Robbie':        'ಮಾರ್ಗೋಟ್ ರಾಬಿ',
-      'Samantha Ruth Prabhu': 'ಸಮಂತಾ ರುತ್ ಪ್ರಭು',
-      'Raveena Tandon':       'ರವೀನಾ ಟಂಡನ್',
-      'Wamiqa Gabbi':         'ವಾಮಿಕಾ ಗಬ್ಬಿ',
-      'Nimisha Sajayan':      'ನಿಮಿಷಾ ಸಜಯನ್',
-      'Ramya Nambessan':      'ರಮ್ಯಾ ನಂಬೀಶನ್',
-      'Varu Sharathkumar':    'ವರು ಶರತ್‌ಕುಮಾರ್',
-      'Sania Mirza':          'ಸಾನಿಯಾ ಮಿರ್ಜಾ',
-      'Anaswara Rajan':       'ಅನಸ್ವರಾ ರಾಜನ್'
-    };
-  
-    var KN_PROJECTS = {
-      'Barbie':                'ಬಾರ್ಬಿ',
-      'Citadel: Honey Bunny':  'ಸಿಟಾಡೆಲ್: ಹನಿ ಬನ್ನಿ',
-      'Karma Calling':         'ಕರ್ಮ ಕಾಲಿಂಗ್',
-      'Jubilee':               'ಜುಬಿಲಿ',
-      'Poacher':               'ಪೋಚರ್',
-      'Dayaa':                 'ದಯಾ',
-      'Hanu-Man':              'ಹನು-ಮಾನ್',
-      'Centuary Mattress':     'ಸೆಂಚುರಿ ಮ್ಯಾಟ್ರೆಸ್',
-      'Kalyan Jewellers':      'ಕಲ್ಯಾಣ್ ಜ್ಯುವೆಲರ್ಸ್'
-    };
-  
-    try {
-      // Stash the English text once, so switching back is exact rather than a
-      // reverse lookup (two actors could share a project title).
-      var fields = document.querySelectorAll('.voice-name, .voice-project');
-      if (!fields.length) return;
-  
-      Array.prototype.forEach.call(fields, function (el) {
-        if (!el.hasAttribute('data-en')) {
-          el.setAttribute('data-en', el.textContent.trim());
-        }
-      });
-  
-      function apply(lang) {
-        Array.prototype.forEach.call(fields, function (el) {
-          var en = el.getAttribute('data-en');
-          var map = el.classList.contains('voice-name') ? KN_NAMES : KN_PROJECTS;
-          // Fall back to English for anything not in the map, so a missing
-          // entry shows the original rather than going blank.
-          el.textContent = (lang === 'kn' && map[en]) ? map[en] : en;
-        });
-      }
-  
-      document.querySelectorAll('.lang-option').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          apply(btn.getAttribute('data-lang'));
-        });
-      });
-  
-      // Respect whichever button is already active on load
-      var active = document.querySelector('.lang-option.active');
-      if (active) apply(active.getAttribute('data-lang'));
-    } catch (err) {
-      console.error('[voices] Kannada names disabled:', err);
-    }
-  })();
-  </script>
+
 </body>
 </html>
