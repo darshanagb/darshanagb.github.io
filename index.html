@@ -4304,5 +4304,33 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
 })();
 </script>
 
+<!-- ===== Instagram embeds: give their layout room ===== -->
+<style>
+/* The "Watch more on Instagram" bar lives inside Instagram's cross-origin
+   iframe, so it can't be styled or removed from here. It overlaps the video
+   only when the iframe is too short for their layout: a reel is 9:16 media
+   plus roughly 90px of their own chrome. The previous 50vw x 120vh made the
+   frame 720px wide (needing ~1370px of height) inside a 900px viewport.
+   Constraining the WIDTH is what makes the required height fit on screen. */
+#videoModal iframe {
+  /* Width is limited by viewport HEIGHT as well, so the height the embed needs
+     always fits: short laptop screens get a narrower frame rather than a
+     clipped one. */
+  width: min(400px, 92vw, calc((90vh - 96px) / 1.78));
+  height: calc(min(400px, 92vw, calc((90vh - 96px) / 1.78)) * 1.78 + 96px);
+  max-height: 90vh;
+  border-radius: 10px;
+  background: #000;
+}
+
+/* Same reasoning for the in-card previews: 320px wide needs ~660px to lay out
+   fully, which would make the cards enormous, so these stay as previews and
+   the modal is where the video is actually watched. */
+.video iframe.instagram-embed {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+</style>
+
 </body>
 </html>
