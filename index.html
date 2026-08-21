@@ -2018,7 +2018,7 @@ button:active,
   <section class="bio lang-en">
     <div class="about-wrapper">
       <div class="about-text">
-        <h2 class="about-title">About Me</h2>
+        <h2 class="about-title">💃🏻 About Me</h2>
         <p class="about-description">
           I'm <strong>Darshana GB</strong>, a passionate dubbing & voice-over artist based in Bengaluru, Karnataka. Through every film, series, ad, or character — I strive to lend not just a voice, but a soul.
         </p>
@@ -2030,7 +2030,7 @@ button:active,
   <section class="bio lang-kn hidden">
     <div class="about-wrapper">
       <div class="about-text">
-        <h2 class="about-title">ನನ್ನ ಪರಿಚಯ</h2>
+        <h2 class="about-title">👩‍🎤 ನನ್ನ ಪರಿಚಯ</h2>
         <p class="about-description">
           ನಾನು <strong>ದರ್ಶನಾ</strong>, ಬೆಂಗಳೂರು ಮೂಲದ ವೃತ್ತಿಪರ ಡಬ್ಬಿಂಗ್ ಮತ್ತು ಧ್ವನಿ ಕಲಾವಿದೆ.
         </p>
@@ -3678,6 +3678,47 @@ pre {
 footer#contact {
   max-width: 100%;
   box-sizing: border-box;
+}
+</style>
+
+<!-- ===== Kannada toggle: flag bicolour ===== -->
+<style>
+/* Hard 50/50 split, not a blend — a gradient would read as a colour wash
+   rather than the flag. */
+.lang-option[data-lang="kn"] {
+  font-size: 1.15em;
+  line-height: 1.1;
+  background: linear-gradient(180deg,
+    rgba(255, 206, 0, 0.32) 0 50%,
+    rgba(226, 35, 26, 0.32) 50% 100%);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  /* The glyph crosses both bands, so an outline keeps it legible on each */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.lang-option[data-lang="kn"]:hover {
+  background: linear-gradient(180deg,
+    rgba(255, 206, 0, 0.5) 0 50%,
+    rgba(226, 35, 26, 0.5) 50% 100%);
+  color: #fff;
+}
+
+.lang-option[data-lang="kn"].active,
+.lang-option[data-lang="kn"].active:hover {
+  background: linear-gradient(180deg,
+    #ffce00 0 50%,
+    #e2231a 50% 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.lang-option[data-lang="kn"].active {
+  box-shadow: 0 4px 20px rgba(226, 35, 26, 0.45);
+}
+.lang-option[data-lang="kn"].active:hover {
+  box-shadow: 0 6px 25px rgba(226, 35, 26, 0.55);
 }
 </style>
 
