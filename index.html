@@ -4262,5 +4262,42 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
 })();
 </script>
 
+<!-- ===== Voices strip: no text selection while dragging ===== -->
+<style>
+/* Scoped to the strip only — the rest of the page stays selectable on desktop. */
+.voices-track-wrap,
+.voices-track-wrap * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+/* Stop the browser's native image-drag ghost, which also cancels the swipe */
+.voices-track-wrap img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function () {
+  try {
+    var wrap = document.querySelector('.voices-track-wrap');
+    if (!wrap) return;
+
+    // user-select:none stops the highlight, but the browser still begins a
+    // selection drag from the mousedown. Cancelling the default here is what
+    // actually keeps the cursor from turning into a text-selection drag.
+    wrap.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      e.preventDefault();
+    });
+    wrap.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  } catch (err) {
+    console.error('[voices] selection guard disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
