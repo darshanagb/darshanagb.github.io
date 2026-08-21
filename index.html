@@ -3309,7 +3309,7 @@ footer .footer-content,
     // continuing off-screen rather than as floating squares.
     var SPEC = [
       ['.hero-unit > header', true, [
-        { art: 'daw_arrange', cls: 'dv-bl', css: '--w:clamp(190px,17vw,280px); top:22px; transform:rotate(-2deg);' },
+        { art: 'daw_arrange', cls: 'dv-l', css: '--w:clamp(190px,16vw,268px); top:24px; transform:rotate(-2deg);' },
         { art: 'foam',        css: 'bottom:-38px; right:-30px; width:112px; transform:rotate(6deg);' }
       ]],
       ['#about.about-modern', false, [
@@ -3400,6 +3400,23 @@ footer .footer-content,
       host.insertBefore(layer, host.firstChild);
     });
 
+    /* Each band reserves only as much width as its content actually uses. The
+       hero's content is ~650px, not 1100px, so assuming the global column left
+       a lot of usable gutter unused (and forced the hero window off-edge). */
+    function measureBands() {
+      Array.prototype.forEach.call(document.querySelectorAll('.dv-props'), function (layer) {
+        var host = layer.parentNode;
+        if (!host) return;
+        var widest = 0;
+        Array.prototype.forEach.call(host.children, function (child) {
+          if (child === layer || child.nodeType !== 1) return;
+          var w = child.getBoundingClientRect().width;
+          if (w > widest) widest = w;
+        });
+        if (widest > 80) layer.style.setProperty('--band-inner', Math.ceil(widest) + 'px');
+      });
+    }
+
     /* ---------- overlap resolver ----------
        Band heights aren't knowable at authoring time, so collisions are settled
        after layout: each prop is nudged vertically (alternating up/down) until
@@ -3415,6 +3432,7 @@ footer .footer-content,
     function resolve() {
       if (resolving) return;
       resolving = true;
+      measureBands();
 
       Array.prototype.forEach.call(document.querySelectorAll('.dv-props'), function (layer) {
         var props = Array.prototype.slice.call(layer.children);
