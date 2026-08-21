@@ -3132,6 +3132,51 @@ footer .footer-content,
           '<rect class="solid" x="90" y="64" width="12" height="7" rx="2.5"/>' +
           '<rect class="solid" x="120" y="54" width="12" height="7" rx="2.5"/>' +
         '</svg>',
+      interface:
+        '<svg viewBox="0 0 142 78" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="4" y="8" width="134" height="62" rx="10"/>' +
+          '<circle cx="34" cy="39" r="15"/>' +
+          '<circle class="solid" cx="34" cy="39" r="4"/>' +
+          '<circle cx="76" cy="39" r="15"/>' +
+          '<circle class="solid" cx="76" cy="39" r="4"/>' +
+          '<circle cx="112" cy="26" r="7"/>' +
+          '<circle cx="112" cy="52" r="7"/>' +
+        '</svg>',
+      stool:
+        '<svg viewBox="0 0 112 142" xmlns="http://www.w3.org/2000/svg">' +
+          '<ellipse cx="56" cy="34" rx="40" ry="14"/>' +
+          '<line x1="21" y1="41" x2="11" y2="130"/>' +
+          '<line x1="91" y1="41" x2="101" y2="130"/>' +
+          '<line x1="56" y1="48" x2="56" y2="134"/>' +
+          '<path d="M23 98 Q56 110 89 98"/>' +
+        '</svg>',
+      laptop:
+        '<svg viewBox="0 0 152 102" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="25" y="8" width="102" height="64" rx="7"/>' +
+          '<line x1="46" y1="34" x2="46" y2="46"/>' +
+          '<line x1="58" y1="26" x2="58" y2="54"/>' +
+          '<line x1="70" y1="32" x2="70" y2="48"/>' +
+          '<line x1="82" y1="22" x2="82" y2="58"/>' +
+          '<line x1="94" y1="30" x2="94" y2="50"/>' +
+          '<line x1="106" y1="36" x2="106" y2="44"/>' +
+          '<path d="M13 90 L27 72 L125 72 L139 90 Z"/>' +
+        '</svg>',
+      vumeter:
+        '<svg viewBox="0 0 122 92" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="4" y="6" width="114" height="80" rx="9"/>' +
+          '<path d="M25 68 A40 40 0 0 1 97 68"/>' +
+          '<line x1="61" y1="71" x2="84" y2="39"/>' +
+          '<circle class="solid" cx="61" cy="71" r="4.5"/>' +
+        '</svg>',
+      script:
+        '<svg viewBox="0 0 100 132" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="8" y="15" width="84" height="110" rx="8"/>' +
+          '<rect x="34" y="4" width="32" height="17" rx="6"/>' +
+          '<line x1="24" y1="46" x2="76" y2="46"/>' +
+          '<line x1="24" y1="62" x2="76" y2="62"/>' +
+          '<line x1="24" y1="78" x2="61" y2="78"/>' +
+          '<line x1="24" y1="94" x2="70" y2="94"/>' +
+        '</svg>',
       cable:
         '<svg viewBox="0 0 112 102" xmlns="http://www.w3.org/2000/svg">' +
           '<circle cx="50" cy="50" r="34"/>' +
@@ -3149,37 +3194,51 @@ footer .footer-content,
         { art: 'foam',       css: 'top:-34px; left:-46px; width:158px; transform:rotate(-7deg);' },
         { art: 'foam',       css: 'bottom:-52px; right:-38px; width:132px; transform:rotate(6deg);' },
         { art: 'mic',        cls: 'dv-r', css: '--w:clamp(54px,5.4vw,82px); top:64px;' },
-        { art: 'headphones', cls: 'dv-l', css: '--w:clamp(72px,7vw,112px); bottom:46px;' }
+        { art: 'headphones', cls: 'dv-l', css: '--w:clamp(72px,7vw,112px); bottom:46px;' },
+        { art: 'script',     cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:52px;' }
       ]],
       ['.works-header', false, [
         { art: 'foam',      css: 'top:-40px; right:-34px; width:126px; transform:rotate(9deg);' },
-        { art: 'popfilter', cls: 'dv-l', css: '--w:clamp(70px,6.6vw,104px); bottom:14px;' }
+        { art: 'popfilter', cls: 'dv-l', css: '--w:clamp(70px,6.6vw,104px); bottom:14px;' },
+        { art: 'vumeter',   cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); bottom:20px;' },
+        { art: 'foam',      cls: 'dv-l', css: '--w:clamp(56px,5.4vw,84px); top:26px; transform:rotate(-5deg);' }
       ]],
       ['.portfolio[data-category="movies"]', false, [
         { art: 'guitar',  cls: 'dv-r', css: '--w:clamp(56px,5.6vw,84px); top:90px;' },
         { art: 'foam',    css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' },
-        { art: 'monitor', cls: 'dv-r', css: '--w:clamp(56px,5.4vw,82px); bottom:70px;' }
+        { art: 'monitor',   cls: 'dv-r', css: '--w:clamp(56px,5.4vw,82px); bottom:70px;' },
+        { art: 'interface', cls: 'dv-l', css: '--w:clamp(92px,8.6vw,140px); bottom:190px;' },
+        { art: 'laptop',    cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:60px;' }
       ]],
       ['.content[data-category="serials"]', false, [
         { art: 'keyboard', cls: 'dv-l', css: '--w:clamp(96px,9vw,148px); top:120px;' },
         { art: 'micstand', cls: 'dv-r', css: '--w:clamp(70px,6.8vw,106px); bottom:60px;' },
-        { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' }
+        { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' },
+        { art: 'vumeter',  cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); top:34px;' },
+        { art: 'stool',    cls: 'dv-l', css: '--w:clamp(60px,5.8vw,90px); bottom:56px;' }
       ]],
       ['.content[data-category="ads"]', false, [
         { art: 'headphones', cls: 'dv-r', css: '--w:clamp(74px,7vw,112px); top:110px;' },
         { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' },
-        { art: 'console',    cls: 'dv-l', css: '--w:clamp(98px,9.2vw,150px); bottom:80px;' }
+        { art: 'console',    cls: 'dv-l', css: '--w:clamp(98px,9.2vw,150px); bottom:80px;' },
+        { art: 'interface',  cls: 'dv-r', css: '--w:clamp(92px,8.6vw,140px); bottom:80px;' },
+        { art: 'foam',       cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); top:40px; transform:rotate(6deg);' }
       ]],
       ['.content[data-category="original"]', false, [
         { art: 'mic',        cls: 'dv-l', css: '--w:clamp(52px,5.2vw,80px); top:104px;' },
         { art: 'foam',       css: 'top:60px; right:-50px; width:146px; transform:rotate(-8deg);' },
         { art: 'lyricstand', cls: 'dv-r', css: '--w:clamp(72px,7vw,110px); bottom:66px;' },
-        { art: 'cable',      cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); bottom:74px;' }
+        { art: 'cable',      cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); bottom:74px;' },
+        { art: 'stool',      cls: 'dv-r', css: '--w:clamp(60px,5.8vw,90px); top:300px;' },
+        { art: 'laptop',     cls: 'dv-l', css: '--w:clamp(96px,9vw,146px); bottom:230px;' },
+        { art: 'foam',       css: 'bottom:-40px; left:-44px; width:134px; transform:rotate(5deg);' }
       ]],
       ['footer#contact', true, [
         { art: 'micstand', cls: 'dv-l', css: '--w:clamp(74px,7vw,112px); bottom:34px;' },
         { art: 'monitor',  cls: 'dv-r', css: '--w:clamp(56px,5.4vw,84px); top:56px;' },
-        { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' }
+        { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' },
+        { art: 'script',   cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:40px;' },
+        { art: 'foam',     css: 'bottom:-48px; left:-38px; width:120px; transform:rotate(-6deg);' }
       ]]
     ];
 
