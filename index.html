@@ -2948,5 +2948,183 @@ button:active,
 })();
 </script>
 
+<!-- ===== Studio set dressing: foam panels + equipment line art ===== -->
+<style>
+.dv-props {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.dv-host { position: relative; }
+
+/* Content sits above the props */
+#about.about-modern .about-wrapper,
+.works-title-container,
+.portfolio[data-category] > *:not(.dv-props),
+.content[data-category] > *:not(.dv-props) {
+  position: relative;
+  z-index: 1;
+}
+
+.dv-prop { position: absolute; }
+
+/* Black acoustic panel — wedge-cut, lit from the top-left */
+.dv-prop.dv-foam {
+  aspect-ratio: 1 / 1;
+  border-radius: 7px;
+  background-color: #14232c;
+  background-image: conic-gradient(from 45deg at 50% 50%,
+    #16272f 0deg 90deg,
+    #0b141a 90deg 180deg,
+    #1a2f3a 180deg 270deg,
+    #26414f 270deg 360deg);
+  background-size: 22px 22px;
+  box-shadow: 0 16px 34px rgba(3, 28, 42, 0.22);
+  opacity: 0.93;
+}
+
+/* Equipment line art */
+.dv-prop.dv-gear {
+  color: #031c2a;
+  opacity: 0.16;
+}
+.dv-prop.dv-gear svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dv-prop.dv-gear svg .solid { fill: currentColor; stroke: none; }
+
+/* No gutters to hide in below this width */
+@media (max-width: 1199px) {
+  .dv-props { display: none; }
+}
+</style>
+
+<script>
+(function () {
+  try {
+    var ART = {
+      mic:
+        '<svg viewBox="0 0 64 124" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="20" y="6" width="24" height="46" rx="12"/>' +
+          '<line x1="26" y1="17" x2="38" y2="17"/>' +
+          '<line x1="26" y1="25" x2="38" y2="25"/>' +
+          '<line x1="26" y1="33" x2="38" y2="33"/>' +
+          '<path d="M14 40 a18 18 0 0 0 36 0"/>' +
+          '<line x1="32" y1="58" x2="32" y2="86"/>' +
+          '<rect x="18" y="86" width="28" height="7" rx="3.5"/>' +
+          '<line x1="32" y1="93" x2="32" y2="114"/>' +
+          '<line x1="15" y1="115" x2="49" y2="115"/>' +
+        '</svg>',
+      headphones:
+        '<svg viewBox="0 0 100 92" xmlns="http://www.w3.org/2000/svg">' +
+          '<path d="M15 58 V45 a35 35 0 0 1 70 0 V58"/>' +
+          '<rect x="4" y="52" width="23" height="35" rx="11"/>' +
+          '<rect x="73" y="52" width="23" height="35" rx="11"/>' +
+        '</svg>',
+      popfilter:
+        '<svg viewBox="0 0 104 88" xmlns="http://www.w3.org/2000/svg">' +
+          '<circle cx="33" cy="38" r="29"/>' +
+          '<circle cx="33" cy="38" r="21"/>' +
+          '<path d="M62 38 C 80 38, 74 64, 90 70"/>' +
+          '<rect x="86" y="64" width="9" height="18" rx="3"/>' +
+        '</svg>',
+      guitar:
+        '<svg viewBox="0 0 82 152" xmlns="http://www.w3.org/2000/svg">' +
+          '<circle cx="41" cy="112" r="31"/>' +
+          '<circle cx="41" cy="75" r="24"/>' +
+          '<circle cx="41" cy="95" r="9"/>' +
+          '<rect x="34" y="17" width="14" height="46" rx="3"/>' +
+          '<rect x="29" y="4" width="24" height="15" rx="4"/>' +
+        '</svg>',
+      keyboard:
+        '<svg viewBox="0 0 144 62" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="3" y="9" width="138" height="45" rx="6"/>' +
+          '<line x1="21" y1="22" x2="21" y2="54"/>' +
+          '<line x1="39" y1="22" x2="39" y2="54"/>' +
+          '<line x1="57" y1="22" x2="57" y2="54"/>' +
+          '<line x1="75" y1="22" x2="75" y2="54"/>' +
+          '<line x1="93" y1="22" x2="93" y2="54"/>' +
+          '<line x1="111" y1="22" x2="111" y2="54"/>' +
+          '<line x1="129" y1="22" x2="129" y2="54"/>' +
+          '<rect class="solid" x="16" y="22" width="9" height="19" rx="2"/>' +
+          '<rect class="solid" x="34" y="22" width="9" height="19" rx="2"/>' +
+          '<rect class="solid" x="70" y="22" width="9" height="19" rx="2"/>' +
+          '<rect class="solid" x="88" y="22" width="9" height="19" rx="2"/>' +
+          '<rect class="solid" x="106" y="22" width="9" height="19" rx="2"/>' +
+        '</svg>'
+    };
+
+    // Everything lives outside the 1100px content column, and panels are
+    // deliberately allowed to bleed past the band edge so they read as a wall
+    // continuing off-screen rather than as floating squares.
+    var SPEC = [
+      ['#about.about-modern', [
+        { art: 'foam',       css: 'top:-34px; left:-46px; width:158px; transform:rotate(-7deg);' },
+        { art: 'foam',       css: 'bottom:-52px; right:-38px; width:132px; transform:rotate(6deg);' },
+        { art: 'mic',        css: 'top:64px; right:2.2%; width:clamp(54px,5.4vw,82px);' },
+        { art: 'headphones', css: 'bottom:46px; left:2.4%; width:clamp(72px,7vw,112px);' }
+      ]],
+      ['.works-header', [
+        { art: 'foam',      css: 'top:-40px; right:-34px; width:126px; transform:rotate(9deg);' },
+        { art: 'popfilter', css: 'bottom:14px; left:2.6%; width:clamp(70px,6.6vw,104px);' }
+      ]],
+      ['.portfolio[data-category="movies"]', [
+        { art: 'guitar', css: 'top:90px; right:2.2%; width:clamp(56px,5.6vw,84px);' },
+        { art: 'foam',   css: 'top:180px; left:-56px; width:140px; transform:rotate(-5deg);' }
+      ]],
+      ['.content[data-category="serials"]', [
+        { art: 'keyboard', css: 'top:120px; left:2.2%; width:clamp(96px,9vw,148px);' }
+      ]],
+      ['.content[data-category="ads"]', [
+        { art: 'headphones', css: 'top:110px; right:2.4%; width:clamp(74px,7vw,112px);' },
+        { art: 'foam',       css: 'bottom:-46px; left:-40px; width:124px; transform:rotate(4deg);' }
+      ]],
+      ['.content[data-category="original"]', [
+        { art: 'mic',  css: 'top:104px; left:2.6%; width:clamp(52px,5.2vw,80px);' },
+        { art: 'foam', css: 'top:60px; right:-50px; width:146px; transform:rotate(-8deg);' }
+      ]]
+    ];
+
+    SPEC.forEach(function (entry) {
+      var host = document.querySelector(entry[0]);
+      if (!host || host.querySelector(':scope > .dv-props')) return;
+
+      host.classList.add('dv-host');
+      var layer = document.createElement('div');
+      layer.className = 'dv-props';
+      layer.setAttribute('aria-hidden', 'true');
+
+      entry[1].forEach(function (p) {
+        var el = document.createElement('div');
+        if (p.art === 'foam') {
+          el.className = 'dv-prop dv-foam';
+        } else {
+          el.className = 'dv-prop dv-gear';
+          el.innerHTML = ART[p.art] || '';
+        }
+        el.setAttribute('style', p.css);
+        layer.appendChild(el);
+      });
+
+      host.insertBefore(layer, host.firstChild);
+    });
+  } catch (err) {
+    Array.prototype.forEach.call(document.querySelectorAll('.dv-props'), function (n) {
+      if (n.parentNode) n.parentNode.removeChild(n);
+    });
+    console.error('[studio props] disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
