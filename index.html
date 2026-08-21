@@ -3494,5 +3494,57 @@ footer .footer-content,
 })();
 </script>
 
+<!-- ===== Kill horizontal overflow ===== -->
+<style>
+/* `clip` rather than `hidden`: hidden turns the element into a scroll
+   container, which can break position:fixed/sticky on some mobile browsers.
+   clip just cuts the overflow off without changing scroll behaviour. */
+html { overflow-x: clip; }
+body { overflow-x: clip; max-width: 100%; }
+
+@supports not (overflow: clip) {
+  html, body { overflow-x: hidden; }
+}
+
+/* Nothing embedded may exceed its container — the usual culprits */
+img,
+video,
+iframe,
+table,
+pre {
+  max-width: 100%;
+}
+
+/* Portfolio embeds carry width="1300" as an HTML attribute; the base rule
+   pins them to 320px, which is wider than the card's content box on small
+   phones. Let them fill the card instead. */
+.video iframe {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Long unbroken strings (the email address) shouldn't push the page wide */
+.info-pill,
+.email-container,
+.contact-section {
+  max-width: 100%;
+  min-width: 0;
+}
+.info-pill span { overflow-wrap: anywhere; }
+
+/* Full-bleed bands span the viewport, never more */
+.hero-unit,
+.voices-strip,
+#about.about-modern,
+.works-header,
+.filter-bar,
+.portfolio[data-category],
+.content[data-category],
+footer#contact {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+</style>
+
 </body>
 </html>
