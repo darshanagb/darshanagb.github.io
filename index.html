@@ -3784,5 +3784,84 @@ footer#contact {
 }
 </style>
 
+<!-- ===== Voice cards: actor photos with initials fallback ===== -->
+<style>
+.voice-avatar { overflow: hidden; position: relative; }
+.voice-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;   /* faces sit high in most portraits */
+  border-radius: 50%;
+  display: block;
+}
+.dv-vfx .voice-card:hover .voice-avatar img { transform: none; }
+</style>
+
+<script>
+(function () {
+  // ---------------------------------------------------------------------
+  // Drop an image path in beside each name and it replaces the initials.
+  // Leave a value empty and that card keeps its initials — mixing is fine,
+  // so you can add them one at a time.
+  //
+  // Square crops work best (the avatar is a circle). 200x200 is plenty.
+  // ---------------------------------------------------------------------
+  var VOICE_PICS = {
+    'Margot Robbie':        '',   // e.g. 'actors/margot-robbie.jpg'
+    'Samantha Ruth Prabhu': '',
+    'Raveena Tandon':       '',
+    'Wamiqa Gabbi':         '',
+    'Nimisha Sajayan':      '',
+    'Ramya Nambessan':      '',
+    'Varu Sharathkumar':    '',
+    'Sania Mirza':          '',
+    'Anaswara Rajan':       ''
+  };
+
+  try {
+    var cards = document.querySelectorAll('.voice-card');
+    if (!cards.length) return;
+
+    Array.prototype.forEach.call(cards, function (card) {
+      var avatar = card.querySelector('.voice-avatar');
+      var nameEl = card.querySelector('.voice-name');
+      if (!avatar || !nameEl || avatar.querySelector('img')) return;
+
+      var src = VOICE_PICS[nameEl.textContent.trim()];
+      if (!src) return;
+
+      // Keep the initials as the fallback: they stay in the DOM until the
+      // image actually loads, and come back if it 404s.
+      var initials = avatar.textContent.trim();
+      avatar.setAttribute('data-initials', initials);
+
+      var img = document.createElement('img');
+      img.alt = nameEl.textContent.trim();
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      img.onload = function () {
+        // remove only the text node, leaving the <img> in place
+        Array.prototype.slice.call(avatar.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) { avatar.removeChild(n); }
+        });
+      };
+      img.onerror = function () {
+        if (img.parentNode) { img.parentNode.removeChild(img); }
+        console.warn('[voices] image missing for ' + nameEl.textContent.trim() + ': ' + src);
+      };
+
+      img.src = src;
+      avatar.appendChild(img);
+    });
+  } catch (err) {
+    console.error('[voices] photo swap disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
