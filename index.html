@@ -2963,6 +2963,7 @@ button:active,
 #about.about-modern .about-wrapper,
 .works-title-container,
 footer .footer-content,
+.hero-unit > header .header-content,
 .portfolio[data-category] > *:not(.dv-props),
 .content[data-category] > *:not(.dv-props) {
   position: relative;
@@ -3307,10 +3308,15 @@ footer .footer-content,
     // deliberately allowed to bleed past the band edge so they read as a wall
     // continuing off-screen rather than as floating squares.
     var SPEC = [
+      ['.hero-unit > header', true, [
+        { art: 'daw_arrange', cls: 'dv-bl', css: '--w:clamp(190px,17vw,280px); top:22px; transform:rotate(-2deg);' },
+        { art: 'foam',        css: 'bottom:-38px; right:-30px; width:112px; transform:rotate(6deg);' }
+      ]],
       ['#about.about-modern', false, [
         { art: 'foam',       css: 'top:-34px; left:-46px; width:158px; transform:rotate(-7deg);' },
         { art: 'foam',       css: 'bottom:-52px; right:-38px; width:132px; transform:rotate(6deg);' },
-        { art: 'mic',        cls: 'dv-r', css: '--w:clamp(54px,5.4vw,82px); top:64px;' },
+        { art: 'mic',        cls: 'dv-l', css: '--w:clamp(54px,5.4vw,82px); top:40px;' },
+        { art: 'daw_mixer',  cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:40px; transform:rotate(2deg);' },
         { art: 'headphones', cls: 'dv-l', css: '--w:clamp(72px,7vw,112px); bottom:46px;' },
         { art: 'script',     cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:52px;' }
       ]],
@@ -3318,7 +3324,8 @@ footer .footer-content,
         { art: 'foam',      css: 'top:-40px; right:-34px; width:126px; transform:rotate(9deg);' },
         { art: 'popfilter', cls: 'dv-l', css: '--w:clamp(70px,6.6vw,104px); bottom:14px;' },
         { art: 'vumeter',   cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); bottom:20px;' },
-        { art: 'foam',      cls: 'dv-l', css: '--w:clamp(56px,5.4vw,84px); top:26px; transform:rotate(-5deg);' }
+        { art: 'foam',      cls: 'dv-r', css: '--w:clamp(56px,5.4vw,84px); top:24px; transform:rotate(-5deg);' },
+        { art: 'daw_eq',    cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:26px; transform:rotate(-2deg);' }
       ]],
       ['.portfolio[data-category="movies"]', false, [
         { art: 'guitar',  cls: 'dv-r', css: '--w:clamp(56px,5.6vw,84px); top:90px;' },
@@ -3334,7 +3341,7 @@ footer .footer-content,
         { art: 'foam',     css: 'bottom:-44px; right:-42px; width:128px; transform:rotate(-6deg);' },
         { art: 'vumeter',  cls: 'dv-r', css: '--w:clamp(64px,6vw,96px); top:34px;' },
         { art: 'stool',     cls: 'dv-l', css: '--w:clamp(60px,5.8vw,90px); bottom:56px;' },
-        { art: 'daw_mixer', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:210px; transform:rotate(2deg);' }
+        { art: 'daw_mixer', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(2deg);' }
       ]],
       ['.content[data-category="ads"]', false, [
         { art: 'headphones', cls: 'dv-r', css: '--w:clamp(74px,7vw,112px); top:110px;' },
@@ -3342,11 +3349,11 @@ footer .footer-content,
         { art: 'console',    cls: 'dv-l', css: '--w:clamp(98px,9.2vw,150px); bottom:80px;' },
         { art: 'interface',  cls: 'dv-r', css: '--w:clamp(92px,8.6vw,140px); bottom:80px;' },
         { art: 'foam',    cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); top:40px; transform:rotate(6deg);' },
-        { art: 'daw_eq',  cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:250px; transform:rotate(-2deg);' }
+        { art: 'daw_eq',  cls: 'dv-bl', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(-2deg);' }
       ]],
       ['.content[data-category="original"]', false, [
         { art: 'mic',        cls: 'dv-l', css: '--w:clamp(52px,5.2vw,80px); top:104px;' },
-        { art: 'foam',       css: 'top:60px; right:-50px; width:146px; transform:rotate(-8deg);' },
+        { art: 'foam',       css: 'bottom:-44px; right:-46px; width:146px; transform:rotate(-8deg);' },
         { art: 'lyricstand', cls: 'dv-r', css: '--w:clamp(72px,7vw,110px); bottom:66px;' },
         { art: 'cable',      cls: 'dv-l', css: '--w:clamp(58px,5.6vw,88px); bottom:74px;' },
         { art: 'stool',      cls: 'dv-r', css: '--w:clamp(60px,5.8vw,90px); top:300px;' },
@@ -3359,7 +3366,7 @@ footer .footer-content,
         { art: 'foam',     css: 'top:-42px; right:-36px; width:130px; transform:rotate(7deg);' },
         { art: 'script',   cls: 'dv-r', css: '--w:clamp(50px,4.8vw,74px); bottom:40px;' },
         { art: 'foam',        css: 'bottom:-48px; left:-38px; width:120px; transform:rotate(-6deg);' },
-        { art: 'daw_arrange', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); bottom:110px; transform:rotate(2deg);' }
+        { art: 'daw_arrange', cls: 'dv-br', css: '--w:clamp(200px,18vw,296px); top:36px; transform:rotate(2deg);' }
       ]]
     ];
 
@@ -3386,11 +3393,80 @@ footer .footer-content,
         }
         if (p.cls) { el.className += ' ' + p.cls; }
         el.setAttribute('style', p.css);
+        el.dataset.t = el.style.transform || '';
         layer.appendChild(el);
       });
 
       host.insertBefore(layer, host.firstChild);
     });
+
+    /* ---------- overlap resolver ----------
+       Band heights aren't knowable at authoring time, so collisions are settled
+       after layout: each prop is nudged vertically (alternating up/down) until
+       it clears everything already placed, and hidden if it never does. */
+    function overlaps(a, b, pad) {
+      return !(a.right + pad < b.left || b.right + pad < a.left ||
+               a.bottom + pad < b.top || b.bottom + pad < a.top);
+    }
+
+    var STEPS = [0, -28, 28, -58, 58, -92, 92, -130, 130];
+    var resolving = false;
+
+    function resolve() {
+      if (resolving) return;
+      resolving = true;
+
+      Array.prototype.forEach.call(document.querySelectorAll('.dv-props'), function (layer) {
+        var props = Array.prototype.slice.call(layer.children);
+
+        props.forEach(function (el) {
+          el.style.display = '';
+          el.style.transform = el.dataset.t || '';
+        });
+
+        var hostRect = layer.getBoundingClientRect();
+        if (!hostRect.height) return;
+
+        var placed = [];
+        props.forEach(function (el) {
+          var settled = false;
+          for (var i = 0; i < STEPS.length; i++) {
+            var dy = STEPS[i];
+            el.style.transform = (dy ? 'translateY(' + dy + 'px) ' : '') + (el.dataset.t || '');
+            var r = el.getBoundingClientRect();
+            if (r.top < hostRect.top - 4 || r.bottom > hostRect.bottom + 4) continue;
+            var clash = false;
+            for (var j = 0; j < placed.length; j++) {
+              if (overlaps(placed[j], r, 12)) { clash = true; break; }
+            }
+            if (!clash) { placed.push(r); settled = true; break; }
+          }
+          if (!settled) el.style.display = 'none';
+        });
+      });
+
+      resolving = false;
+    }
+
+    var rTimer;
+    function scheduleResolve() {
+      clearTimeout(rTimer);
+      rTimer = setTimeout(resolve, 180);
+    }
+
+    resolve();
+    window.addEventListener('load', scheduleResolve);
+    window.addEventListener('resize', scheduleResolve);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleResolve);
+
+    // Filtering categories changes band heights, so re-settle afterwards.
+    var fb = document.querySelector('.filter-bar');
+    if (fb) fb.addEventListener('click', function () { setTimeout(resolve, 420); });
+
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(scheduleResolve);
+      Array.prototype.forEach.call(document.querySelectorAll('.dv-host'), function (h) { ro.observe(h); });
+    }
   } catch (err) {
     Array.prototype.forEach.call(document.querySelectorAll('.dv-props'), function (n) {
       if (n.parentNode) n.parentNode.removeChild(n);
