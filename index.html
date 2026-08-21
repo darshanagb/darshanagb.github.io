@@ -3877,5 +3877,77 @@ footer#contact {
 }
 </style>
 
+<!-- ===== Voice avatars: larger base + hover magnification ===== -->
+<style>
+/* C — bigger for everyone. Works on touch, where there is no hover at all. */
+.voice-avatar {
+  width: 72px;
+  height: 72px;
+  font-size: 1.15rem;
+}
+.voice-card {
+  padding: 14px 24px 14px 14px;
+}
+
+/* A — magnify on hover. transform only, so the marquee never reflows.
+   The nudge left grows it into the card's own 14px padding instead of
+   crowding the name beside it. */
+.dv-vfx .voice-card:hover .voice-avatar {
+  transform: translateX(-4px) scale(1.3);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+.dv-vfx .voice-card {
+  position: relative;
+}
+/* Hovered card sits above its neighbours so the enlarged photo isn't
+   overlapped by the next pill along. */
+.dv-vfx .voice-card:hover {
+  z-index: 5;
+}
+.voice-avatar {
+  transition: transform .32s cubic-bezier(.22, 1, .36, 1),
+              box-shadow .32s ease;
+}
+
+@media (max-width: 480px) {
+  .voice-avatar { width: 64px; height: 64px; font-size: 1.05rem; }
+}
+</style>
+
+<script>
+(function () {
+  // The avatar renders at 72px, and up to ~94px magnified. On a 2x screen that
+  // wants a 190px source. Flag anything below that once, by filename.
+  var MIN_SRC = 190;
+  try {
+    var seen = {};
+    function check(img) {
+      var w = img.naturalWidth;
+      if (!w || seen[img.src]) return;
+      seen[img.src] = true;
+      var file = img.src.split('/').pop();
+      if (w < MIN_SRC) {
+        console.warn('[voices] ' + file + ' is ' + w + 'x' + img.naturalHeight +
+                     ' - below ' + MIN_SRC + 'px, will look soft when magnified.');
+      } else {
+        console.info('[voices] ' + file + ' ' + w + 'x' + img.naturalHeight + ' - ok');
+      }
+    }
+    window.addEventListener('load', function () {
+      Array.prototype.forEach.call(
+        document.querySelectorAll('.voice-avatar img'),
+        function (img) {
+          if (img.complete) { check(img); }
+          else { img.addEventListener('load', function () { check(img); }); }
+        }
+      );
+    });
+  } catch (err) {
+    console.error('[voices] size check disabled:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
