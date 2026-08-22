@@ -4516,6 +4516,31 @@ body.dv-dragging .dv-portrait { opacity: 0 !important; }
 })();
 </script>
 
+<!-- ===== Mobile hero: clear the fixed language toggle ===== -->
+<style>
+/* The stacked mobile header centres the photo while the toggle is fixed at
+   top-right (~160px wide), so their boxes overlap on narrow screens.
+   margin-right shifts a centre-aligned flex item left by half its value —
+   used here instead of transform because .header-image carries data-aos,
+   and AOS animates transform on that element. */
+@media (max-width: 560px) {
+  .header-image {
+    margin-right: 128px;   /* shifts the photo 64px left */
+  }
+}
+
+/* Under ~360px the shift alone can't clear it, so the photo also comes down
+   slightly rather than being pushed against the left edge. */
+@media (max-width: 360px) {
+  .header-image {
+    margin-right: 150px;
+  }
+  .header-image img {
+    width: 104px;
+    height: 104px;
+  }
+}
+</style>
 <!-- ===== Voices strip: Kannada names ===== -->
 <script>
   (function () {
